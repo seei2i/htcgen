@@ -1,17 +1,239 @@
-= link_to "Htcgen", root_path, :class => 'brand'
-%ul.nav
-  - if user_signed_in?
-    %li
-      = link_to 'Logout', destroy_user_session_path, :method=>'delete'
-  - else
-    %li
-      = link_to 'Login', new_user_session_path
-  - if user_signed_in?
-    %li
-      = link_to 'Edit account', edit_user_registration_path
-    - if current_user.has_role? :admin
-      %li
-        = link_to 'Admin', users_path
-  - else
-    %li
-      = link_to 'Sign up', new_user_registration_path
+.navbar.navbar-default
+  .row
+    = link_to(image_tag('453_491_logo-htc.png'), root_path, :class => 'brand')
+  .navbar-header
+    %button.navbar-toggle{"data-target" => ".navbar-collapse", "data-toggle" => "collapse", :type => "button"}
+      %span.icon-bar
+      %span.icon-bar
+      %span.icon-bar
+  .navbar-collapse.collapse
+    %ul.nav.navbar-nav
+      %li.dropdown
+        %a.dropdown-toggle{"data-toggle" => "dropdown", :href => "#"}
+          Find A Test
+          %b.caret
+        %ul.dropdown-menu{:role => "menu"}
+          %li
+            %a{:href => "#"} 
+              Most Popular Tests
+              %b.caret-right
+            %ul.dropdown-menu.sub-menu
+              %li.dropdown-header MOST POPULAR TESTS
+              %li
+                %a{:href => "/essential-health-screen.aspx"} Essential Health Screening
+              %li
+                %a{:href => "/basic-health-profile.aspx"} Basic Health Screen
+              %li
+                %a{:href => "/cholesterol-test.aspx"} Cholesterol/ Lipid Profile
+              %li
+                %a{:href => "/complete-blood-count.aspx"} Complete Blood Count (CBC)
+              %li
+                %a{:href => "/metabolic-panel.aspx"} Metabolic Panel (14) Comp
+              %li
+                %a{:href => "/std-test-level-1.aspx"} STD Panel Level I
+              %li
+                %a{:href => "/std-test-level-2.aspx"} STD Panel Level II
+              %li
+                %a{:href => "/thyroid-testing.aspx"} Thyroid Function
+              %li
+                %a{:href => "/psa.aspx"} Prostate (PSA)
+              %li
+                %a{:href => "/liver-function-test.aspx"} Liver Function
+              %li
+                %a{:href => "/hemoglobin-a1c-test.aspx"} Hemoglobin A1c
+          %li
+            %a{:href => "#"} 
+              Health Categories
+              %b.caret-right
+            %ul.dropdown-menu.sub-menu
+              %li
+                .row{:style => "width:400px;"}
+                  %ul.col-md-6
+                    %li.dropdown-header HEALTH CATEGORIES
+                    %li
+                      %a{:href => "/test-kits.aspx"} At Home Test Kits
+                    %li
+                      %a{:href => "/allergy-testing.aspx"} Allergy Testing
+                    %li
+                      %a{:href => "/anemia.aspx"} Anemia
+                    %li
+                      %a{:href => "/arthritis-testing.aspx"} Arthritis
+                    %li
+                      %a{:href => "/cmp-cbc-test.aspx"} Blood Chemistry (CBC+CMP)
+                    %li
+                      %a{:href => "/blood-type-test.aspx"} Blood Type
+                    %li
+                      %a{:href => "/cancer-screening.aspx"} Cancer Screening
+                    %li
+                      %a{:href => "/celiacdiseasetest.aspx"} Celiac Disease
+                    %li
+                      %a{:href => "/diabetes-screening.aspx"} Diabetes Testing
+                    %li
+                      %a{:href => "/drug-testing.aspx"} Drug Testing
+                    %li
+                      %a{:href => "/fertility-testing.aspx"} Fertility Screening
+                    %li
+                      %a{:href => "/gastrointestinal.aspx"} Gastrointestinal
+                    %li
+                      %a{:href => "/heart-cholesterol-testing.aspx"} Heart & Cholesterol
+                  %ul.col-md-6
+                    %li
+                      %a{:href => "/hormone-tests.aspx"} Hormones/ Anti-Aging
+                    %li
+                      %a{:href => "/immunizationtesting.aspx"} Immunization Testing
+                    %li
+                      %a{:href => "/kidney-function.aspx"} Kidney Function
+                    %li
+                      %a{:href => "/liver-test.aspx"} Liver Function
+                    %li
+                      %a{:href => "/pregnancy-testing.aspx"} Pregnancy
+                    %li
+                      %a{:href => "/prenatal-testing.aspx"} Prenatal Testing
+                    %li
+                      %a{:href => "/psa-test.aspx"} Prostate Test (PSA)
+                    %li
+                      %a{:href => "/salivatests.aspx"} Saliva Testing
+                    %li
+                      %a{:href => "/stdtesting.aspx"} STD Testing
+                    %li
+                      %a{:href => "/thyroid-testing.aspx"} Thyroid Testing
+                    %li
+                      %a{:href => "/vitamin-testing.aspx"} Vitamins & Nutrition
+          %li
+            %a{:href => "#"} 
+              General Categories
+              %b.caret-right
+            %ul.dropdown-menu.sub-menu
+              %li.dropdown-header GENERAL CATEGORIES
+              %li
+                %a{:href => "/Complete-Test-List.aspx"} Complete Test List
+              %li
+                %a{:href => "/discount-test-panels.aspx"} Discount Test Panels
+              %li
+                %a{:href => "/a-z-test-list.aspx"} A-Z Lab Test List
+              %li
+                %a{:href => "/comprehensive-packages.aspx"} Comprehensive Panels
+              %li
+                %a{:href => "/blood-testing-for-athletes.aspx"} Athelete Testing
+              %li
+                %a{:href => "/mens-test-list.aspx"} Tests for Men
+              %li
+                %a{:href => "/womens-test-list.aspx"} Tests for Women
+              %li
+                %a{:href => "/disease-testing.aspx"} Disease Detection
+              %li
+                %a{:href => "/giftcertificates.aspx"} Gift Certificates
+      %li.dropdown
+        %a.dropdown-toggle{"data-toggle" => "dropdown", :href => "#"}
+          Find A Center
+          %b.caret
+        %ul.dropdown-menu
+          %li
+            %a{:href => "/blood-test-locations.aspx"} Lab Locator
+          %li
+            %a{:href => "/labappointments.aspx"} Appointments
+          %li
+            %a{:href => "/blood-testing-how-it-works.aspx"} How the Process Works 
+      %li.dropdown
+        %a.dropdown-toggle{"data-toggle" => "dropdown", :href => "#"}
+          How It Works
+          %b.caret
+        %ul.dropdown-menu
+          %li
+            %a{:href => "/blood-testing-how-it-works.aspx"} The Ordering Process
+          %li
+            %a{:href => "/blood-testing-how-it-works.aspx#faq"} Frequently Asked Questions
+          %li
+            %a{:href => "/money-back-guarantee.aspx"} Money Back Guarantee
+          %li
+            %a{:href => "/blood-testing-how-it-works.aspx#faq1"} Do I need a Doctor's order?
+          %li
+            %a{:href => "/practitioner.aspx"} Practitioner Program
+          %li
+            %a{:href => "/testresults.aspx"} Where Are My Test Results?
+      %li.dropdown  
+        %a.dropdown-toggle{"data-toggle" => "dropdown", :href => "#"}
+          About Us
+          %b.caret
+        %ul.dropdown-menu
+          %li
+            %a{:href => "/about-us.aspx"} About Our Company
+          %li
+            %a{:href => "/contact-us.aspx"} Contact Us
+          %li
+            %a{:href => "/money-back-guarantee.aspx"} Money Back Guarantee
+          %li
+            %a{:href => "/about-us.aspx"} Employment
+          %li
+            %a{:href => "/testresults.aspx"} Where Are My Test Results?
+          %li
+            %a{:href => "/practitioner.aspx"} Practitioner Program
+      %li.dropdown  
+        %a.dropdown-toggle{"data-toggle" => "dropdown", :href => "#"}
+          News
+          %b.caret
+        %ul.dropdown-menu
+          %li
+            %a{:href => "/october2013newsletter.aspx"} October Health Newsletter (October 10, 2013)
+          %li
+            %a{:href => "/benefitsofregularcoffeeconsumption.aspx"} The Concerns and Unexpected Benefits of Regular Coffee Consumption (September 26, 2013)
+          %li
+            %a{:href => "/september2013newsletter.aspx"} September Health Newsletter (September 6, 2013)
+          %li
+            %a{:href => "/august2013newsletter.aspx"} August Health Newsletter (August 9, 2013)
+          %li
+            %a{:href => "/is-good-cholesterol-really-good.aspx"} Is Good Cholesterol Really Good? (July 22, 2013)
+          %li
+            %a{:href => "/july2013newsletter.aspx"} July Health Newsletter (July 9, 2013)
+          %li
+            %a{:href => "/june2013newsletter.aspx"} June Health Newsletter (June 5, 2013)
+          %li
+            %a{:href => "/articles.aspx"}
+              %span{:style => "color:#d5ab32;"}
+                More Health Testing Articles
+          %li
+            %a{:href => "/health-conditions-and-resources.aspx"}
+              %span{:style => "color:#d5ab32;"}
+                Health Testing Helpful Resources
+      %li.dropdown  
+        %a.dropdown-toggle{"data-toggle" => "dropdown", :href => "#"}
+          Testimonials
+          %b.caret
+        %ul.dropdown-menu
+          %li
+            %a{:href => "/lab-test-testimonials.aspx"}
+              %span{:style => "color:#d5ab32!important;"} See Our Testimonials Page
+          %li{:style => "width:300px!important; padding-bottom:10px;"}
+            %em{:style => "color:#fff;"} "Being hypoglycemic, your lab tests have provided me affordable means to track my blood sugar level. Your nurses always give me the quick and personal service that I require."
+          %li{:style => "width:300px!important; padding-bottom:10px;"}
+            %em{:style => "color:#fff;"} "I know that early detection (of prostate cancer) through your lab test Center is responsible for my husband's early treatment. Dick is alive and well today because of you."
+          %li{:style => "width:300px!important; padding-bottom:10px;"}
+            %em{:style => "color:#fff;"} "Yours is a service that is definitely needed in today's busy world. Your staff was courteous, efficient, and professional."
+          %li
+            %a{:href => "/testimonialform.aspx"}
+              %span{:style => "color:#d5ab32;"} Submit Your Testimonial Here
+    %form.navbar-form.navbar-right{:role => "search"}
+      .form-group
+        %input.form-control{:placeholder => "Search Tests", :type => "text"}
+      %button.btn.btn-default.searcher{:type => "submit"}
+        = image_tag('custom_search_submit.gif')
+
+
+
+/ = link_to "Htcgen", root_path, :class => 'brand'
+/ %ul.nav
+/   - if user_signed_in?
+/     %li
+/       = link_to 'Logout', destroy_user_session_path, :method=>'delete'
+/   - else
+/     %li
+/       = link_to 'Login', new_user_session_path
+/   - if user_signed_in?
+/     %li
+/       = link_to 'Edit account', edit_user_registration_path
+/     - if current_user.has_role? :admin
+/       %li
+/         = link_to 'Admin', users_path
+/   - else
+/     %li
+/       = link_to 'Sign up', new_user_registration_path

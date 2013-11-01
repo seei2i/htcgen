@@ -1,4 +1,9 @@
-%h3 Home
-- @users.each do |user|
+.jumbotron
+  %h1 Navbar example
+  %p This example is a quick exercise to illustrate how the default, static navbar and fixed to top navbar work. It includes the responsive CSS and HTML, so it also adapts to your viewport and device.
   %p
-    User: #{link_to user.name, user}
+    %a.btn.btn-lg.btn-primary{:href => "../../components/#navbar", :role => "button"} View navbar docs &raquo;
+
+/ %h3 Home
+/ - @users.each do |user|
+/   %p User: #{link_to user.name, user}
