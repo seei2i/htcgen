@@ -24,9 +24,14 @@ $gold: hsla(45, 65.9919%, 51.5686%, 1.0000);
   }
 }
 
-.dropdown-menu > li > a {
+.dropdown-menu li a {
   color: #FFF;
   font-weight: bold;
+  display: block;
+  padding: 3px 15px;
+  clear: both;
+  line-height: 1.428571429;
+  white-space: nowrap;
   &:hover {
     color: #000;
     background: #FFF;
@@ -196,6 +201,7 @@ a.brand {
   top: 0;
   visibility: hidden;
   margin-top: -1px;
+  padding: 5px 10px;
 }
 
 .dropdown-menu li:hover .sub-menu {
@@ -231,4 +237,8 @@ a.brand {
   border-bottom: 4px solid transparent;
   border-left: 4px solid #000000;
   content: "";
+}
+
+.container .jumbotron {
+  border-radius: 0px;
 }
