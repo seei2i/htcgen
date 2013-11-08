@@ -1,16 +1,13 @@
 @import "bootstrap";
 
 $graybg:  hsla(0, 0.0000%, 69.4118%, 1.0000);
-
 $navblue: hsla(210, 77.9528%, 24.9020%, 1.0000);  // #0d3f6e
 $navdblue: hsla(211, 78.0822%, 8.3137%, 1.0000);  // #072340
-
 $navlinkblue: hsla(214, 88.5714%, 34.3137%, 1.0000); // 0a4ea5
 $navlinkdblue: hsla(212, 92.5234%, 20.9804%, 1.0000); // 043367
-
 $dropdownblue:  hsla(214, 89.2857%, 32.9412%, 1.0000);
-
 $gold: hsla(45, 65.9919%, 51.5686%, 1.0000);
+$lrsides: hsla(0, 0.0000%, 93.3333%, 1.0000);
 
 .navbar-default .navbar-nav > li > a {
   color: #FFF;
@@ -82,14 +79,6 @@ $gold: hsla(45, 65.9919%, 51.5686%, 1.0000);
 .nav > li > a {
   display: inline-block;
   padding: 10px 15px 10px 15px;
-  background-color: $navlinkblue;
-  background-image: -moz-linear-gradient(top, $navlinkblue, $navlinkdblue);
-  background-image: -webkit-gradient(linear, 0 0, 0 100%, from($navlinkblue), to($navlinkdblue));
-  background-image: -webkit-linear-gradient(top, $navlinkblue, $navlinkdblue);
-  background-image: -o-linear-gradient(top, $navlinkblue, $navlinkdblue);
-  background-image: linear-gradient(to bottom, $navlinkblue, $navlinkdblue);
-  background-repeat: repeat-x;
-  filter: progid:DXImageTransform.Microsoft.gradient(startColorstr='#ff0a4ea5', endColorstr='#ff043367', GradientType=0);
   border-right: 1px solid #FFF;
 }
 
@@ -131,6 +120,18 @@ html, body {
   background-image: linear-gradient(to bottom, $navlinkblue, $navlinkdblue);
   background-repeat: repeat-x;
   filter: progid:DXImageTransform.Microsoft.gradient(startColorstr='#ff0a4ea5', endColorstr='#ff043367', GradientType=0);
+}
+
+.navbar-default .navbar-toggle {
+  border: 0px solid #FFF;
+  background-color: #FFF;
+}
+
+.navbar-default .navbar-toggle .icon-bar {
+  background-color: $navlinkblue;
+  width: 22px;
+  height: 3px;
+  border-radius: 0px;
 }
 
 .navbar-form {
@@ -241,4 +242,251 @@ a.brand {
 
 .container .jumbotron {
   border-radius: 0px;
+  background: url('topnav-row3.jpg') top right no-repeat;
+  filter: progid:DXImageTransform.Microsoft.AlphaImageLoader(src='oppBG.png', sizingMethod='scale');
+  -ms-filter: "progid:DXImageTransform.Microsoft.AlphaImageLoader(src='topnav-row3.jpg', sizingMethod='scale')";
+  -webkit-background-size: cover;
+     -moz-background-size: cover;
+       -o-background-size: cover;
+          background-size: cover;
+  text-align: right;
+  padding-top: 120px;
+  padding-bottom: 30px;
+  margin-bottom: 5px;
+}
+
+.numbaholda {
+  float: right;
+  font-size: 30px;
+  font-weight: bold;
+  color: #FFF;
+  line-height: 120%;
+  margin-top: 10px;
+  margin-right: 20px;
+  a {
+    color: $gold;
+    cursor: pointer;
+  }
+}
+
+.numbaholdamob {
+  float: right;
+  font-size: 26px;
+  font-weight: bold;
+  color: #FFF;
+  line-height: 120%;
+  margin-top: 10px;
+  margin-right: 20px;
+  display: none;
+  a {
+    color: $gold;
+    cursor: pointer;
+  }
+}
+
+.lside, .rside {
+  padding-top: 5px;
+  background: $lrsides;
+}
+
+.cside {
+  color: #666;
+  padding-top: 5px;
+  background: #FFF;
+  h1 {
+    font-size: 14px;
+    font-weight: bold;
+    color: #FFF;
+    background-color: $navblue;
+    background-image: -moz-linear-gradient(top, $navblue, $navdblue);
+    background-image: -webkit-gradient(linear, 0 0, 0 100%, from($navblue), to($navdblue));
+    background-image: -webkit-linear-gradient(top, $navblue, $navdblue);
+    background-image: -o-linear-gradient(top, $navblue, $navdblue);
+    background-image: linear-gradient(to bottom, $navblue, $navdblue);
+    background-repeat: repeat-x;
+    filter: progid:DXImageTransform.Microsoft.gradient(startColorstr='#ff0d3f6e', endColorstr='#ff072340', GradientType=0);
+    padding: 5px 15px;
+  }
+  h2 {
+    color: $navblue;
+    font-size: 20px;
+    font-weight: bold;
+  }
+  h3 {
+    font-size: 14px;
+    color: $navblue;
+    font-weight: bold;
+  }
+  h4 {
+    font-size: 30px;
+    color: $navblue;
+    font-weight: bold;
+  }
+  h5 {
+    font-size: 15px;
+    color: hsla(121, 75.4190%, 35.0980%, 1.0000);
+    font-weight: bold;
+  }
+  h6 {
+
+  }
+}
+
+.labtestcat {
+  margin-left: -9px;
+  margin-top: 5px;
+}
+
+.easyas {
+  margin-top: 5px;
+  margin-bottom: 10px;
+}
+
+.topsoc {
+  img {
+    padding-bottom: 20px;
+  } 
+}
+
+.newslet {
+  img {
+    padding-top: 20px;
+    padding-left: 15px;
+  }
+}
+
+.modulee {
+  margin-left: -9px;
+  background: url('cat-bg.png');
+  padding-top: 10px;
+  padding-bottom: 10px;
+  li {
+    margin-left: -15px;
+    list-style: none;
+    a {
+      color: $navblue;
+      font-weight: bold;
+      font-size: 12px;
+      &:hover {
+        color: hsla(199, 53.0000%, 39.2157%, 1.0000);
+      }
+    }
+  }
+}
+
+.topsoc {
+  padding-right: 5px;
+}
+
+.breadcrumb { 
+  background-color: #FFF;
+  font-size: 13px;
+  a {
+    color: #000;
+    font-size: 13px;
+  }
+}
+
+.mapplaceholder {
+  padding-top: 10px;
+  padding-bottom: 10px;
+}
+
+@media (max-width: 1200px) {
+  .topsoc {
+    img {
+      width: 23px;
+    }
+  }
+
+  .labtestcat {
+    width: 145px;
+    margin-left: -7px;
+  }
+
+  .checkup {
+    img {
+      width: 125px;
+    }
+  }
+
+  .easyas {
+    img {
+      width: 125px;
+    }
+  }
+  .newslet {
+    img {
+      width: 125px;
+      padding-left: 5px;
+    }
+  }
+}
+
+
+
+@media (max-width: 991px) {
+  .navbar-form {
+    display: none;
+  }
+
+  .lside, .rside {
+    display: none;
+  }
+}
+
+@media (max-width: 767px) {
+  .numbaholda {
+    display: none;
+  }
+  .numbaholdamob {
+    display: block;
+  }
+  .nav > li {
+    text-align: center;
+  }
+
+  .nav > li > a {
+    display: inline-block;
+    padding: 10px 15px 10px 15px;
+    border-right: 0px solid #FFF;
+    font-weight: bold;
+  }
+
+  .dropdown-menu {
+    display: none;
+  }
+
+  .dropdown-menu .sub-menu {
+    display: none;
+  }
+
+  .dropdown:hover .dropdown-menu {
+    display: none;
+  }
+
+  .dropdown-menu li:hover .sub-menu {
+    visibility: hidden;
+  }
+
+  .jumbolink {
+    img {
+      width: 90px;
+    }
+  }
+
+  .mapplaceholder {
+    width: 100%;
+  }
+
+  .container .jumbotron {
+    padding-top: 80px;
+    padding-bottom: 20px;
+  }
+  .breadcrumb { 
+    font-size: 10px;
+    a {
+      font-size: 10px;
+    }
+  }
 }

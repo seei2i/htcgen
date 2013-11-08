@@ -1,11 +1,19 @@
 .navbar.navbar-default
   .row
-    = link_to(image_tag('453_491_logo-htc.png'), root_path, :class => 'brand')
+    .col-md-12
+      = link_to(image_tag('453_491_logo-htc.png'), root_path, :class => 'brand')
+      .numbaholda
+        Questions?
+        = image_tag('icon-phone.png')
+        %br
+        %a.numba 877-511-LABS (5227)
   .navbar-header
     %button.navbar-toggle{"data-target" => ".navbar-collapse", "data-toggle" => "collapse", :type => "button"}
       %span.icon-bar
       %span.icon-bar
       %span.icon-bar
+    .numbaholdamob
+      %a.numba 877-511-LABS (5227)
   .navbar-collapse.collapse
     %ul.nav.navbar-nav
       %li.dropdown
@@ -47,7 +55,7 @@
               %b.caret-right
             %ul.dropdown-menu.sub-menu
               %li
-                .row{:style => "width:400px;"}
+                .row{:style => "width:600px;"}
                   %ul.list-unstyled.col-md-6
                     %li.dropdown-header HEALTH CATEGORIES
                     %li
@@ -203,11 +211,11 @@
           %li
             %a{:href => "/lab-test-testimonials.aspx"}
               %span{:style => "color:#d5ab32!important;"} See Our Testimonials Page
-          %li{:style => "width:300px!important; padding-bottom:10px;"}
+          %li{:style => "width:350px!important; padding:15px;"}
             %em{:style => "color:#fff;"} "Being hypoglycemic, your lab tests have provided me affordable means to track my blood sugar level. Your nurses always give me the quick and personal service that I require."
-          %li{:style => "width:300px!important; padding-bottom:10px;"}
+          %li{:style => "width:350px!important; padding:15px;"}
             %em{:style => "color:#fff;"} "I know that early detection (of prostate cancer) through your lab test Center is responsible for my husband's early treatment. Dick is alive and well today because of you."
-          %li{:style => "width:300px!important; padding-bottom:10px;"}
+          %li{:style => "width:350px!important; padding:15px;"}
             %em{:style => "color:#fff;"} "Yours is a service that is definitely needed in today's busy world. Your staff was courteous, efficient, and professional."
           %li
             %a{:href => "/testimonialform.aspx"}

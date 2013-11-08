@@ -1,6 +1,127 @@
 .jumbotron
-  %h1 Page
-  %p Content
+  = link_to(image_tag('logo-hipaa.png'), root_path, :class => 'jumbolink')
+  = link_to(image_tag('seal.png'), root_path, :class => 'jumbolink')
+  = link_to(image_tag('logo-bbb.png'), root_path, :class => 'jumbolink')
+.container
+  .row
+    .col-md-2.lside
+      = link_to(image_tag('Checkup-Ad.png'), "http://www.healthtestingcenters.com/essential-health-screen.aspx", :class => 'checkup')
+      = image_tag('mod_head_category_lt.gif', :class => 'labtestcat')
+      .modulee
+        %ul
+          %li
+            %a{:href => "http://www.healthtestingcenters.com/allergy-testing.aspx"} Allergy Testing
+          %li
+            %a{:href => "http://www.healthtestingcenters.com/anemia.aspx"} Anemia
+          %li
+            %a{:href => "http://www.healthtestingcenters.com/hormone-level-blood-tests.aspx"} Anti-Aging/ Hormones
+          %li
+            %a{:href => "http://www.healthtestingcenters.com/arthritis-blood-tests.aspx"} Arthritis
+          %li
+            %a{:href => "http://www.healthtestingcenters.com/test-kits.aspx"} At Home Test Kits
+          %li
+            %a{:href => "http://www.healthtestingcenters.com/cmp-cbc-test.aspx"} Basic Blood Chemistry
+          %li
+            %a{:href => "http://www.healthtestingcenters.com/bloodtype-bloodtest.aspx"} Blood Type
+          %li
+            %a{:href => "http://www.healthtestingcenters.com/cancer-blood-test.aspx"} Cancer Screening
+          %li
+            %a{:href => "http://www.healthtestingcenters.com/celiacdisease.aspx"} Celiac Disease
+          %li
+            %a{:href => "http://www.healthtestingcenters.com/comprehensive-packages.aspx"} Comprehensive Panels
+          %li
+            %a{:href => "http://www.healthtestingcenters.com/diabetes-blood-test.aspx"} Diabetes Testing
+          %li
+            %a{:href => "http://www.healthtestingcenters.com/disease-testing.aspx"} Disease Detection
+          %li
+            %a{:href => "http://www.healthtestingcenters.com/drug.aspx"} Drug Testing
+          %li
+            %a{:href => "http://www.healthtestingcenters.com/fertility-testing.aspx"} Fertility Testing
+          %li
+            %a{:href => "http://www.healthtestingcenters.com/gastrointestinal.aspx"} Gastrointestinal
+          %li
+            %a{:href => "http://www.healthtestingcenters.com/heart-cholesterol-test.aspx"} Heart &amp; Cholesterol
+          %li
+            %a{:href => "http://www.healthtestingcenters.com/heavy-metal-blood-test.aspx"} Heavy Metals / Toxins
+          %li
+            %a{:href => "http://www.healthtestingcenters.com/immunizationtesting.aspx"} Immunization Testing
+          %li
+            %a{:href => "http://www.healthtestingcenters.com/kidney-function.aspx"} Kidney Function
+          %li
+            %a{:href => "http://www.healthtestingcenters.com/liver-test.aspx"} Liver Function
+          %li
+            %a{:href => "http://www.healthtestingcenters.com/pregnancy.aspx"} Pregnancy
+          %li
+            %a{:href => "http://www.healthtestingcenters.com/prenatal-testing.aspx"} Prenatal Testing
+          %li
+            %a{:href => "http://www.healthtestingcenters.com/psa-test.aspx"} Prostate Test (PSA)
+          %li
+            %a{:href => "http://www.healthtestingcenters.com/salivatests.aspx"} Saliva Testing
+          %li
+            %a{:href => "http://www.healthtestingcenters.com/stdtesting.aspx"} STD Testing
+          %li
+            %a{:href => "http://www.healthtestingcenters.com/thyroid-test.aspx"} Thyroid Function
+          %li
+            %a{:href => "http://www.healthtestingcenters.com/vitamintest.aspx"} Vitamins &amp; Nutrition
+    .col-md-8.cside
+      %ol.breadcrumb
+        %li
+          %a{:href => "#"} Health Testing Centers
+        %li
+          %a{:href => "#"} State
+        %li
+          %a{:href => "#"} City
+        %li.active Laboratory Blood Tests
+      %h1 Laboratory Blood Testing in City
+      .container
+        .row
+          .col-sm-6.col-sm-push-12
+            = image_tag('mapplaceholder.png', :class => 'mapplaceholder')
+          .col-sm-6.col-sm-pull-12
+            .row
+              .btn.btn-primary Order and Test Here
+            .row
+              .col-md-6
+                %h3 Health Testing Centers
+                %p 
+                  300 Fleet St 2nd Floor
+                  %br
+                  2nd Floor
+                  %br
+                  Pittsburgh, PA 15220
+              .col-md-6
+                %h3 Hours
+                %p 
+                  8AM-3PM EST (M-F)
+            .row
+              %h4 (412) 685-4722
+      %h2 The Leader in City for Bloodtesting Since 1980
+      %h1 Top Blood Test Categories in City
+      .row
+        .col-md-6
+          %ul
+            %li= link_to 'STD Testing Basic Health Screening $59', 'http://www.healthtestingcenters.com/basic-blood-test.aspx'
+            %li= link_to 'Thyroid Testing', 'http://www.healthtestingcenters.com/thyroid-test.aspx'
+            %li= link_to 'Cholesterol and Heart Blood Testing', 'Cholesterol and Heart Blood Testing'
+            %li= link_to 'Cancer Testing', 'http://www.healthtestingcenters.com/cancer-blood-test.aspx'
+        .col-md-6
+          %ul
+            %li= link_to 'Prostate Testing', 'http://www.healthtestingcenters.com/psa.aspx'
+            %li= link_to 'Liver Testing', 'http://www.healthtestingcenters.com/liver-function-test.aspx'
+            %li= link_to 'Hormone Testing', 'http://www.healthtestingcenters.com/hormone-level-blood-tests.aspx'
+      %h1 Blood Testing Details for Patients in City
+      %p Health Testing Centers have convenient locations in Pittsburgh, PA. Simply purchase the test you want online or call our nurses to order by phone. After ordering, Health Testing Centers then emails you a requisition form to bring to one of the below LabCorp locations. After you you have the blood drawn at one of the LabCorp locations below we email the results within 24-48 hours.
+      %h1 Health Facts in City
+      %p Oriented in Pennsylvania, the metro area, Pittsburgh contains a total of 307,532 individuals. The state population of Pennsylvania has 12,709,154 people. Out of this number of people, a total of 2.4% of them live in Pittsburgh. In one year, there are 24 deaths in the city that are caused by liver disease. There are an additional 55 deaths from kidney disease in the city. Altogether, there are a total of 558 deaths from every kind of cancer. Stroke also caused 121 deaths in the city. In addition, 66 deaths are caused by just prostate cancer, which accounts for 11.7% of total cancer deaths. During the same time period, 357 die from coronary heart disease. There were also 62 resident deaths from diabetes. On average, 0.12% of residents were likely to die of coronary heart disease during the year and 0.18% chance of passing away from any form of cancer.
+    .col-md-2.rside
+      = link_to(image_tag('email.png'), "mailto:", :class => 'topsoc')
+      = link_to(image_tag('google-plus-new.png'), "https://plus.google.com/104085544192925470869/posts", :class => 'topsoc')
+      = link_to(image_tag('facebook.png'), "http://www.facebook.com/HealthTestingCenters", :class => 'topsoc')
+      = link_to(image_tag('twitter.png'), "http://twitter.com/#!/bloodtesting", :class => 'topsoc')
+      = link_to(image_tag('Lab-Testing-123.png'), "http://www.healthtestingcenters.com/blood-testing-how-it-works.aspx", :class => 'easyas')
+      = link_to(image_tag('Newletter-Signup.png'), "http://visitor.r20.constantcontact.com/d.jsp?llr=b8ffsudab&p=oi&m=1103422986081", :class => 'newslet')
+      
+      
 
 / %h3 Home
 / - @users.each do |user|
