@@ -3,7 +3,7 @@
   = link_to(image_tag('seal.png'), root_path, :class => 'jumbolink')
   = link_to(image_tag('logo-bbb.png'), root_path, :class => 'jumbolink')
 .container
-  .row
+  .row.mainer
     .col-md-2.lside
       = link_to(image_tag('Checkup-Ad.png'), "http://www.healthtestingcenters.com/essential-health-screen.aspx", :class => 'checkup')
       = image_tag('mod_head_category_lt.gif', :class => 'labtestcat')
@@ -77,11 +77,10 @@
         .row
           .col-sm-6.col-sm-push-12
             = image_tag('mapplaceholder.png', :class => 'mapplaceholder')
-          .col-sm-6.col-sm-pull-12
+          .col-sm-6.col-sm-pull-12.buttoninfo
+            .btn.btn-primary Order and Test Here
             .row
-              .btn.btn-primary Order and Test Here
-            .row
-              .col-md-6
+              .col-md-6.col-sm-6.col-xs-6
                 %h3 Health Testing Centers
                 %p 
                   300 Fleet St 2nd Floor
@@ -89,26 +88,35 @@
                   2nd Floor
                   %br
                   Pittsburgh, PA 15220
-              .col-md-6
+              .col-md-6.col-sm-6.col-xs-6
                 %h3 Hours
                 %p 
                   8AM-3PM EST (M-F)
             .row
-              %h4 (412) 685-4722
+              .col-md-12
+                %h4 (412) 685-4722
+                %h5 Call to consult with a medical professional
       %h2 The Leader in City for Bloodtesting Since 1980
+      .well
+        %h6 Doctor’s Order Included
+        %p You do not need an order or a prescription from your doctor. All our tests
+        %h6 Save 70% or More
+        %p Most of our patients either don’t have health insurance or don’t want to
+        %h6 Order Any Lab Test (No Restrictions)
+        %p Often health insurance companies, or even your doctor, will limit the
       %h1 Top Blood Test Categories in City
       .row
         .col-md-6
           %ul
-            %li= link_to 'STD Testing Basic Health Screening $59', 'http://www.healthtestingcenters.com/basic-blood-test.aspx'
-            %li= link_to 'Thyroid Testing', 'http://www.healthtestingcenters.com/thyroid-test.aspx'
-            %li= link_to 'Cholesterol and Heart Blood Testing', 'Cholesterol and Heart Blood Testing'
-            %li= link_to 'Cancer Testing', 'http://www.healthtestingcenters.com/cancer-blood-test.aspx'
+            %li= link_to 'STD Testing Basic Health Screening $59', 'http://www.healthtestingcenters.com/basic-blood-test.aspx', :class => "bulletlink"
+            %li= link_to 'Thyroid Testing', 'http://www.healthtestingcenters.com/thyroid-test.aspx', :class => "bulletlink"
+            %li= link_to 'Cholesterol and Heart Blood Testing', 'Cholesterol and Heart Blood Testing', :class => "bulletlink"
+            %li= link_to 'Cancer Testing', 'http://www.healthtestingcenters.com/cancer-blood-test.aspx', :class => "bulletlink"
         .col-md-6
           %ul
-            %li= link_to 'Prostate Testing', 'http://www.healthtestingcenters.com/psa.aspx'
-            %li= link_to 'Liver Testing', 'http://www.healthtestingcenters.com/liver-function-test.aspx'
-            %li= link_to 'Hormone Testing', 'http://www.healthtestingcenters.com/hormone-level-blood-tests.aspx'
+            %li= link_to 'Prostate Testing', 'http://www.healthtestingcenters.com/psa.aspx', :class => "bulletlink"
+            %li= link_to 'Liver Testing', 'http://www.healthtestingcenters.com/liver-function-test.aspx', :class => "bulletlink"
+            %li= link_to 'Hormone Testing', 'http://www.healthtestingcenters.com/hormone-level-blood-tests.aspx', :class => "bulletlink"
       %h1 Blood Testing Details for Patients in City
       %p Health Testing Centers have convenient locations in Pittsburgh, PA. Simply purchase the test you want online or call our nurses to order by phone. After ordering, Health Testing Centers then emails you a requisition form to bring to one of the below LabCorp locations. After you you have the blood drawn at one of the LabCorp locations below we email the results within 24-48 hours.
       %h1 Health Facts in City
@@ -120,7 +128,39 @@
       = link_to(image_tag('twitter.png'), "http://twitter.com/#!/bloodtesting", :class => 'topsoc')
       = link_to(image_tag('Lab-Testing-123.png'), "http://www.healthtestingcenters.com/blood-testing-how-it-works.aspx", :class => 'easyas')
       = link_to(image_tag('Newletter-Signup.png'), "http://visitor.r20.constantcontact.com/d.jsp?llr=b8ffsudab&p=oi&m=1103422986081", :class => 'newslet')
-      
+.container
+  .row.footertopbar
+    .col-md-3.col-sm-3.col-xs-3
+      = image_tag('guarantee.png', :class => 'labtestcat')
+    .col-md-9.col-sm-9.col-xs-9
+      %h1 OUR GAURANTEE
+      %p We care about your health. If you're not completely satisfied, we will make it right or give your money back. 
+  .row.footer
+    .col-md-6
+      = image_tag('453_491_logo-htc.png', :class => 'labtestcat')
+    .col-md-6
+      %h2 TO SPEAK WITH A MEDICAL PROFESSIONAL
+      %h3 CALL 877-511-LABS (5227)
+  .row.foot
+    .col-md-12
+    %p The Material on this page is educational and does not constitute medical advice, diagnosis or treatment. Please consult your physician if medical advice, diagnosis or treatment is needed. Health Screening Lab Tests may or may not alert you and your doctor to serious medical conditions and are not intended to be a substitute for a physicians's examination.
+  .row.footbot
+    %ul
+      %li
+        %a{:href => 'http://www.healthtestingcenters.com/privacy-policy.aspx'} Privacy
+      |
+      %li
+        %a{:href => 'http://www.healthtestingcenters.com/terms.aspx'} Terms
+      |
+      %li
+        %a{:href => 'http://www.healthtestingcenters.com/hipaa.aspx'} HIPAA
+      |
+      %li
+        %a{:href => 'http://www.healthtestingcenters.com/sitemap.aspx'} Sitemap
+      |
+      %li
+        %a{:href => 'http://www.healthtestingcenters.com/about-us.aspx'} About Us
+
       
 
 / %h3 Home
