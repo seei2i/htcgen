@@ -6,16 +6,22 @@
         Questions?
         = image_tag('icon-phone.png')
         %br
-        %a.numba 877-511-LABS (5227)
+        %a.numba{:href => "tel:1-877-511-5227"} 877-511-LABS (5227)
   .navbar-header
     %button.navbar-toggle{"data-target" => ".navbar-collapse", "data-toggle" => "collapse", :type => "button"}
       %span.icon-bar
       %span.icon-bar
       %span.icon-bar
     .numbaholdamob
-      %a.numba 877-511-LABS (5227)
+      %a.numba{:href => "tel:1-877-511-5227"} 877-511-LABS (5227)
   .navbar-collapse.collapse
     %ul.nav.navbar-nav
+      %li.mobilelinks= link_to('Find a Test',   'http://www.healthtestingcenters.com/Complete-Test-List.aspx')
+      %li.mobilelinks= link_to('Find a Center', 'http://www.healthtestingcenters.com/blood-test-locations.aspx')
+      %li.mobilelinks= link_to('How it Works',  'http://www.healthtestingcenters.com/blood-testing-how-it-works.aspx')
+      %li.mobilelinks= link_to('About Us',      'http://www.healthtestingcenters.com/about-us.aspx')
+      %li.mobilelinks= link_to('News',          'http://www.healthtestingcenters.com/articles.aspx')
+      %li.mobilelinks= link_to('Testimonials',  'http://www.healthtestingcenters.com/testimonials.aspx')
       %li.dropdown
         %a.dropdown-toggle{"data-toggle" => "dropdown", :href => "#"}
           Find A Test

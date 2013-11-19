@@ -570,12 +570,51 @@ $buttonyel2: hsla(51, 72.8972%, 58.0392%, 1.0000); // e2ca46
   }
 }
 
+.buttoninfophone {
+  display: none;
+}
+
+li.mobilelinks {
+  display: none;
+}
+
 @media (max-width: 767px) {
+  li.dropdown {
+    display: none;
+  }
+  li.mobilelinks {
+    display: block;
+  }
+  .btn-primary {
+    margin-top: 10px;
+  }
+  .buttoninfo {
+    display: none;
+  }
+  .buttoninfophone {
+    display: block;
+  }
+  .cside h1 {  
+    padding: 10px 15px;
+    margin-left: -15px;
+    margin-right: -15px;
+  }
+  .row {
+    margin-right: 0px;
+    margin-left: 0px;
+  }
+  .container {
+    margin-right: 0px;
+    margin-left: 0px;
+    padding-right: 0px;
+    padding-left: 0px;
+  }
   .numbaholda {
     display: none;
   }
   .numbaholdamob {
     display: block;
+    font-size: 22px;
   }
   .nav > li {
     text-align: center;
@@ -606,7 +645,7 @@ $buttonyel2: hsla(51, 72.8972%, 58.0392%, 1.0000); // e2ca46
 
   .jumbolink {
     img {
-      width: 90px;
+      width: 80px;
     }
   }
 
@@ -615,13 +654,30 @@ $buttonyel2: hsla(51, 72.8972%, 58.0392%, 1.0000); // e2ca46
   }
 
   .container .jumbotron {
-    padding-top: 80px;
-    padding-bottom: 20px;
+    padding-top: 55px;
+    padding-bottom: 10px;
   }
   .breadcrumb { 
-    font-size: 10px;
-    a {
-      font-size: 10px;
-    }
+    display: none;
+  }
+}
+
+@media (max-width: 400px) {
+  .cside h1.toph1 {
+    margin-top: 0px;
+  }
+  .container .jumbotron {
+    display: none;
+  }
+  a.brand img {
+    width: 260px;
+  }
+  .footertopbar img {
+    margin-top: 15px;
+    margin-left: -35%;
+    width: 76px;
+  }
+  .footbot ul {
+    margin-left: -35px;
   }
 }

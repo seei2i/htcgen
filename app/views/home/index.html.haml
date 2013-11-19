@@ -72,9 +72,16 @@
         %li
           %a{:href => "#"} City
         %li.active Laboratory Blood Tests
-      %h1 Laboratory Blood Testing in City
+      %h1.toph1 Laboratory Blood Testing in City
       .container
         .row
+          .col-xs-12.buttoninfophone
+            .btn.btn-primary Order and Test Here
+            .row
+              .col-md-12
+                %h4 
+                  %a{:href => "tel:1-412-685-4722"} (412) 685-4722
+                %h5 Call to consult with a medical professional
           .col-sm-6.col-sm-push-12
             = image_tag('mapplaceholder.png', :class => 'mapplaceholder')
           .col-sm-6.col-sm-pull-12.buttoninfo
@@ -94,8 +101,20 @@
                   8AM-3PM EST (M-F)
             .row
               .col-md-12
-                %h4 (412) 685-4722
+                %h4
+                  %a{:href => "tel:1-412-685-4722"} (412) 685-4722
                 %h5 Call to consult with a medical professional
+          .col-xs-12.buttoninfophone
+            %h3 Health Testing Centers
+            %p 
+              300 Fleet St 2nd Floor
+              %br
+              2nd Floor
+              %br
+              Pittsburgh, PA 15220
+          .col-xs-12.buttoninfophone
+            %h3 Hours
+            %p 8AM-3PM EST (M-F)
       %h2 The Leader in City for Bloodtesting Since 1980
       .well
         %h6 Doctor’s Order Included
@@ -140,7 +159,8 @@
       = image_tag('453_491_logo-htc.png', :class => 'labtestcat')
     .col-md-6
       %h2 TO SPEAK WITH A MEDICAL PROFESSIONAL
-      %h3 CALL 877-511-LABS (5227)
+      %h3 
+        %a{:href => "tel:1-877-511-5227"} CALL 877-511-LABS (5227)
   .row.foot
     .col-md-12
     %p The Material on this page is educational and does not constitute medical advice, diagnosis or treatment. Please consult your physician if medical advice, diagnosis or treatment is needed. Health Screening Lab Tests may or may not alert you and your doctor to serious medical conditions and are not intended to be a substitute for a physicians's examination.
