@@ -2,16 +2,18 @@
 %html
   %head
     %meta{:content => "width=device-width, initial-scale=1.0", :name => "viewport"}
-      %title= content_for?(:title) ? yield(:title) : "Htcgen"
-      %meta{:content => content_for?(:description) ? yield(:description) : "Htcgen", :name => "description"}
-        = stylesheet_link_tag "application", :media => "all"
-        = javascript_include_tag "application"
-        = csrf_meta_tags
-        = yield(:head)
+      %title= content_for?(:title) ? yield(:title) : "HealthTestingCenters.com"
+      %meta{:content => content_for?(:description) ? yield(:description) : "Health Testing Centers", :name => "description"}
+      = stylesheet_link_tag "application", :media => "all"
+      = javascript_include_tag "application"
+      = csrf_meta_tags
+      = yield(:head)
   %body{:class => "#{controller_name} #{action_name}"}
     .container
-      = render 'layouts/navigation'
-      // = render 'layouts/messages'
-      = yield
-      // = render 'layouts/footer'
-
+      - if action_name != 'show' && action_name != 'stdpage'
+        = render 'layouts/prenavigation'
+        = render 'layouts/messages'
+        = yield
+      - else
+        = render 'layouts/navigation'
+        = yield

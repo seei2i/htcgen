@@ -1,0 +1,149 @@
+- content_for :title, @state.title
+- content_for :description, @state.meta
+.jumbotron
+  = link_to(image_tag('logo-hipaa.png'), root_path, :class => 'jumbolink')
+  = link_to(image_tag('seal.png'), root_path, :class => 'jumbolink')
+  = link_to(image_tag('logo-bbb.png'), root_path, :class => 'jumbolink')
+.container
+  .row.mainer
+    .col-md-2.lside
+      = link_to(image_tag('Checkup-Ad.png'), "http://www.healthtestingcenters.com/essential-health-screen.aspx", :class => 'checkup')
+      = image_tag('mod_head_category_lt.gif', :class => 'labtestcat')
+      .modulee
+        %ul
+          %li= link_to 'Allergy Testing', "http://www.healthtestingcenters.com/allergy-testing.aspx"
+          %li= link_to 'Anemia', "http://www.healthtestingcenters.com/anemia.aspx"
+          %li= link_to 'Anti-Aging/ Hormones', "http://www.healthtestingcenters.com/hormone-level-blood-tests.aspx"
+          %li= link_to 'Arthritis', "http://www.healthtestingcenters.com/arthritis-blood-tests.aspx"
+          %li= link_to 'At Home Test Kits', "http://www.healthtestingcenters.com/test-kits.aspx"
+          %li= link_to 'Basic Blood Chemistry', "http://www.healthtestingcenters.com/cmp-cbc-test.aspx"
+          %li= link_to 'Blood Type', "http://www.healthtestingcenters.com/bloodtype-bloodtest.aspx"
+          %li= link_to 'Cancer Screening', "http://www.healthtestingcenters.com/cancer-blood-test.aspx" 
+          %li= link_to 'Celiac Disease', "http://www.healthtestingcenters.com/celiacdisease.aspx" 
+          %li= link_to 'Comprehensive Panels', "http://www.healthtestingcenters.com/comprehensive-packages.aspx" 
+          %li= link_to 'Diabetes Testing', "http://www.healthtestingcenters.com/diabetes-blood-test.aspx" 
+          %li= link_to 'Disease Detection', "http://www.healthtestingcenters.com/disease-testing.aspx" 
+          %li= link_to 'Drug Testing', "http://www.healthtestingcenters.com/drug.aspx" 
+          %li= link_to 'Fertility Testing', "http://www.healthtestingcenters.com/fertility-testing.aspx" 
+          %li= link_to 'Gastrointestinal', "http://www.healthtestingcenters.com/gastrointestinal.aspx" 
+          %li= link_to 'Heart &amp; Cholesterol', "http://www.healthtestingcenters.com/heart-cholesterol-test.aspx" 
+          %li= link_to 'Heavy Metals / Toxins', "http://www.healthtestingcenters.com/heavy-metal-blood-test.aspx" 
+          %li= link_to 'Immunization Testing', "http://www.healthtestingcenters.com/immunizationtesting.aspx" 
+          %li= link_to 'Kidney Function', "http://www.healthtestingcenters.com/kidney-function.aspx" 
+          %li= link_to 'Liver Function', "http://www.healthtestingcenters.com/liver-test.aspx" 
+          %li= link_to 'Pregnancy', "http://www.healthtestingcenters.com/pregnancy.aspx" 
+          %li= link_to 'Prenatal Testing', "http://www.healthtestingcenters.com/prenatal-testing.aspx" 
+          %li= link_to 'Prostate Test (PSA)', "http://www.healthtestingcenters.com/psa-test.aspx" 
+          %li= link_to 'Saliva Testing', "http://www.healthtestingcenters.com/salivatests.aspx" 
+          %li= link_to 'STD Testing', "http://www.healthtestingcenters.com/stdtesting.aspx" 
+          %li= link_to 'Thyroid Function', "http://www.healthtestingcenters.com/thyroid-test.aspx" 
+          %li= link_to 'Vitamins & Nutrition', "http://www.healthtestingcenters.com/vitamintest.aspx" 
+    .col-md-8.cside
+      %ol.breadcrumb
+        %li= link_to 'Health Testing Centers', "http://locations.healthtestingcenters.com/"
+        %li.active #{@state.name}
+      %h1.toph1 Laboratory Blood Tests #{@state.name}
+      %h2 Why Order Laboratory Blood Tests from Health Testing Centers?
+      .row
+        .togler.col-md-4
+          .well.well-lg
+            %h6 Doctor’s Order Included
+            %p 
+              You do not need an order or a prescription from your doctor. All our tests... 
+              %span=link_to 'more', '#', :class => 'togmore'
+            %p.hidden
+              You do not need an order or a prescription from your doctor. All our tests include everything you need to have the test performed. After ordering, simply bring the requisition form to a LabCorp location close to you. Present that form and they will collect the proper specimen for your tests. There is no additional payment to LabCorp. We receive the results and send them directly to you (usually in 1-2 days).
+              %span=link_to 'less', '#', :class => 'togless'
+        .togler.col-md-4
+          .well.well-lg
+            %h6 Confidential Laboratory Blood Testing
+            %p 
+              At Health Testing Centers we make blood testing in #{@state.name} as... 
+              %span=link_to 'more', '#', :class => 'togmore'
+            %p.hidden
+              At Health Testing Centers we make blood testing in #{@state.name} as discreet and convenient as possible. All test results are confidential and are not part of your medical record unless you choose to share them with your doctor.
+              %span=link_to 'less', '#', :class => 'togless'
+        .togler.col-md-4
+          .well.well-lg
+            %h6 Fast Results
+            %p 
+              After having the sample taken at the lab, your easy to understand blood... 
+              %span=link_to 'more', '#', :class => 'togmore'
+            %p.hidden
+              After having the sample taken at the lab, your easy to understand blood test results will be delivered securely to you in one to two days (some test results may take slightly longer.)
+              %span=link_to 'less', '#', :class => 'togless'
+      .row
+        .togler.col-md-4
+          .well.well-lg
+            %h6 Save 70% or More
+            %p 
+              Most of our patients either don’t have health insurance or don’t want to... 
+              %span=link_to 'more', '#', :class => 'togmore'
+            %p.hidden
+              Most of our patients either donÍt have health insurance or donÍt want to use their health insurance to pay for testing. Our focus is out of pocket paying patients. Because weÍve been offering lab testing direct to patients since 1980 and at high volume, we have great prices from the lab. We pass that savings onto our patients. Typically, our prices will be 70% less than paying the lab directly.
+              %span=link_to 'less', '#', :class => 'togless'
+        .togler.col-md-4
+          .well.well-lg
+            %h6 Order Any Lab Test (No Restrictions)
+            %p 
+              Often health insurance companies, or even your doctor, will limit the... 
+              %span=link_to 'more', '#', :class => 'togmore'
+            %p.hidden
+              Often health insurance companies, or even your doctor, will limit the number of blood tests ordered to diagnose a particular symptom or ailment. At Health Testing Centers you are in control. Order any test you choose. 
+              %span=link_to 'less', '#', :class => 'togless'
+        .togler.col-md-4
+          .well.well-lg
+            %h6 Money Back Guarantee
+            %p 
+              Health Testing Centers have been providing laboratory blood testing in... 
+              %span=link_to 'more', '#', :class => 'togmore'
+            %p.hidden
+              Health Testing Centers have been providing laboratory blood testing in Bear for 30 years. To make the decision easy and stress free as possible we offer the assurance of a Money Back Guarantee on all Bear laboratory blood tests.
+              %span=link_to 'less', '#', :class => 'togless'
+      .row
+        .col-md-2.col-xs-0
+        .col-md-8.col-xs-12
+          = link_to 'Order and Test Here', 'http://www.healthtestingcenters.com/Complete-Test-List.aspx', :class => 'btn btn-primary'
+        .col-md-2.col-xs-0
+      .row
+        .col-xs-12
+          = image_tag('mapplaceholderlg.jpg', :class => 'mapplaceholderlg')
+      %h1 #{@state.h1}
+      %p #{@state.h1section}
+      %h1 #{@state.h2}
+      %p #{@state.h2section}
+    .col-md-2.rside
+      = link_to(image_tag('email.png'), "mailto:", :class => 'topsoc')
+      = link_to(image_tag('google-plus-new.png'), "https://plus.google.com/104085544192925470869/posts", :class => 'topsoc')
+      = link_to(image_tag('facebook.png'), "http://www.facebook.com/HealthTestingCenters", :class => 'topsoc')
+      = link_to(image_tag('twitter.png'), "http://twitter.com/#!/bloodtesting", :class => 'topsoc')
+      = link_to(image_tag('Lab-Testing-123.png'), "http://www.healthtestingcenters.com/blood-testing-how-it-works.aspx", :class => 'easyas')
+      = link_to(image_tag('Newletter-Signup.png'), "http://visitor.r20.constantcontact.com/d.jsp?llr=b8ffsudab&p=oi&m=1103422986081", :class => 'newslet')
+.container
+  .row.footertopbar
+    .col-md-3.col-sm-3.col-xs-3
+      = image_tag('guarantee.png', :class => 'labtestcat')
+    .col-md-9.col-sm-9.col-xs-9
+      %h1 OUR GAURANTEE
+      %p We care about your health. If you're not completely satisfied, we will make it right or give your money back. 
+  .row.footer
+    .col-md-6
+      = image_tag('453_491_logo-htc.png', :class => 'labtestcat')
+    .col-md-6
+      %h2 TO SPEAK WITH A MEDICAL PROFESSIONAL
+      %h3 
+        %a{:href => "tel:1-877-511-5227"} CALL 877-511-LABS (5227)
+  .row.foot
+    .col-md-12
+    %p The Material on this page is educational and does not constitute medical advice, diagnosis or treatment. Please consult your physician if medical advice, diagnosis or treatment is needed. Health Screening Lab Tests may or may not alert you and your doctor to serious medical conditions and are not intended to be a substitute for a physicians's examination.
+  .row.footbot
+    %ul
+      %li= link_to 'Privacy', 'http://www.healthtestingcenters.com/privacy-policy.aspx'
+      |
+      %li= link_to 'Terms', 'http://www.healthtestingcenters.com/terms.aspx'
+      |
+      %li= link_to 'HIPAA', 'http://www.healthtestingcenters.com/hipaa.aspx'
+      |
+      %li= link_to 'Sitemap','http://www.healthtestingcenters.com/sitemap.aspx'
+      |
+      %li= link_to 'About Us', 'http://www.healthtestingcenters.com/about-us.aspx'

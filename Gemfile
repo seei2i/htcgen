@@ -8,8 +8,6 @@ gem 'figaro'
 gem 'haml-rails'
 gem 'rolify'
 gem 'simple_form'
-gem 'thin'
-
 
 group :assets do
   gem 'sass-rails',   '~> 3.2.3'

@@ -1,0 +1,68 @@
+.container
+  .col-xs-12
+    = simple_form_for(@city, :as => @city, :url => city_path(@city), :html => { :method => :put, :class => 'form-vertical' }) do |f|
+      %br
+      = f.input :name, :label => 'City Name', :placeholder => 'City Name', :autofocus => true
+      %br
+      = f.collection_select(:state_id, State.all, :id, :abbr, :prompt => 'City State')
+      %br
+      = f.input :phone, :label => 'City Phone', :placeholder => '123-123-1234'
+      %br
+      %h4 Blood Testing Page
+      %br
+      = f.input :btc_title, :label => 'Page Title', :placeholder => 'Page Title', :input_html => { :class => "col-xs-12" }
+      %br
+      = f.input :btc_meta, :label => 'Page Meta Description', :placeholder => 'Page Meta Description', :input_html => { :class => "col-xs-12" }
+      %br
+      = f.input :btc_h1, :label => 'H1 Heading', :placeholder => 'H1 Heading', :input_html => { :class => "col-xs-12" }
+      %br
+      = f.input :btc_h1section, :label => 'H1 Section', :placeholder => 'H1 Section', :as => :text, :input_html => { :rows => 20 , :class => "col-xs-12"}
+      %br
+      = f.input :btc_h2, :label => 'H2 Heading', :placeholder => 'H2 Heading', :input_html => { :class => "col-xs-12" }
+      %br
+      = f.input :btc_h2section, :label => 'H2 Section', :placeholder => 'H2 Section', :as => :text, :input_html => { :rows => 20 , :class => "col-xs-12"}
+      %br
+      = f.input :btc_h3a, :label => 'H3a Heading', :placeholder => 'H3a Heading', :input_html => { :class => "col-xs-12" }
+      %br
+      = f.input :btc_h3asection, :label => 'H3a Section', :placeholder => 'H3a Section', :as => :text, :input_html => { :rows => 20 , :class => "col-xs-12"}
+      %br
+      = f.input :btc_h3b, :label => 'H3b Heading', :placeholder => 'H3b Heading', :input_html => { :class => "col-xs-12" }
+      %br
+      = f.input :btc_h3bsection, :label => 'H3b Section', :placeholder => 'H3b Section', :as => :text, :input_html => { :rows => 20 , :class => "col-xs-12"}
+      %br
+      = f.input :btc_h3c, :label => 'H3c Heading', :placeholder => 'H3c Heading', :input_html => { :class => "col-xs-12" }
+      %br
+      = f.input :btc_h3csection, :label => 'H3c Section', :placeholder => 'H3c Section', :as => :text, :input_html => { :rows => 20 , :class => "col-xs-12"}
+      %br
+      %h4 Blood Testing Page
+      %br
+      = f.input :std_title, :label => 'Page Title', :placeholder => 'Page Title', :input_html => { :class => "col-xs-12" }
+      %br
+      = f.input :std_meta, :label => 'Page Meta Description', :placeholder => 'Page Meta Description', :input_html => { :class => "col-xs-12" }
+      %br
+      = f.input :std_h1, :label => 'H1 Heading', :placeholder => 'H1 Heading', :input_html => { :class => "col-xs-12" }
+      %br
+      = f.input :std_h1section, :label => 'H1 Section', :placeholder => 'H1 Section', :as => :text, :input_html => { :rows => 20 , :class => "col-xs-12"}
+      %br
+      = f.input :std_h2, :label => 'H2 Heading', :placeholder => 'H2 Heading', :input_html => { :class => "col-xs-12" }
+      %br
+      = f.input :std_h2section, :label => 'H2 Section', :placeholder => 'H2 Section', :as => :text, :input_html => { :rows => 20 , :class => "col-xs-12"}
+      %br
+      = f.input :std_h3a, :label => 'H3a Heading', :placeholder => 'H3a Heading', :input_html => { :class => "col-xs-12" }
+      %br
+      = f.input :std_h3asection, :label => 'H3a Section', :placeholder => 'H3a Section', :as => :text, :input_html => { :rows => 20 , :class => "col-xs-12"}
+      %br
+      = f.input :std_h3b, :label => 'H3b Heading', :placeholder => 'H3b Heading', :input_html => { :class => "col-xs-12" }
+      %br
+      = f.input :std_h3bsection, :label => 'H3b Section', :placeholder => 'H3b Section', :as => :text, :input_html => { :rows => 20 , :class => "col-xs-12"}
+      %br
+      = f.input :std_h3c, :label => 'H3c Heading', :placeholder => 'H3c Heading', :input_html => { :class => "col-xs-12" }
+      %br
+      = f.input :std_h3csection, :label => 'H3c Section', :placeholder => 'H3c Section', :as => :text, :input_html => { :rows => 20 , :class => "col-xs-12"}
+      %br      
+      = f.button :submit, 'Update City', :class => 'btn-sm btn-success'
+    = link_to "Back", :back, :class => "pull-left"
+    = link_to "Remove City", city_path(@city), :data => { :confirm => "Are you sure?" }, :method => :delete, :class => "pull-right"
+    %br
+    %br
+    %br

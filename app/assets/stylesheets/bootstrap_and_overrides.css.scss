@@ -83,9 +83,9 @@ $lrsides: hsla(0, 0.0000%, 93.3333%, 1.0000);
 }
 
 html, body {
-	height: 100%;
-	width: 100%;
-	background: $graybg;
+  height: 100%;
+  width: 100%;
+  background: $graybg;
 }
 
 .navbar {
@@ -135,12 +135,12 @@ html, body {
 }
 
 .navbar-form {
-	margin-top: 3px;
-	margin-bottom: 0px;
+  margin-top: 3px;
+  margin-bottom: 0px;
 }
 
 a.brand {
-	margin-left: 16px;
+  margin-left: 16px;
 }
 
 .btn-default.searcher {
@@ -154,10 +154,10 @@ a.brand {
   -moz-border-radius-bottomright: 10px;
   border-top-right-radius: 10px;
   border-bottom-right-radius: 10px;
-	img {
-		padding: 0px;
+        img {
+                padding: 0px;
     margin: 0px;
-	}
+        }
 }
 
 .form-control {
@@ -681,3 +681,54 @@ li.mobilelinks {
     margin-left: -35px;
   }
 }
+
+
+
+/*     AFTER MAIN STYLING STUFF    */
+
+
+.alert-success {
+  color: #468847;
+  background-color: #FFFFFF;
+  border-color: #d6e9c6;
+  opacity: 0.75;
+  font-weight: bold;
+  font-size: 115%;
+}
+
+
+.alert {
+  padding: 15px;
+  margin-bottom: 20px;
+  border: 0px solid transparent;
+  border-radius: 0px;
+}
+
+
+.navbar-default .navbar-nav > .active > a, .navbar-default .navbar-nav > .active > a:hover, .navbar-default .navbar-nav > .active > a:focus {
+  background-color: #FFFFFF;
+}
+
+img.mapplaceholderlg {
+  width: 100%;
+}
+
+.cside h2 {
+  margin-bottom: 20px;
+}
+
+.cside h1 {
+  margin-top:10px;
+  margin-bottom: 15px;
+  font-size: 16px;
+}
+
+.breadcrumb { 
+  font-size: 15px;
+  margin-bottom: 10px;
+  a {
+    font-size: 15px;
+  }
+}
+
+

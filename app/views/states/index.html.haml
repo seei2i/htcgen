@@ -1,0 +1,33 @@
+.container
+  .col-xs-12
+    %h3 Import States
+    = form_tag import_states_path, multipart: true do
+      = file_field_tag :file
+      %br
+      = submit_tag "Import States"
+      %br
+    %br
+    %span Download current
+    = link_to "STATEPAGE.csv", states_path(format: "csv")
+    %br
+    = link_to "Add New State", new_state_path
+    %br
+    = link_to "Remove ALL Current States", remove_all_states_path, :data => { :confirm => "Are you sure you want to remove all the current states?" }, :method => :get
+  %br
+  %br
+  .col-xs-12
+    %table.table.table-condensed
+      %thead
+        %tr
+          %th State Web Pages
+          %th Change/Update 
+          %th Delete
+      %tbody
+        - @states.each do |state|
+          %tr
+            %td= link_to state.name, state
+            %td= link_to 'Edit', edit_state_path(state)
+            %td= link_to "Remove", state_path(state), :data => { :confirm => "Are you sure?" }, :method => :delete
+        %td= link_to "+ Add New Individual State", new_state_path
+        %td
+        %td

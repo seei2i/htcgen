@@ -1,0 +1,26 @@
+.container
+  .col-xs-12
+    = simple_form_for(@state, :as => @state, :url => state_path(@state), :html => { :method => :put, :class => 'form-vertical' }) do |f|
+      %br
+      = f.input :name, :label => 'State Name', :placeholder => 'State Name', :autofocus => true
+      %br
+      = f.input :abbr, :label => 'State Abbreviation', :placeholder => 'example: NY'
+      %br
+      = f.input :title, :label => 'State Page Title', :placeholder => 'State Page Title'
+      %br
+      = f.input :meta, :label => 'State Page Meta Description', :placeholder => 'State Page Meta Description', :as => :text, :input_html => { :rows => 8 , :class => "col-xs-12"}
+      %br
+      = f.input :h1, :label => 'H1 Heading', :placeholder => 'H1', :input_html => { :class => "col-xs-12" }
+      %br
+      = f.input :h1section, :label => 'H1 Section', :placeholder => 'H1 Section', :as => :text, :input_html => { :rows => 8 , :class => "col-xs-12"}
+      %br
+      = f.input :h2, :label => 'H2 Heading', :placeholder => 'H2', :input_html => { :class => "col-xs-12" }
+      %br
+      = f.input :h2section, :label => 'H2 Section', :placeholder => 'H2 Section', :as => :text, :input_html => { :rows => 8 , :class => "col-xs-12"}
+      %br
+      = f.button :submit, 'Update State', :class => 'btn-primary'
+    = link_to "Back", :back, :class => "pull-left"
+    = link_to "Remove State", state_path(@state), :data => { :confirm => "Are you sure?" }, :method => :delete, :class => "pull-right"
+    %br
+    %br
+    %br

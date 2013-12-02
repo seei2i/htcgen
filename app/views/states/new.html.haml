@@ -1,0 +1,26 @@
+.container
+  .col-xs-12
+    %h3 Add a New State
+    = simple_form_for :state, :html => {:multipart => true}, :url => states_path do |f|
+      %br
+      = f.input :name, :label => 'State Name', :placeholder => 'State Name', :autofocus => true, :required => false
+      %br
+      = f.input :abbr, :label => 'State Abbreviation', :placeholder => 'example: NY'
+      %br
+      = f.input :title, :label => 'State Page Title', :placeholder => 'State Page Title'
+      %br
+      = f.input :meta, :label => 'State Page Meta Description', :placeholder => 'State Page Meta Description', :as => :text, :input_html => { :rows => 8 , :class => "col-xs-12"}
+      %br
+      = f.input :h1, :label => 'H1 Heading', :placeholder => 'H1', :input_html => { :class => "col-xs-12" }
+      %br
+      = f.input :h1section, :label => 'H1 Section', :placeholder => 'H1 Section', :as => :text, :input_html => { :rows => 8 , :class => "col-xs-12"}
+      %br
+      = f.input :h2, :label => 'H2 Heading', :placeholder => 'H2', :input_html => { :class => "col-xs-12" }
+      %br
+      = f.input :h2section, :label => 'H2 Section', :placeholder => 'H2 Section', :as => :text, :input_html => { :rows => 8 , :class => "col-xs-12"}
+      %br
+      = f.button :submit, 'Add State', :class => 'btn-primary'
+    = link_to "Back", :back, :class => "pull-left"
+    %br
+    %br
+    %br

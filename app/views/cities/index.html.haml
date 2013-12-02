@@ -1,0 +1,42 @@
+.container
+  .col-xs-12
+    %h3 Import Cities (via csv)
+    = form_tag import_cities_path, multipart: true do
+      = file_field_tag :file
+      %br
+      = submit_tag "Import Cities"
+      %br
+    %br
+    %span Download current
+    = link_to "CITYSTATE.csv", cities_path(format: "csv")
+    %br
+    = link_to "Add New City", new_city_path
+    %br
+    = link_to "Remove All Current Cities", remove_all_cities_path, :data => { :confirm => "Are you sure you want to remove all the current cities?" }, :method => :get
+  .col-xs-12
+    %h3 Cities
+    %table.table.table-condensed
+      %thead
+        %tr
+          %th City Blood Testing Web Page
+          %th City STD Web Page
+          %th Change/Update 
+          %th Delete
+      %tbody
+        - @cities.each do |city|
+          %tr
+            - if city.state == nil
+              %td= link_to 'Add State', edit_city_path(city)
+              %td= link_to city.name, city_path(city)
+              %td= link_to 'Add State', edit_city_path(city)
+              %td= link_to "Delete", city_path(city), :data => { :confirm => "Are you sure?" }, :method => :delete
+            - else
+              %td= link_to city.name, state_city_path(city.state, city)
+              %td Blank
+              / %td    = link_to city.name, 'cities/stdpage'
+              %td= link_to 'Edit', edit_city_path(city)
+              %td= link_to "Delete", city_path(city), :data => { :confirm => "Are you sure?" }, :method => :delete
+        %td= link_to "+ Add New Individual City", new_city_path
+        %td
+        %td
+        %td

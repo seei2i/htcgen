@@ -1,0 +1,10 @@
+.container
+  .col-xs-12
+    = simple_form_for :city, :html => {:multipart => true}, :url => cities_path do |f|
+      %h4 Select State
+      = f.collection_select(:state_id, State.all, :id, :abbr, :prompt => 'Select State')
+      %h4 Add City
+      = f.input :name, :label => false, :placeholder => 'Name'
+      = f.input :phone, :label => false, :placeholder => 'Phone'
+      %br
+      = f.button :submit, 'Add City', :class => 'btn-primary'

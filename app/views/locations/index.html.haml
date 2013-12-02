@@ -1,0 +1,33 @@
+.container
+  .col-xs-12
+    %h3 Import Locations
+    = form_tag import_locations_path, multipart: true do
+      = file_field_tag :file
+      %br
+      = submit_tag "Import Locations"
+      %br
+    %br
+    %span Download current
+    = link_to "LOCATIONS.csv", locations_path(format: "csv")
+    %br
+    = link_to "Add New Location", new_location_path
+    %br
+    = link_to "Remove ALL Current Locations", remove_all_locations_path, :data => { :confirm => "Are you sure you want to remove all the current states?" }, :method => :get
+  %br
+  %br
+  .col-xs-12
+    %table.table.table-condensed
+      %thead
+        %tr
+          %th Locations Web Page
+          %th Change/Update 
+          %th Delete
+      %tbody
+        - @locations.each do |location|
+          %tr
+            %td= link_to location.name, location
+            %td= link_to 'Edit', edit_location_path(location)
+            %td= link_to "Remove", location_path(location), :data => { :confirm => "Are you sure?" }, :method => :delete
+        %td= link_to "+ Add New Individual Location", new_location_path
+        %td
+        %td

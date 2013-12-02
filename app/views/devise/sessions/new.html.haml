@@ -1,7 +1,17 @@
-%h2 Sign in
-= simple_form_for(resource, :as => resource_name, :url => session_path(resource_name), :html => {:class => 'form-vertical' }) do |f|
-  = f.input :email, :autofocus => true
-  = f.input :password
-  = f.input :remember_me, :as => :boolean if devise_mapping.rememberable?
-  = f.button :submit, "Sign in", :class => 'btn-primary'
-= render "devise/shared/links"
+.container
+  .col-xs-12
+    %h2 Sign in
+    = simple_form_for(resource, :as => resource_name, :url => session_path(resource_name), :html => {:class => 'form-vertical' }) do |f|
+      %br
+      = f.input :email, :autofocus => true
+      %br
+      = f.input :password
+      / %br
+      / = f.input :remember_me, :as => :boolean, :class => 'inline' if devise_mapping.rememberable?
+      %br
+      = f.button :submit, "Sign in", :class => 'btn btn-success'
+    %br
+    = render "devise/shared/links"
+    %br
+    %br
+    %br

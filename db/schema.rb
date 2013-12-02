@@ -11,7 +11,60 @@
 #
 # It's strongly recommended to check this file into your version control system.
 
-ActiveRecord::Schema.define(:version => 20131031224905) do
+ActiveRecord::Schema.define(:version => 20131202121108) do
+
+  create_table "cities", :force => true do |t|
+    t.string   "name"
+    t.string   "phone"
+    t.integer  "state_id"
+    t.datetime "created_at",     :null => false
+    t.datetime "updated_at",     :null => false
+    t.string   "slug"
+    t.string   "btc_title"
+    t.string   "btc_meta"
+    t.string   "btc_h1"
+    t.text     "btc_h1section"
+    t.string   "btc_h2"
+    t.text     "btc_h2section"
+    t.string   "btc_h3a"
+    t.text     "btc_h3asection"
+    t.string   "btc_h3b"
+    t.text     "btc_h3bsection"
+    t.string   "btc_h3c"
+    t.text     "btc_h3csection"
+    t.string   "std_title"
+    t.string   "std_meta"
+    t.string   "std_h1"
+    t.text     "std_h1section"
+    t.string   "std_h2"
+    t.text     "std_h2section"
+    t.string   "std_h3a"
+    t.text     "std_h3asection"
+    t.string   "std_h3b"
+    t.text     "std_h3bsection"
+    t.string   "std_h3c"
+    t.text     "std_h3csection"
+  end
+
+  add_index "cities", ["slug"], :name => "index_cities_on_slug"
+  add_index "cities", ["state_id"], :name => "index_cities_on_state_id"
+
+  create_table "locations", :force => true do |t|
+    t.string   "weblink"
+    t.string   "name"
+    t.string   "address"
+    t.integer  "city_id"
+    t.integer  "state_id"
+    t.string   "zip"
+    t.string   "hours"
+    t.float    "latitude"
+    t.float    "longitude"
+    t.datetime "created_at", :null => false
+    t.datetime "updated_at", :null => false
+  end
+
+  add_index "locations", ["city_id"], :name => "index_locations_on_city_id"
+  add_index "locations", ["state_id"], :name => "index_locations_on_state_id"
 
   create_table "roles", :force => true do |t|
     t.string   "name"
@@ -23,6 +76,22 @@ ActiveRecord::Schema.define(:version => 20131031224905) do
 
   add_index "roles", ["name", "resource_type", "resource_id"], :name => "index_roles_on_name_and_resource_type_and_resource_id"
   add_index "roles", ["name"], :name => "index_roles_on_name"
+
+  create_table "states", :force => true do |t|
+    t.string   "name"
+    t.string   "abbr"
+    t.datetime "created_at", :null => false
+    t.datetime "updated_at", :null => false
+    t.string   "slug"
+    t.string   "title"
+    t.string   "meta"
+    t.string   "h1"
+    t.text     "h1section"
+    t.string   "h2"
+    t.text     "h2section"
+  end
+
+  add_index "states", ["slug"], :name => "index_states_on_slug"
 
   create_table "users", :force => true do |t|
     t.string   "email",                  :default => "", :null => false
