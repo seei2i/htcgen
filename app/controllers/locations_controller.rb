@@ -8,6 +8,7 @@ class LocationsController < ApplicationController
     respond_to do |format|
       format.html
       format.csv { send_data @locationss.to_csv, :filename => 'LOCATIONS.csv' }
+    end
   end
 
   def new
