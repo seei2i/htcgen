@@ -1,2 +1,24 @@
-%h1 Locations#new
-%p Find me in app/views/locations/new.html.haml
+.container
+  .col-xs-12
+    %h3 Add a New Locatinon
+    = simple_form_for :location, :html => {:multipart => true}, :url => locations_path do |f|
+      %br
+      = f.input :name, :label => 'Location Name', :placeholder => 'Location Name', :autofocus => true, :required => false
+      %br
+      = f.input :address, :label => 'Address', :placeholder => 'Street Address'
+      %br
+      %h4 Select City
+      = f.collection_select(:city_id, City.all, :id, :name, :prompt => 'Select City')
+      %br
+      %h4 Select State
+      = f.collection_select(:state_id, State.all, :id, :abbr, :prompt => 'Select State')
+      %br
+      = f.input :zip, :label => 'Zip Code', :placeholder => 'Zip Code'
+      %br
+      = f.input :hours, :label => 'Hours', :placeholder => 'Hours'
+      %br
+      = f.button :submit, 'Add State', :class => 'btn-primary'
+    = link_to "Back", :back, :class => "pull-left"
+    %br
+    %br
+    %br

@@ -1,8 +1,7 @@
 class Location < ActiveRecord::Base
   belongs_to :city
   belongs_to :state
-  attr_accessible :address, :hours, :name, :weblink, :zip, :latitude, :longitude, :state_id, :city_id
-
+  attr_accessible :address, :hours, :name, :weblink, :zip, :latitude, :longitude, :state_id, :city_id, :slug
   validates :slug, uniqueness: true, presence: true
   before_validation :generate_slug
 
@@ -11,8 +10,8 @@ class Location < ActiveRecord::Base
       locationhash = row.to_hash
       state_id_num = State.find_by_abbr(row['state']).id
       city_id_num = City.find_by_name(row['city']).id
-      cityhash = cityhash.merge('state_id' => state_id_num.to_i).merge('city_id' => city_id_num.to_i)
-      Location.create! cityhash.slice(*accessible_attributes)
+      locationhash = locationhash.merge('state_id' => state_id_num.to_i).merge('city_id' => city_id_num.to_i)
+      Location.create! locationhash.slice(*accessible_attributes)
     end
   end
 

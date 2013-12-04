@@ -23,11 +23,13 @@
           %th Change/Update 
           %th Delete
       %tbody
-        - @locations.each do |location|
-          %tr
-            %td= link_to location.name, location
-            %td= link_to 'Edit', edit_location_path(location)
-            %td= link_to "Remove", location_path(location), :data => { :confirm => "Are you sure?" }, :method => :delete
-        %td= link_to "+ Add New Individual Location", new_location_path
-        %td
-        %td
+        - if @locations == nil
+        - else
+          - @locations.each do |location|
+            %tr
+              %td= link_to location.name, location
+              %td= link_to 'Edit', edit_location_path(location)
+              %td= link_to "Remove", location_path(location), :data => { :confirm => "Are you sure?" }, :method => :delete
+          %td= link_to "+ Add New Individual Location", new_location_path
+          %td
+          %td

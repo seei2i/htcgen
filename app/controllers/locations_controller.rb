@@ -55,4 +55,5 @@ private
   def find_page
     @location = Location.find_by_slug!(params[:id])
   end
+
 end

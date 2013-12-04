@@ -2,7 +2,7 @@ class City < ActiveRecord::Base
   belongs_to :state
   has_many :locations
   attr_accessible :name, :phone, :slug, :state_id, :btc_title, :btc_meta, :btc_h1, :btc_h1section, :btc_h2, :btc_h2section, :btc_h3a, :btc_h3asection, :btc_h3b, :btc_h3bsection, :btc_h3c, :btc_h3csection, :std_title, :std_meta, :std_h1, :std_h1section, :std_h2, :std_h2section, :std_h3a, :std_h3asection, :std_h3b, :std_h3bsection, :std_h3c, :std_h3csection
-  validates :slug, uniqueness: true, presence: true
+  validates :slug, uniqueness: false, presence: true
   before_validation :generate_slug
 
   def self.import(file)

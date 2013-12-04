@@ -23,11 +23,13 @@
           %th Change/Update 
           %th Delete
       %tbody
-        - @states.each do |state|
-          %tr
-            %td= link_to state.name, state
-            %td= link_to 'Edit', edit_state_path(state)
-            %td= link_to "Remove", state_path(state), :data => { :confirm => "Are you sure?" }, :method => :delete
-        %td= link_to "+ Add New Individual State", new_state_path
-        %td
-        %td
+        - if @states == nil
+        - else
+          - @states.each do |state|
+            %tr
+              %td= link_to state.name, state
+              %td= link_to 'Edit', edit_state_path(state)
+              %td= link_to "Remove", state_path(state), :data => { :confirm => "Are you sure?" }, :method => :delete
+          %td= link_to "+ Add New Individual State", new_state_path
+          %td
+          %td

@@ -11,7 +11,7 @@
 #
 # It's strongly recommended to check this file into your version control system.
 
-ActiveRecord::Schema.define(:version => 20131202121108) do
+ActiveRecord::Schema.define(:version => 20131203212451) do
 
   create_table "cities", :force => true do |t|
     t.string   "name"
@@ -61,9 +61,11 @@ ActiveRecord::Schema.define(:version => 20131202121108) do
     t.float    "longitude"
     t.datetime "created_at", :null => false
     t.datetime "updated_at", :null => false
+    t.string   "slug"
   end
 
   add_index "locations", ["city_id"], :name => "index_locations_on_city_id"
+  add_index "locations", ["slug"], :name => "index_locations_on_slug"
   add_index "locations", ["state_id"], :name => "index_locations_on_state_id"
 
   create_table "roles", :force => true do |t|

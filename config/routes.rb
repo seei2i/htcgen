@@ -2,8 +2,16 @@ Htcgen::Application.routes.draw do
   
   get "cities/index"
   get "cities/stdpage"
+  get "locations/index"
 
   resources :cities do
+    collection { post :import }
+    collection do
+      get 'remove_all'
+    end
+  end
+
+  resources :locations do
     collection { post :import }
     collection do
       get 'remove_all'
@@ -25,6 +33,7 @@ Htcgen::Application.routes.draw do
       collection do
         get 'remove_all'
       end
+      resources :locations
     end
   end
 
