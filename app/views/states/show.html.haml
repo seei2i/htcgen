@@ -107,7 +107,68 @@
         .col-md-2.col-xs-0
       .row
         .col-xs-12
-          = image_tag('mapplaceholderlg.jpg', :class => 'mapplaceholderlg')
+          %script{:src => "http://maps.google.com/maps/api/js?key=AIzaSyANL_BvD-Bns2P5jL0Rf8ga_fM-0JpDngA&sensor=false", :type => "text/javascript"}
+          .tlsmap
+            / DIV container for the map
+            #gmap_canvas
+            / Display the Google Map
+            %script{:src => "http://rlscdn.rioseo.com/js/markerclusterer.js", :type => "text/javascript"}
+            :javascript
+              var currentInfoWindow = null;
+              var bounds = new google.maps.LatLngBounds();
+              var latlng = new google.maps.LatLng(41.026902, -96.4203815);
+              var options = {
+                zoom: 6,
+                center: latlng,
+                mapTypeId: google.maps.MapTypeId.ROADMAP,
+                disableDefaultUI: false,
+                mapTypeControl: true,
+                mapTypeControlOptions: { style: google.maps.MapTypeControlStyle.DEFAULT },
+                navigationControl: true,
+                navigationControlOptions: { style: google.maps.NavigationControlStyle.DEFAULT },
+                scaleControl: true,
+                streetViewControl: true,
+                draggable: true,
+                scrollwheel: true,
+                disableDoubleClickZoom: false
+              };
+              
+              function showmap() {
+                var map = new google.maps.Map(document.getElementById('gmap_canvas'), options);
+              
+                google.maps.event.addListener(map, 'click', function() { if (currentInfoWindow != null) { currentInfoWindow.close(); } });
+                var markers = [];
+                
+
+                var image = {url: 'http://locations.healthtestingcenters.com/images/mapIconSm.gif',scaledSize: new google.maps.Size(35,35)};
+                var markerLatLng = new google.maps.LatLng(40.8157560, -96.6577310);
+                var marker0 = new google.maps.Marker({
+                 position: markerLatLng,
+                 title: '',
+                 icon: image,
+                 map: map
+                });
+                markers.push(marker0);
+                var infowindowM0 = new google.maps.InfoWindow({
+                 content: '                Health Testing Centers              <a href=\'http://ne.lincoln.healthtestingcenters.com\' alt=\'Laboratory Blood Tests Lincoln Health Testing Centers | Locations\' title=\'Laboratory Blood Tests Lincoln Health Testing Centers | Locations\' target=\'_parent\'>View all locations in Lincoln, NE     '
+                });
+                google.maps.event.addListener (marker0, 'click', function() {
+                 if (currentInfoWindow != null) { currentInfoWindow.close(); } 
+                 infowindowM0.open(map, marker0);
+                 currentInfoWindow = infowindowM0;
+                });
+                bounds.extend(markerLatLng);
+              
+              }
+              
+              window.onload = showmap;
+          / = image_tag('mapplaceholderlg.jpg', :class => 'mapplaceholderlg')
+      %h1 Here are the cities in #{@state.name} where we have lab locations:
+      .container.col-md-12
+        - if @cities == nil
+        - else
+          - @cities.each do |city|
+            .col-md-3= link_to city.name, state_city_path(city.state, city)
       %h1 #{@state.h1}
       %p #{@state.h1section}
       %h1 #{@state.h2}

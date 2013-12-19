@@ -29,6 +29,8 @@ class StatesController < ApplicationController
   end
 
   def show
+
+    @cities = City.where(state_id: @state.id)
   end
 
   def update

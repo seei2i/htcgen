@@ -29,7 +29,7 @@ Htcgen::Application.routes.draw do
 
   resources :states, path: "site/" do
     collection { post :import }
-    resources :cities, path: "/" do
+    resources :cities, path: "blood-testing/" do
       collection do
         get 'remove_all'
       end

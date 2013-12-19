@@ -30,6 +30,7 @@ class CitiesController < ApplicationController
   end
 
   def show
+    @locations = Location.where(city_id: @city.id)
   end
 
   def update
