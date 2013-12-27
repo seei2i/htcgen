@@ -56,4 +56,7 @@ Htcgen::Application.routes.draw do
     root :to => 'home#upload'
   end
 
+  match '/export',  to: 'mech#export'
+  match '/grasp',   to: 'mech#grasp', :as => :grasp_mech
+
 end
