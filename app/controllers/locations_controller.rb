@@ -1,5 +1,5 @@
 class LocationsController < ApplicationController
-  before_filter :authenticate_user!
+  # before_filter :authenticate_user!
   before_filter :find_page, only: [:show, :edit, :update, :destroy]
 
   def index
