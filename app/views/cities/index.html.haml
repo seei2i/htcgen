@@ -11,8 +11,8 @@
     = link_to "CITYSTATE.csv", cities_path(format: "csv")
     %br
     = link_to "Add New City", new_city_path
-    %br
-    = link_to "Remove All Current Cities", remove_all_cities_path, :data => { :confirm => "Are you sure you want to remove all the current cities?" }, :method => :get
+    / %br
+    / = link_to "Remove All Current Cities", remove_all_cities_path, :data => { :confirm => "Are you sure you want to remove all the current cities?" }, :method => :get
   .col-xs-12
     %h3 Cities
     %table.table.table-condensed

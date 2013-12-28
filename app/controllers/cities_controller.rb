@@ -1,5 +1,5 @@
 class CitiesController < ApplicationController
-  before_filter :authenticate_user!
+  # before_filter :authenticate_user!
   before_filter :find_page, only: [:show, :edit, :update, :destroy]
 
   def new
@@ -46,11 +46,11 @@ class CitiesController < ApplicationController
     redirect_to cities_path, :notice => "City deleted sucessfully."
   end
 
-  def remove_all
-    City.delete_all
-    flash[:notice] = "You have sucessfully removed all cities!"
-    redirect_to cities_path
-  end
+  # def remove_all
+  #   City.delete_all
+  #   flash[:notice] = "You have sucessfully removed all cities!"
+  #   redirect_to cities_path
+  # end
 
 private
 

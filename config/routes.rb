@@ -7,14 +7,14 @@ Htcgen::Application.routes.draw do
   resources :cities do
     collection { post :import }
     collection do
-      get 'remove_all'
+      # get 'remove_all'
     end
   end
 
   resources :locations do
     collection { post :import }
     collection do
-      get 'remove_all'
+      # get 'remove_all'
     end
   end
 
@@ -23,7 +23,7 @@ Htcgen::Application.routes.draw do
   resources :states, path: "site/" do
     collection { post :import }
     collection do
-      get 'remove_all'
+      # get 'remove_all'
     end
   end
 
@@ -31,7 +31,7 @@ Htcgen::Application.routes.draw do
     collection { post :import }
     resources :cities, path: "blood-testing/" do
       collection do
-        get 'remove_all'
+        # get 'remove_all'
       end
       resources :locations
     end
