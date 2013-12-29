@@ -5,8 +5,8 @@
       %title= content_for?(:title) ? yield(:title) : "HealthTestingCenters.com"
       %meta{:content => content_for?(:description) ? yield(:description) : "Health Testing Centers", :name => "description"}
       - if action_name == 'show'
-        %link{:href => "/static.css", :media => 'all', :rel => 'stylesheet', :type => "text/css"}
-        %script{:src => "/static.js", :type => "text/javascript"}
+        %link{:href => "http://htcgen.herokuapp.com/static.css", :media => 'all', :rel => 'stylesheet', :type => "text/css"}
+        %script{:src => "http://htcgen.herokuapp.com/static.js", :type => "text/javascript"}
       - else
         = stylesheet_link_tag "application", :media => "all"
         = javascript_include_tag "application"

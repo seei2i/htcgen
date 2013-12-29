@@ -11,6 +11,7 @@ gem 'simple_form'
 gem 'mechanize'
 gem 'nokogiri'
 gem 'rubyzip'
+gem 'zip-zip'
 
 group :assets do
   gem 'sass-rails',   '~> 3.2.3'
