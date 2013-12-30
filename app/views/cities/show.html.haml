@@ -1,14 +1,14 @@
 - content_for :title, @city.btc_title
 - content_for :description, @city.btc_meta
 .jumbotron
-  = link_to(image_tag('logo-hipaa.png'), root_path, :class => 'jumbolink')
-  = link_to(image_tag('seal.png'), root_path, :class => 'jumbolink')
-  = link_to(image_tag('logo-bbb.png'), root_path, :class => 'jumbolink')
+  = link_to(image_tag('http://htcgen.herokuapp.com/logo-hipaa.png'), root_path, :class => 'jumbolink')
+  = link_to(image_tag('http://htcgen.herokuapp.com/seal.png'), root_path, :class => 'jumbolink')
+  = link_to(image_tag('http://htcgen.herokuapp.com/logo-bbb.png'), root_path, :class => 'jumbolink')
 .container
   .row.mainer
     .col-md-2.lside
-      = link_to(image_tag('Checkup-Ad.png'), "http://www.healthtestingcenters.com/essential-health-screen.aspx", :class => 'checkup')
-      = image_tag('mod_head_category_lt.gif', :class => 'labtestcat')
+      = link_to(image_tag('http://htcgen.herokuapp.com/Checkup-Ad.png'), "http://www.healthtestingcenters.com/essential-health-screen.aspx", :class => 'checkup')
+      = image_tag('http://htcgen.herokuapp.com/mod_head_category_lt.gif', :class => 'labtestcat')
       .modulee
         %ul
           %li= link_to 'Allergy Testing', "http://www.healthtestingcenters.com/allergy-testing.aspx"
@@ -176,22 +176,22 @@
       %h1 Health Facts in #{@city.name}
       %p Oriented in Pennsylvania, the metro area, #{@city.name} contains a total of 307,532 individuals. The state population of Pennsylvania has 12,709,154 people. Out of this number of people, a total of 2.4% of them live in Pittsburgh. In one year, there are 24 deaths in the city that are caused by liver disease. There are an additional 55 deaths from kidney disease in the city. Altogether, there are a total of 558 deaths from every kind of cancer. Stroke also caused 121 deaths in the city. In addition, 66 deaths are caused by just prostate cancer, which accounts for 11.7% of total cancer deaths. During the same time period, 357 die from coronary heart disease. There were also 62 resident deaths from diabetes. On average, 0.12% of residents were likely to die of coronary heart disease during the year and 0.18% chance of passing away from any form of cancer.
     .col-md-2.rside
-      = link_to(image_tag('email.png'), "mailto:", :class => 'topsoc')
-      = link_to(image_tag('google-plus-new.png'), "https://plus.google.com/104085544192925470869/posts", :class => 'topsoc')
-      = link_to(image_tag('facebook.png'), "http://www.facebook.com/HealthTestingCenters", :class => 'topsoc')
-      = link_to(image_tag('twitter.png'), "http://twitter.com/#!/bloodtesting", :class => 'topsoc')
-      = link_to(image_tag('Lab-Testing-123.png'), "http://www.healthtestingcenters.com/blood-testing-how-it-works.aspx", :class => 'easyas')
-      = link_to(image_tag('Newletter-Signup.png'), "http://visitor.r20.constantcontact.com/d.jsp?llr=b8ffsudab&p=oi&m=1103422986081", :class => 'newslet')
+      = link_to(image_tag('http://htcgen.herokuapp.com/email.png'), "mailto:", :class => 'topsoc')
+      = link_to(image_tag('http://htcgen.herokuapp.com/google-plus-new.png'), "https://plus.google.com/104085544192925470869/posts", :class => 'topsoc')
+      = link_to(image_tag('http://htcgen.herokuapp.com/facebook.png'), "http://www.facebook.com/HealthTestingCenters", :class => 'topsoc')
+      = link_to(image_tag('http://htcgen.herokuapp.com/twitter.png'), "http://twitter.com/#!/bloodtesting", :class => 'topsoc')
+      = link_to(image_tag('http://htcgen.herokuapp.com/Lab-Testing-123.png'), "http://www.healthtestingcenters.com/blood-testing-how-it-works.aspx", :class => 'easyas')
+      = link_to(image_tag('http://htcgen.herokuapp.com/Newletter-Signup.png'), "http://visitor.r20.constantcontact.com/d.jsp?llr=b8ffsudab&p=oi&m=1103422986081", :class => 'newslet')
 .container
   .row.footertopbar
     .col-md-3.col-sm-3.col-xs-3
-      = image_tag('guarantee.png', :class => 'labtestcat')
+      = image_tag('http://htcgen.herokuapp.com/guarantee.png', :class => 'labtestcat')
     .col-md-9.col-sm-9.col-xs-9
       %h1 OUR GAURANTEE
       %p We care about your health. If you're not completely satisfied, we will make it right or give your money back. 
   .row.footer
     .col-md-6
-      = image_tag('453_491_logo-htc.png', :class => 'labtestcat')
+      = image_tag('http://htcgen.herokuapp.com/453_491_logo-htc.png', :class => 'labtestcat')
     .col-md-6
       %h2 TO SPEAK WITH A MEDICAL PROFESSIONAL
       %h3 

@@ -1,13 +1,13 @@
 - content_for :title, @state.title
 - content_for :description, @state.meta
 .jumbotron
-  = link_to(image_tag('logo-hipaa.png'), root_path, :class => 'jumbolink')
-  = link_to(image_tag('seal.png'), root_path, :class => 'jumbolink')
-  = link_to(image_tag('logo-bbb.png'), root_path, :class => 'jumbolink')
+  = link_to(image_tag('http://htcgen.herokuapp.com/logo-hipaa.png'), root_path, :class => 'jumbolink')
+  = link_to(image_tag('http://htcgen.herokuapp.com/seal.png'), root_path, :class => 'jumbolink')
+  = link_to(image_tag('http://htcgen.herokuapp.com/logo-bbb.png'), root_path, :class => 'jumbolink')
 .container
   .row.mainer
     .col-md-2.lside
-      = link_to(image_tag('Checkup-Ad.png'), "http://www.healthtestingcenters.com/essential-health-screen.aspx", :class => 'checkup')
+      = link_to(image_tag('http://htcgen.herokuapp.com/Checkup-Ad.png'), "http://www.healthtestingcenters.com/essential-health-screen.aspx", :class => 'checkup')
       = image_tag('mod_head_category_lt.gif', :class => 'labtestcat')
       .modulee
         %ul
@@ -174,22 +174,22 @@
       %h1 #{@state.h2}
       %p #{@state.h2section}
     .col-md-2.rside
-      = link_to(image_tag('email.png'), "mailto:", :class => 'topsoc')
-      = link_to(image_tag('google-plus-new.png'), "https://plus.google.com/104085544192925470869/posts", :class => 'topsoc')
-      = link_to(image_tag('facebook.png'), "http://www.facebook.com/HealthTestingCenters", :class => 'topsoc')
-      = link_to(image_tag('twitter.png'), "http://twitter.com/#!/bloodtesting", :class => 'topsoc')
-      = link_to(image_tag('Lab-Testing-123.png'), "http://www.healthtestingcenters.com/blood-testing-how-it-works.aspx", :class => 'easyas')
-      = link_to(image_tag('Newletter-Signup.png'), "http://visitor.r20.constantcontact.com/d.jsp?llr=b8ffsudab&p=oi&m=1103422986081", :class => 'newslet')
+      = link_to(image_tag('http://htcgen.herokuapp.com/email.png'), "mailto:", :class => 'topsoc')
+      = link_to(image_tag('http://htcgen.herokuapp.com/google-plus-new.png'), "https://plus.google.com/104085544192925470869/posts", :class => 'topsoc')
+      = link_to(image_tag('http://htcgen.herokuapp.com/facebook.png'), "http://www.facebook.com/HealthTestingCenters", :class => 'topsoc')
+      = link_to(image_tag('http://htcgen.herokuapp.com/twitter.png'), "http://twitter.com/#!/bloodtesting", :class => 'topsoc')
+      = link_to(image_tag('http://htcgen.herokuapp.com/Lab-Testing-123.png'), "http://www.healthtestingcenters.com/blood-testing-how-it-works.aspx", :class => 'easyas')
+      = link_to(image_tag('http://htcgen.herokuapp.com/Newletter-Signup.png'), "http://visitor.r20.constantcontact.com/d.jsp?llr=b8ffsudab&p=oi&m=1103422986081", :class => 'newslet')
 .container
   .row.footertopbar
     .col-md-3.col-sm-3.col-xs-3
-      = image_tag('guarantee.png', :class => 'labtestcat')
+      = image_tag('http://htcgen.herokuapp.com/guarantee.png', :class => 'labtestcat')
     .col-md-9.col-sm-9.col-xs-9
       %h1 OUR GAURANTEE
       %p We care about your health. If you're not completely satisfied, we will make it right or give your money back. 
   .row.footer
     .col-md-6
-      = image_tag('453_491_logo-htc.png', :class => 'labtestcat')
+      = image_tag('http://htcgen.herokuapp.com/453_491_logo-htc.png', :class => 'labtestcat')
     .col-md-6
       %h2 TO SPEAK WITH A MEDICAL PROFESSIONAL
       %h3 
