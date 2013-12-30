@@ -11,8 +11,8 @@
     = link_to "STATEPAGE.csv", states_path(format: "csv")
     %br
     = link_to "Add New State", new_state_path
-    / %br
-    / = link_to "Remove ALL Current States", remove_all_states_path, :data => { :confirm => "Are you sure you want to remove all the current states?" }, :method => :get
+    %br
+    = link_to "Remove ALL Current States", remove_all_states_path, :data => { :confirm => "Are you sure you want to remove all the current states?" }, :method => :get
   %br
   %br
   .col-xs-12

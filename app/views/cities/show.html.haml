@@ -215,13 +215,3 @@
       |
       %li
         %a{:href => 'http://www.healthtestingcenters.com/about-us.aspx'} About Us
-
-
-
-%h3 City Page
-%p
-  Name: #{@city.name}
-%p
-  Abbr: #{@city.phone}
-%p
-  Want to remove this City? #{link_to "Yes", city_path, :data => { :confirm => "Are you sure?" }, :method => :delete}.

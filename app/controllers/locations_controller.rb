@@ -44,11 +44,11 @@ class LocationsController < ApplicationController
     redirect_to locations_path, :notice => "Location deleted sucessfully."
   end
 
-  # def remove_all
-  #   Location.delete_all
-  #   flash[:notice] = "You have sucessfully removed all locations!"
-  #   redirect_to locations_path
-  # end
+  def remove_all
+    Location.delete_all
+    flash[:notice] = "You have sucessfully removed all locations!"
+    redirect_to locations_path
+  end
 
 private
 

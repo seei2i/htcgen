@@ -46,11 +46,11 @@ class StatesController < ApplicationController
     redirect_to states_path, :notice => "State deleted sucessfully."
   end
 
-  # def remove_all
-  #   State.delete_all
-  #   flash[:notice] = "You have sucessfully removed all states!"
-  #   redirect_to states_path
-  # end
+  def remove_all
+    State.delete_all
+    flash[:notice] = "You have sucessfully removed all states!"
+    redirect_to states_path
+  end
 
 private
 

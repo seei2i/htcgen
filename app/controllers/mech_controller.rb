@@ -4,6 +4,7 @@ class MechController < ApplicationController
 
    def export
     @states = State.all
+    @cities = City.all
    end
 
    def grasp
