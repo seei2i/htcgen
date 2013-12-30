@@ -15,11 +15,11 @@ class MechController < ApplicationController
 
       # send_file(pager, :type => 'text/html', :filename => "alabama.html" )
 
-
+      path = Rails.root.join('htcgen.herokuapp.com/site')
       begin
          Zip::OutputStream.open(temp_file) { |zos| }
          Zip::File.open(temp_file.path, Zip::File::CREATE) do |zip|
-            Dir.glob("**/*").each do |file|
+            Dir.glob("htcgen.herokuapp.com/site/*").each do |file|
             zip.add file, file
           end
           # zip.add('abilene-tx.html', directory + 'abilene-tx.html')
