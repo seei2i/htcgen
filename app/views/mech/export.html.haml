@@ -12,4 +12,4 @@
       /   = submit_tag "Export Site"
       %ul
         - @states.each do |state|
-          %li= link_to "#{state.name}", "http://htcgen.herokuapp.com/site/#{state.name.downcase}.html"
+          %li= link_to "#{state.name}", "http://htcgen.herokuapp.com/site/#{state.name.downcase.gsub(" ", "-")}.html"
