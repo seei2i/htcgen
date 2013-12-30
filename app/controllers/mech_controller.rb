@@ -11,15 +11,17 @@ class MechController < ApplicationController
 
       agent = Mechanize.new
       agent.pluggable_parser.html = Mechanize::FileSaver
-      pager = agent.get('http://htcgen.herokuapp.com/site/alabama.html')
+      # pager = agent.get('http://htcgen.herokuapp.com/site/alabama.html')
+      pager = agent.get('http://jlynch.co/users/sign_in.html')
+      
 
       # send_file(pager, :type => 'text/html', :filename => "alabama.html" )
 
-      path = Rails.root.join('htcgen.herokuapp.com/site')
       begin
          Zip::OutputStream.open(temp_file) { |zos| }
          Zip::File.open(temp_file.path, Zip::File::CREATE) do |zip|
-            Dir.glob("htcgen.herokuapp.com/site/*").each do |file|
+            # Dir.glob("htcgen.herokuapp.com/site/*").each do |file|
+            Dir.glob("jlynch.co/users/*").each do |file|
             zip.add file, file
           end
           # zip.add('abilene-tx.html', directory + 'abilene-tx.html')
