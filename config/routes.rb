@@ -58,6 +58,10 @@ Htcgen::Application.routes.draw do
 
   match '/export',  to: 'mech#export'
   match '/exportcities',  to: 'mech#exportcities'
+  match '/exportcities2',  to: 'mech#exportcities2'
+  match '/exportcities3',  to: 'mech#exportcities3'
+  match '/exportcities4',  to: 'mech#exportcities4'
+  match '/exportcities5',  to: 'mech#exportcities5'
   match '/grasp',   to: 'mech#grasp', :as => :grasp_mech
 
 end

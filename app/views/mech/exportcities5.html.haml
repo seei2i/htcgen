@@ -1,0 +1,7 @@
+.container
+  .row
+    .col-md-12
+      %h3 Current City Pages
+      %ul
+        - @cities.each do |city|
+          %li= link_to "#{city.name}", "http://htcgen.herokuapp.com/site/#{city.state.name.downcase.gsub(" ", "-")}/blood-testing/#{city.name.downcase.gsub(" ", "-")}.html"

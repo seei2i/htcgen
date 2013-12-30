@@ -8,8 +8,76 @@ class MechController < ApplicationController
    end
 
    def exportcities
-    @states = State.all
-    @cities = City.all
+    num = 1
+    @citys = City.all
+    @cities = []
+    @citys.each do |city|
+      if num <= 200
+        @cities.push(city)
+        num = num + 1
+      else
+      end
+    end
+   end
+
+   def exportcities2
+    num = 1
+    @citys = City.all
+    @cities = []
+    @citys.each do |city|
+      if num <= 200
+        num = num + 1
+      elsif num <= 400
+        @cities.push(city)
+        num = num + 1
+      else
+      end
+    end
+   end
+
+   def exportcities3
+    num = 1
+    @citys = City.all
+    @cities = []
+    @citys.each do |city|
+      if num <= 400
+        num = num + 1
+      elsif num <= 600
+        @cities.push(city)
+        num = num + 1
+      else
+      end
+    end
+   end
+
+   def exportcities4
+    num = 1
+    @citys = City.all
+    @cities = []
+    @citys.each do |city|
+      if num <= 600
+        num = num + 1
+      elsif num <= 800
+        @cities.push(city)
+        num = num + 1
+      else
+      end
+    end
+   end
+
+   def exportcities5
+    num = 1
+    @citys = City.all
+    @cities = []
+    @citys.each do |city|
+      if num <= 800
+        num = num + 1
+      elsif num <= 1000
+        @cities.push(city)
+        num = num + 1
+      else
+      end
+    end
    end
 
    def grasp
