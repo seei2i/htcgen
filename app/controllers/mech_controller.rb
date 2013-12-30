@@ -7,6 +7,11 @@ class MechController < ApplicationController
     @cities = City.all
    end
 
+   def exportcities
+    @states = State.all
+    @cities = City.all
+   end
+
    def grasp
       filename = 'website.zip'
       temp_file = Tempfile.new(filename)

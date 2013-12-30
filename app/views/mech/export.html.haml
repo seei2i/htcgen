@@ -14,7 +14,4 @@
       %ul
         - @states.each do |state|
           %li= link_to "#{state.name}", "http://htcgen.herokuapp.com/site/#{state.name.downcase.gsub(" ", "-")}.html"
-      %h3 Current City Pages
-      %ul
-        - @cities.each do |city|
-          %li= link_to "#{city.name}", "http://htcgen.herokuapp.com/site/#{city.state.name.downcase.gsub(" ", "-")}/blood-testing/#{city.name.downcase.gsub(" ", "-")}.html"
+      

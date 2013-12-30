@@ -57,6 +57,7 @@ Htcgen::Application.routes.draw do
   end
 
   match '/export',  to: 'mech#export'
+  match '/exportcities',  to: 'mech#exportcities'
   match '/grasp',   to: 'mech#grasp', :as => :grasp_mech
 
 end
