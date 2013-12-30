@@ -1,12 +1,15 @@
 .container
   .row
     .col-md-12
-      %h2 Export Static Site
-      = form_tag(grasp_mech_path) do
-        %label 
-          %b Email: 
-        = text_field_tag :exportemail
-        %label 
-          %b Password:
-        = text_field_tag :exportpassword
-        = submit_tag "Export Site"
+      / %h2 Export Static Site
+      / = form_tag(grasp_mech_path) do
+      /   %label 
+      /     %b Email: 
+      /   = text_field_tag :exportemail
+      /   %label 
+      /     %b Password:
+      /   = text_field_tag :exportpassword
+      /   = submit_tag "Export Site"
+      %ul
+        - @states.each do |state|
+          %li= link_to "#{state.name}", "http://htcgen.herokuapp.com/site/#{state.name.downcase}.html"

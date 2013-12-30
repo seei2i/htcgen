@@ -21,7 +21,7 @@
         %li{:class => current_page?(locations_path) && 'active'}
           = link_to 'Locations', locations_path
         %li{:class => current_page?('/export') && 'active'}
-          = link_to 'Export', '/export'
+          = link_to 'Export', 'http://htcexp.herokuapp.com/'
     %ul.nav.navbar-nav.pull-right
       - if user_signed_in?
         %li= link_to 'Logout', destroy_user_session_path, :method=>'delete'

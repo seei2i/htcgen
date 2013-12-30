@@ -3,6 +3,7 @@ class MechController < ApplicationController
    require 'mechanize'
 
    def export
+    @states = State.all
    end
 
    def grasp
