@@ -2,7 +2,6 @@
 .tlsmap
   #gmap_canvas
   %script{:src => "http://rlscdn.rioseo.com/js/markerclusterer.js", :type => "text/javascript"}
-
   :javascript
     var currentInfoWindow = null;
     var bounds = new google.maps.LatLngBounds();
@@ -50,15 +49,15 @@
       });
       bounds.extend(markerLatLng);
     
-    
     }
     
     window.onload = showmap;
 
-
-%h3 Nearby locations
-%ul
-  - for location in @location.nearbys(100)
-    %li
-      = link_to location.address, location
-      (#{location.distance.round(2)} miles)
+- if @location == nil
+- else
+  %h3 Nearby locations
+  %ul
+    - for location in @location.nearbys(100)
+      %li
+        = link_to location.address, location
+        (#{location.distance.to_f.round(2)} miles)
