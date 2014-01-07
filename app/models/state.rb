@@ -1,7 +1,7 @@
 class State < ActiveRecord::Base
   has_many :cities
   has_many :locations
-  attr_accessible :abbr, :name, :slug, :title, :meta, :h1, :h1section, :h2, :h2section
+  attr_accessible :abbr, :name, :slug, :title, :meta, :h1, :h1section, :h2, :h2section, :population
   validates :slug, uniqueness: true, presence: true
   before_validation :generate_slug
 

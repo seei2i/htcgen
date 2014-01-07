@@ -9,6 +9,15 @@
       = f.input :phone, :label => 'City Phone', :placeholder => '123-123-1234'
       %br
       %h4 Blood Testing Page
+      = f.input :population, :label => 'City Population', :placeholder => 'City Population', :autofocus => true
+      = f.input :liver_num, :label => 'Liver', :placeholder => 'Liver', :autofocus => true
+      = f.input :kidney_num, :label => 'Kidney', :placeholder => 'Kidney', :autofocus => true
+      = f.input :prostate_num, :label => 'Prostate', :placeholder => 'Prostate', :autofocus => true
+      = f.input :stroke_num, :label => 'Stroke', :placeholder => 'Stroke', :autofocus => true
+      = f.input :all_cancers_num, :label => 'Cancer', :placeholder => 'Cancer', :autofocus => true
+      = f.input :coronary_num, :label => 'Coronary', :placeholder => 'Coronary', :autofocus => true
+      = f.input :diabetes_num, :label => 'Diabetes', :placeholder => 'Diabetes', :autofocus => true
+      = f.input :total_d_num, :label => 'Total City Deaths', :placeholder => 'Total City Deaths', :autofocus => true
       %br
       = f.input :btc_title, :label => 'Page Title', :placeholder => 'Page Title', :input_html => { :class => "col-xs-12" }
       %br
@@ -34,7 +43,9 @@
       %br
       = f.input :btc_h3csection, :label => 'H3c Section', :placeholder => 'H3c Section', :as => :text, :input_html => { :rows => 20 , :class => "col-xs-12"}
       %br
-      %h4 Blood Testing Page
+      %h4 STD Testing Page
+      %br
+      = f.input :std_stats, :label => 'STD Stats', :placeholder => 'STD STATS', :as => :text, :input_html => { :rows => 20 , :class => "col-xs-12"}
       %br
       = f.input :std_title, :label => 'Page Title', :placeholder => 'Page Title', :input_html => { :class => "col-xs-12" }
       %br

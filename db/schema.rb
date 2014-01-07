@@ -11,14 +11,14 @@
 #
 # It's strongly recommended to check this file into your version control system.
 
-ActiveRecord::Schema.define(:version => 20131230110446) do
+ActiveRecord::Schema.define(:version => 20140107110412) do
 
   create_table "cities", :force => true do |t|
     t.string   "name"
     t.string   "phone"
     t.integer  "state_id"
-    t.datetime "created_at",     :null => false
-    t.datetime "updated_at",     :null => false
+    t.datetime "created_at",      :null => false
+    t.datetime "updated_at",      :null => false
     t.string   "slug"
     t.string   "btc_title"
     t.string   "btc_meta"
@@ -44,6 +44,16 @@ ActiveRecord::Schema.define(:version => 20131230110446) do
     t.text     "std_h3bsection"
     t.string   "std_h3c"
     t.text     "std_h3csection"
+    t.string   "population"
+    t.string   "liver_num"
+    t.string   "kidney_num"
+    t.string   "prostate_num"
+    t.string   "stroke_num"
+    t.string   "all_cancers_num"
+    t.string   "coronary_num"
+    t.string   "diabetes_num"
+    t.string   "total_d_num"
+    t.text     "std_stats"
   end
 
   add_index "cities", ["slug"], :name => "index_cities_on_slug"
@@ -107,6 +117,7 @@ ActiveRecord::Schema.define(:version => 20131230110446) do
     t.text     "h1section"
     t.string   "h2"
     t.text     "h2section"
+    t.string   "population"
   end
 
   add_index "states", ["slug"], :name => "index_states_on_slug"

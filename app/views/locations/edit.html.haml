@@ -1,2 +1,28 @@
-%h1 Locations#edit
-%p Find me in app/views/locations/edit.html.haml
+.container
+  .col-xs-12
+    = simple_form_for(@location, :as => @location, :url => location_path(@location), :html => { :method => :put, :class => 'form-vertical' }) do |f|
+      %br
+      = f.input :name, :label => 'Location Name', :placeholder => 'Location Name', :autofocus => true
+      %br
+      = f.input :address, :label => 'Address', :placeholder => 'Address', :autofocus => true
+      %br 
+      %label City
+      %br
+      = f.collection_select(:city_id, City.all, :id, :name, :prompt => 'City')
+      %br
+      %br
+      %label State
+      %br
+      = f.collection_select(:state_id, State.all, :id, :abbr, :prompt => 'State')
+      %br  
+      %br  
+      = f.input :latitude, :label => 'Lat', :placeholder => 'Latitude', :autofocus => true 
+      %br
+      = f.input :longitude, :label => 'Long', :placeholder => 'Longitude', :autofocus => true 
+      %br
+      = f.button :submit, 'Update Location', :class => 'btn-sm btn-success'
+    = link_to "Back", :back, :class => "pull-left"
+    = link_to "Remove Location", location_path(@location), :data => { :confirm => "Are you sure?" }, :method => :delete, :class => "pull-right"
+    %br
+    %br
+    %br

@@ -1,0 +1,510 @@
+- content_for :title, @city.std_title
+- content_for :description, @city.std_meta
+.jumbotron
+  = link_to(image_tag('http://htcgen.herokuapp.com/logo-hipaa.png'), root_path, :class => 'jumbolink')
+  = link_to(image_tag('http://htcgen.herokuapp.com/seal.png'), root_path, :class => 'jumbolink')
+  = link_to(image_tag('http://htcgen.herokuapp.com/logo-bbb.png'), root_path, :class => 'jumbolink')
+.container
+  .row.mainer
+    .col-md-2.lside
+      = link_to(image_tag('http://htcgen.herokuapp.com/Checkup-Ad.png'), "http://www.healthtestingcenters.com/essential-health-screen.aspx", :class => 'checkup')
+      = image_tag('http://htcgen.herokuapp.com/mod_head_category_lt.gif', :class => 'labtestcat')
+      .modulee
+        %ul
+          %li= link_to 'Allergy Testing', "http://www.healthtestingcenters.com/allergy-testing.aspx"
+          %li= link_to 'Anemia', "http://www.healthtestingcenters.com/anemia.aspx"
+          %li= link_to 'Anti-Aging/ Hormones', "http://www.healthtestingcenters.com/hormone-level-blood-tests.aspx"
+          %li= link_to 'Arthritis', "http://www.healthtestingcenters.com/arthritis-blood-tests.aspx"
+          %li= link_to 'At Home Test Kits', "http://www.healthtestingcenters.com/test-kits.aspx"
+          %li= link_to 'Basic Blood Chemistry', "http://www.healthtestingcenters.com/cmp-cbc-test.aspx"
+          %li= link_to 'Blood Type', "http://www.healthtestingcenters.com/bloodtype-bloodtest.aspx"
+          %li= link_to 'Cancer Screening', "http://www.healthtestingcenters.com/cancer-blood-test.aspx" 
+          %li= link_to 'Celiac Disease', "http://www.healthtestingcenters.com/celiacdisease.aspx" 
+          %li= link_to 'Comprehensive Panels', "http://www.healthtestingcenters.com/comprehensive-packages.aspx" 
+          %li= link_to 'Diabetes Testing', "http://www.healthtestingcenters.com/diabetes-blood-test.aspx" 
+          %li= link_to 'Disease Detection', "http://www.healthtestingcenters.com/disease-testing.aspx" 
+          %li= link_to 'Drug Testing', "http://www.healthtestingcenters.com/drug.aspx" 
+          %li= link_to 'Fertility Testing', "http://www.healthtestingcenters.com/fertility-testing.aspx" 
+          %li= link_to 'Gastrointestinal', "http://www.healthtestingcenters.com/gastrointestinal.aspx" 
+          %li= link_to 'Heart &amp; Cholesterol', "http://www.healthtestingcenters.com/heart-cholesterol-test.aspx" 
+          %li= link_to 'Heavy Metals / Toxins', "http://www.healthtestingcenters.com/heavy-metal-blood-test.aspx" 
+          %li= link_to 'Immunization Testing', "http://www.healthtestingcenters.com/immunizationtesting.aspx" 
+          %li= link_to 'Kidney Function', "http://www.healthtestingcenters.com/kidney-function.aspx" 
+          %li= link_to 'Liver Function', "http://www.healthtestingcenters.com/liver-test.aspx" 
+          %li= link_to 'Pregnancy', "http://www.healthtestingcenters.com/pregnancy.aspx" 
+          %li= link_to 'Prenatal Testing', "http://www.healthtestingcenters.com/prenatal-testing.aspx" 
+          %li= link_to 'Prostate Test (PSA)', "http://www.healthtestingcenters.com/psa-test.aspx" 
+          %li= link_to 'Saliva Testing', "http://www.healthtestingcenters.com/salivatests.aspx" 
+          %li= link_to 'STD Testing', "http://www.healthtestingcenters.com/stdtesting.aspx" 
+          %li= link_to 'Thyroid Function', "http://www.healthtestingcenters.com/thyroid-test.aspx" 
+          %li= link_to 'Vitamins & Nutrition', "http://www.healthtestingcenters.com/vitamintest.aspx" 
+    .col-md-8.cside
+      %ol.breadcrumb
+        %li
+          %a{:href => "#"} Health Testing Centers
+        %li
+          %a{:href => @city.state } #{@city.state.name}
+        %li
+          %a{:href => city_path } #{@city.name}
+        %li.active STD Testing
+      %h1.toph1 STD Testing in #{@city.name}
+      .container
+        .row
+          .col-xs-12.buttoninfophone
+            .btn.btn-primary= link_to 'http://www.healthtestingcenters.com/stdtesting.aspx', 'Order and Test Here'
+            .row
+              .col-md-12
+                %h4 
+                  %a{:href => "tel:#{@city.phone}"} #{@city.phone}
+                %h5 Call to consult with a medical professional
+          .col-sm-6.col-sm-push-12
+            %script{:src => "http://maps.google.com/maps/api/js?key=AIzaSyANL_BvD-Bns2P5jL0Rf8ga_fM-0JpDngA&sensor=false", :type => "text/javascript"}
+            .tlsmap
+              / DIV container for the map
+              #gmap_canvas
+              / Display the Google Map
+              %script{:src => "http://rlscdn.rioseo.com/js/markerclusterer.js", :type => "text/javascript"}
+              :javascript
+                var currentInfoWindow = null;
+                var bounds = new google.maps.LatLngBounds();
+                var latlng = new google.maps.LatLng(41.026902, -96.4203815);
+                var options = {
+                  zoom: 6,
+                  center: latlng,
+                  mapTypeId: google.maps.MapTypeId.ROADMAP,
+                  disableDefaultUI: false,
+                  mapTypeControl: true,
+                  mapTypeControlOptions: { style: google.maps.MapTypeControlStyle.DEFAULT },
+                  navigationControl: true,
+                  navigationControlOptions: { style: google.maps.NavigationControlStyle.DEFAULT },
+                  scaleControl: true,
+                  streetViewControl: true,
+                  draggable: true,
+                  scrollwheel: true,
+                  disableDoubleClickZoom: false
+                };
+                
+                function showmap() {
+                  var map = new google.maps.Map(document.getElementById('gmap_canvas'), options);
+                
+                  google.maps.event.addListener(map, 'click', function() { if (currentInfoWindow != null) { currentInfoWindow.close(); } });
+                  var markers = [];
+                  
+
+                  var image = {url: 'http://locations.healthtestingcenters.com/images/mapIconSm.gif',scaledSize: new google.maps.Size(35,35)};
+                  var markerLatLng = new google.maps.LatLng(40.8157560, -96.6577310);
+                  var marker0 = new google.maps.Marker({
+                   position: markerLatLng,
+                   title: '',
+                   icon: image,
+                   map: map
+                  });
+                  markers.push(marker0);
+                  var infowindowM0 = new google.maps.InfoWindow({
+                   content: '                Health Testing Centers              <a href=\'http://ne.lincoln.healthtestingcenters.com\' alt=\'Laboratory Blood Tests Lincoln Health Testing Centers | Locations\' title=\'Laboratory Blood Tests Lincoln Health Testing Centers | Locations\' target=\'_parent\'>View all locations in Lincoln, NE     '
+                  });
+                  google.maps.event.addListener (marker0, 'click', function() {
+                   if (currentInfoWindow != null) { currentInfoWindow.close(); } 
+                   infowindowM0.open(map, marker0);
+                   currentInfoWindow = infowindowM0;
+                  });
+                  bounds.extend(markerLatLng);
+                
+                }
+                
+                window.onload = showmap;
+            / = image_tag('mapplaceholder.png', :class => 'mapplaceholder')
+          .col-sm-6.col-sm-pull-12.buttoninfo
+            .btn.btn-primary= link_to 'Order and Test Here', 'http://www.healthtestingcenters.com/stdtesting.aspx' 
+            / .row
+            /   .col-md-6.col-sm-6.col-xs-6
+            /     %h3 Health Testing Centers
+            /     %p 
+            /       300 Fleet St 2nd Floor
+            /       %br
+            /       2nd Floor
+            /       %br
+            /       Pittsburgh, PA 15220
+            /   .col-md-6.col-sm-6.col-xs-6
+            /     %h3 Hours
+            /     %p 
+            /       8AM-3PM EST (M-F)
+            .row
+              .col-md-12
+                %h4
+                  %a{:href => "tel:#{@city.phone}"} #{@city.phone}
+                %h5 Call to consult with a medical professional
+          .col-xs-12.buttoninfophone
+          /   %h3 Health Testing Centers
+          /   %p 
+          /     300 Fleet St 2nd Floor
+          /     %br
+          /     2nd Floor
+          /     %br
+          /     Pittsburgh, PA 15220
+          / .col-xs-12.buttoninfophone
+          /   %h3 Hours
+          /   %p 8AM-3PM EST (M-F)
+      - if @city.std_h1 == nil || ""
+        %h1 STD Lab Testing Centers in #{@city.name}
+      - else 
+        %h1.toph1 #{@city.std_h1}
+      - if @locations == nil || ""
+        %p #{@city.std_h1section}
+      - else
+        %ul
+          - @locations.each do |location|
+            %li= link_to location.name, location
+      - if @city.std_h2 == nil || ""
+        %h1 Top STD Tests Available in #{@city.name}
+      - else
+        %h1 #{@city.std_h2}
+      .row
+        - if @city.std_h2section == nil || ""
+          .col-md-6
+            %ul
+              %li
+                %a{:href => "http://www.healthtestingcenters.com/gonorrhoeae-test.aspx", :class => "bulletlink"} Chlamydia Test
+              %li
+                %a{:href => "http://www.healthtestingcenters.com/hiv.aspx", :class => "bulletlink"} HIV Blood Test
+              %li
+                %a{:href => "http://www.healthtestingcenters.com/gonorrhoeae-test.aspx", :class => "bulletlink"} Gonorrhea
+              %li
+                %a{:href => "http://www.healthtestingcenters.com/herpes.aspx", :class => "bulletlink"} Herpes Simplex
+          .col-md-6
+            %ul
+              %li
+                %a{:href => "http://www.healthtestingcenters.com/std-testing-recent-exposure.aspx", :class => "bulletlink"} Recent Exposure STD Testing
+              %li
+                %a{:href => "http://www.healthtestingcenters.com/hepatitis-b.aspx", :class => "bulletlink"} Hepatitis B Blood Test
+              %li
+                %a{:href => "http://www.healthtestingcenters.com/syphilis.aspx", :class => "bulletlink"} Syphilis
+              %li
+                %a{:href => "http://www.healthtestingcenters.com/hepatitis-c.aspx", :class => "bulletlink"} Hepatitis C Testing
+        - else
+          %p @city.std_h2section
+      - if @city.std_h3a == nil || ""
+        %h2 Why Patients in #{@city.name} Trust Us With Their STD Testing
+      - else
+        %h2 #{@city.std_h3a}
+      - if @city.std_h3asection == nil || ""
+        .row
+          .togler.col-md-4
+            .well.well-lg
+              %h6 Confidential & Private
+              %p 
+                Testing for STDs can be a scary and sensitive subject. At Health Testing Centers... 
+                %span=link_to 'more', '#', :class => 'togmore'
+              %p.hidden
+                Testing for STDs can be a scary and sensitive subject. At Health Testing Centers, we make STD Testing in #{@city.name} as discreet and convenient as possible. All test results are confidential and are not part of your medical record unless you choose to share them with your doctor.
+                %span=link_to 'less', '#', :class => 'togless'
+          .togler.col-md-4
+            .well.well-lg
+              %h6 Fast Results
+              %p 
+                After having the sample taken at the lab, your easy to understand STD test results... 
+                %span=link_to 'more', '#', :class => 'togmore'
+              %p.hidden
+                After having the sample taken at the lab, your easy to understand STD test results will be delivered securely to you in one to two days (some test results may take slightly longer.)
+                %span=link_to 'less', '#', :class => 'togless'
+          .togler.col-md-4
+            .well.well-lg
+              %h6 Money Back Guarantee
+              %p 
+                Health Testing Centers have been providing STD Testing in #{@city.name} for 30 years.... 
+                %span=link_to 'more', '#', :class => 'togmore'
+              %p.hidden
+                Health Testing Centers have been providing STD Testing in #{@city.name} for 30 years.To make the decision easy and stress free as possible we offer the assurance of a Money Back Guarantee on STD tests.
+                %span=link_to 'less', '#', :class => 'togless'
+        .row
+          .togler.col-md-4
+            .well.well-lg
+              %h6 Same Day Testing
+              %p 
+                After ordering an STD test, we generate a requisition form to use at the lab... 
+                %span=link_to 'more', '#', :class => 'togmore'
+              %p.hidden
+                After ordering an STD test, we generate a requisition form to use at the lab. Once your requisition form is entered (usually 15-20 minutes after ordering) you can go to the lab immediately. No appointment is required.
+                %span=link_to 'less', '#', :class => 'togless'
+          .togler.col-md-4
+            .well.well-lg
+              %h6 Discretion with No Embarrassment
+              %p 
+                No physical exams or swabs are used and there is no need to remove your clothing... 
+                %span=link_to 'more', '#', :class => 'togmore'
+              %p.hidden
+                No physical exams or swabs are used and there is no need to remove your clothing. All STD tests are convenient blood or urine tests. The lab that you visit has all types of patients and laboratory testing being performed. We perform all form of "health" testing. So our emails to you nor our credit card billing information never mention "STD" in them.
+                %span=link_to 'less', '#', :class => 'togless'
+          .togler.col-md-4
+            .well.well-lg
+              %h6 Doctor's Order Included
+              %p 
+                You do not need an order or a prescription from your doctor.... 
+                %span=link_to 'more', '#', :class => 'togmore'
+              %p.hidden
+                You do not need an order or a prescription from your doctor. All our orders include everything you need to have the test performed. After ordering, simply bring the requisition form to a LabCorp location close to you. Present that form and they will collect the proper specimen for your tests. There is no additional payment to LabCorp. We receive the results and send them directly to you.
+                %span=link_to 'less', '#', :class => 'togless'
+      - else
+        %p #{@city.std_h3asection}
+      - if @city.std_h3b == nil || ""
+        %h1 General STI Information
+      - else
+        %h1 #{@city.std_h3b}
+      - if @city.std_h3bsection == nil || ""
+        %p Health Testing Centers offers discreet, convenient, affordable STD testing in #{@city.name} that will allow you to confirm your diagnosis and seek treatment from the health care provider of your choice. You will not have to make an embarrassing disclosure to a physician, although you will need to contact your sexual partners to let them know they've been exposed and should get tested too.
+        %p Public health officials say that fifty percent of all sexually active individuals will have contracted at least one sexually transmitted disease (STD) by the time they are in their twenties. Though STDs are relatively easy to treat and, in most cases, curable, many people are often embarrassed to seek treatment. Left untreated, STDs can have serious health consequences that can jeopardize your wellbeing dramatically over the course of your lifetime.
+        %p "Sexually transmitted diseases" is an umbrella term for a group of infectious conditions that are spread through sexual contact. These infectious conditions include Herpes, Gonorrhea, Syphilis, Chlamydia, Hepatitis and HIV /Aids:
+        %p Our Peace of Mind Level II Panel includes the following tests:
+        %ul
+          %li Chlamydia
+          %li Gonorrhea
+          %li HIV
+          %li Hepatitis B
+          %li Hepatitis C
+          %li Herpes Simplex Virus (I/II, IgG)
+          %li Syphilis
+        %p Since our labs test for many medical and health concerns, there is no need to worry that anyone will know what you are being tested for. For your convenience, results are typically available within 24 hours. Abnormal results should be discussed with your healthcare provider in order for you to receive the care you need.
+        %p Whether you have symptoms of a sexually transmitted disease or are just concerned that you may have contracted an STD, you can consult with one of our trained and knowledgeable nurses to discuss your concerns. Health Testing Centers staff will listen to your concerns and any symptoms you might be experiencing to recommend the testing that is right for your needs.
+      - else
+        %p #{@city.std_h3bsection}
+      - if @city.std_h3c == nil || ""
+        %h1 STD Facts and Figures for #{@city.name}, #{@state.abbr}
+      - else
+        %h1 #{@city.std_h3c}
+      - if @city.std_h3csection == nil || ""
+        %p Sexually transmitted diseases (STD's) remain a critical problem both nationally and in #{@city.name}, #{@state.abbr}. Without proper treatment, they can lead to cardiac and neurological problems, organ damage, ectopic pregnancies, mental illness and even death. In addition, they have staggering economic costs that number in the billions of dollars.
+        %p The data show two other interesting trends in #{@city.name}, #{@state.abbr}. Consistent with the national average, women are significantly more likely to be diagnosed with herpes for reasons that still remain unclear to public health officials. Cases of HIV-AIDS in #{@city.name}, by contrast, show a markedly higher rate of this STD among men. This could be due, at least in part, to the fact that males tend to engage more frequently in high risk behaviors such as intravenous drug use.
+        %p Of particular concern to #{@state.name} health officials is the rapid increase in Chlamydia cases in #{@city.name}. Rates of infection are particularly high in young women between the ages of 15 and 19, and the consequences can be life-changing
+        %table{:cellpadding => "0", :cellspacing => "0", :style => "font-size: 120%; margin-left: 100px"}
+          %col{:width => "0px"}
+            %tr
+              %td
+              %td{:width => "275"} Community STD Statistics:
+              %td{:width => "225", :style => "text-align:right;"} #{@city.name}
+              %td
+            %tr
+              %td
+              %td{:width => "275"} State
+              %td{:width => "225", :style => "text-align:right;"} #{@state.name}
+              %td
+            %tr
+              %td
+              %td{:width => "275"} City Population
+              %td{:width => "225", :style => "text-align:right;"} #{@city.population}
+              %td
+            %tr
+              %td
+              %td{:width => "275"} State Population
+              %td{:width => "225", :style => "text-align:right;"}  #{@state.population}
+              %td
+            %tr
+              %td
+              %td{:width => "275"} Syphilis Cases
+              %td{:width => "225", :style => "text-align:right;"} 
+              %td
+            %tr
+              %td
+              %td{:width => "275"} 2007
+              %td{:width => "225", :style => "text-align:right;"} #{@stdata[0]}
+              %td
+            %tr
+              %td
+              %td{:width => "275"}  2008
+              %td{:width => "225", :style => "text-align:right;"} #{@stdata[1]}
+              %td
+            %tr
+              %td
+              %td{:width => "275"}  2009
+              %td{:width => "225", :style => "text-align:right;"} #{@stdata[2]}
+              %td
+            %tr
+              %td
+              %td{:width => "275"}  2010
+              %td{:width => "225", :style => "text-align:right;"} #{@stdata[3]}
+              %td
+            %tr
+              %td
+              %td{:width => "275"}  2011
+              %td{:width => "225", :style => "text-align:right;"} #{@stdata[4]}
+              %td
+            %tr
+              %td
+              %td{:width => "275"} Chlamydia Cases
+              %td{:width => "225", :style => "text-align:right;"}
+              %td
+            %tr
+              %td
+              %td{:width => "275"}  2007
+              %td{:width => "225", :style => "text-align:right;"} #{@stdata[5]}
+              %td
+            %tr
+              %td
+              %td{:width => "275"}  2008
+              %td{:width => "225", :style => "text-align:right;"} #{@stdata[6]}
+              %td
+            %tr
+              %td
+              %td{:width => "275"}  2009
+              %td{:width => "225", :style => "text-align:right;"} #{@stdata[7]}
+              %td
+            %tr
+              %td
+              %td{:width => "275"}  2010
+              %td{:width => "225", :style => "text-align:right;"} #{@stdata[8]}
+              %td
+            %tr
+              %td
+              %td{:width => "275"}  2011
+              %td{:width => "225", :style => "text-align:right;"} #{@stdata[9]}
+              %td
+            %tr
+              %td
+              %td{:width => "275"} Gonorrhea Cases
+              %td{:width => "225", :style => "text-align:right;"}
+              %td
+            %tr
+              %td
+              %td{:width => "275"}  2007
+              %td{:width => "225", :style => "text-align:right;"} #{@stdata[10]}
+              %td
+            %tr
+              %td
+              %td{:width => "275"}  2008
+              %td{:width => "225", :style => "text-align:right;"} #{@stdata[11]}
+              %td
+            %tr
+              %td
+              %td{:width => "275"}  2009
+              %td{:width => "225", :style => "text-align:right;"} #{@stdata[12]}
+              %td
+            %tr
+              %td
+              %td{:width => "275"}  2010
+              %td{:width => "225", :style => "text-align:right;"} #{@stdata[13]}
+              %td
+            %tr
+              %td
+              %td{:width => "275"}  2011
+              %td{:width => "225", :style => "text-align:right;"} #{@stdata[14]}
+              %td
+            %tr
+              %td
+              %td{:width => "275"} 2011 Herpes Cases
+              %td{:width => "225", :style => "text-align:right;"}
+              %td
+            %tr
+              %td
+              %td{:width => "275"}  Male
+              %td{:width => "225", :style => "text-align:right;"} #{@stdata[15]}
+              %td
+            %tr
+              %td
+              %td{:width => "275"}  Female
+              %td{:width => "225", :style => "text-align:right;"} #{@stdata[16]}
+              %td
+            %tr
+              %td
+              %td{:width => "275"}  Total
+              %td{:width => "225", :style => "text-align:right;"} #{@herpes}
+              %td
+            %tr
+              %td
+              %td{:width => "275"} 2011 AIDS Diagnoses
+              %td{:width => "225", :style => "text-align:right;"} 
+              %td
+            %tr
+              %td
+              %td{:width => "275"}  Male
+              %td{:width => "225", :style => "text-align:right;"} #{@stdata[17]}
+              %td
+            %tr
+              %td
+              %td{:width => "275"}  Female
+              %td{:width => "225", :style => "text-align:right;"} #{@stdata[18]}
+              %td
+            %tr
+              %td
+              %td{:width => "275"}  Total
+              %td{:width => "225", :style => "text-align:right;"} #{@aids}
+              %td
+            %tr
+              %td
+              %td{:width => "275"} Hepatitis A, B, &amp; C Acute Cases
+              %td{:width => "225", :style => "text-align:right;"}
+              %td
+            %tr
+              %td
+              %td{:width => "275"}  2006
+              %td{:width => "225", :style => "text-align:right;"} #{@stdata[19]}
+              %td
+            %tr
+              %td
+              %td{:width => "275"}  2007
+              %td{:width => "225", :style => "text-align:right;"} #{@stdata[20]}
+              %td
+            %tr
+              %td
+              %td{:width => "275"}  2008
+              %td{:width => "225", :style => "text-align:right;"} #{@stdata[21]}
+            %tr
+              %td
+              %td{:width => "275"}  2009
+              %td{:width => "225", :style => "text-align:right;"} #{@stdata[22]}
+              %td
+            %tr
+              %td
+              %td{:width => "275"} 2010
+              %td{:width => "225", :style => "text-align:right;"} #{@stdata[23]}
+              %td
+        %br
+        %br
+        %p
+          %strong Notes:
+          %br/
+          Sources including the Centers for Disease Control and Prevention (CDC), 1998 CDC Report &quot;HIV prevention through STD testing and treatment of other sexually transmitted diseases - MMWR 47(RR-12),&quot; National Center for Health Statistics, Division of Vital Statistics. Estimates are based on 2010 US Census data extrapolated to the population.
+        %br
+        %br
+      - else
+        %p #{@city.std_h3csection}
+        %br
+        %br
+    .col-md-2.rside
+      = link_to(image_tag('http://htcgen.herokuapp.com/email.png'), "mailto:", :class => 'topsoc')
+      = link_to(image_tag('http://htcgen.herokuapp.com/google-plus-new.png'), "https://plus.google.com/104085544192925470869/posts", :class => 'topsoc')
+      = link_to(image_tag('http://htcgen.herokuapp.com/facebook.png'), "http://www.facebook.com/HealthTestingCenters", :class => 'topsoc')
+      = link_to(image_tag('http://htcgen.herokuapp.com/twitter.png'), "http://twitter.com/#!/bloodtesting", :class => 'topsoc')
+      = link_to(image_tag('http://htcgen.herokuapp.com/Lab-Testing-123.png'), "http://www.healthtestingcenters.com/blood-testing-how-it-works.aspx", :class => 'easyas')
+      = link_to(image_tag('http://htcgen.herokuapp.com/Newletter-Signup.png'), "http://visitor.r20.constantcontact.com/d.jsp?llr=b8ffsudab&p=oi&m=1103422986081", :class => 'newslet')
+.container
+  .row.footertopbar
+    .col-md-3.col-sm-3.col-xs-3
+      = image_tag('http://htcgen.herokuapp.com/guarantee.png', :class => 'labtestcat')
+    .col-md-9.col-sm-9.col-xs-9
+      %h1 OUR GAURANTEE
+      %p We care about your health. If you're not completely satisfied, we will make it right or give your money back. 
+  .row.footer
+    .col-md-6
+      = image_tag('http://htcgen.herokuapp.com/453_491_logo-htc.png', :class => 'labtestcat')
+    .col-md-6
+      %h2 TO SPEAK WITH A MEDICAL PROFESSIONAL
+      %h3 
+        %a{:href => "tel:1-877-511-5227"} CALL 877-511-LABS (5227)
+  .row.foot
+    .col-md-12
+    %p The Material on this page is educational and does not constitute medical advice, diagnosis or treatment. Please consult your physician if medical advice, diagnosis or treatment is needed. Health Screening Lab Tests may or may not alert you and your doctor to serious medical conditions and are not intended to be a substitute for a physicians's examination.
+  .row.footbot
+    %ul
+      %li
+        %a{:href => 'http://www.healthtestingcenters.com/privacy-policy.aspx'} Privacy
+      |
+      %li
+        %a{:href => 'http://www.healthtestingcenters.com/terms.aspx'} Terms
+      |
+      %li
+        %a{:href => 'http://www.healthtestingcenters.com/hipaa.aspx'} HIPAA
+      |
+      %li
+        %a{:href => 'http://www.healthtestingcenters.com/sitemap.aspx'} Sitemap
+      |
+      %li
+        %a{:href => 'http://www.healthtestingcenters.com/about-us.aspx'} About Us

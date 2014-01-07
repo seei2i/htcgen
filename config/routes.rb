@@ -35,6 +35,12 @@ Htcgen::Application.routes.draw do
       end
       resources :locations
     end
+    resources :stds, path: "std-testing/" do
+      collection do
+        get 'remove_all'
+      end
+      resources :locations
+    end
   end
 
   # authenticated :user do

@@ -4,6 +4,8 @@ class Location < ActiveRecord::Base
   attr_accessible :address, :hours, :name, :weblink, :zip, :latitude, :longitude, :state_id, :city_id, :slug
   validates :slug, uniqueness: true, presence: true
   before_validation :generate_slug
+  geocoded_by :address
+  after_validation :geocode, :if => :address_changed?
 
   def self.import(file)
   	CSV.foreach(file.path, headers: true) do |row|

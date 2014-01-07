@@ -29,6 +29,16 @@ class LocationsController < ApplicationController
   end
 
   def show
+    @cityname = @location.city.name
+    @locations = Location.all
+    @hash = Gmaps4rails.build_markers(@locations) do |location, marker|
+      marker.lat location.latitude
+      marker.lng location.longitude
+      marker.title location.name
+      marker.picture({:picture => "http://locations.healthtestingcenters.com/images/mapIconSm.gif",
+                      :width => 35,
+                      :height => 35})
+    end
   end
 
   def update

@@ -34,8 +34,7 @@
                 %td= link_to "Delete", city_path(city), :data => { :confirm => "Are you sure?" }, :method => :delete
               - else
                 %td= link_to city.name, state_city_path(city.state, city)
-                %td Blank
-                / %td    = link_to city.name, 'cities/stdpage'
+                %td= link_to city.name, state_std_path(city.state, city)
                 %td= link_to 'Edit', edit_city_path(city)
                 %td= link_to "Delete", city_path(city), :data => { :confirm => "Are you sure?" }, :method => :delete
           %td= link_to "+ Add New Individual City", new_city_path

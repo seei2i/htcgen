@@ -51,25 +51,23 @@
       .container
         .row
           .col-xs-12.buttoninfophone
-            .btn.btn-primary Order and Test Here
+            .btn.btn-primary= link_to 'http://www.healthtestingcenters.com/Complete-Test-List.aspx', 'Order and Test Here'
             .row
               .col-md-12
                 %h4 
-                  %a{:href => "tel:1-412-685-4722"} (412) 685-4722
+                  %a{:href => "tel:#{@city.phone}"} #{@city.phone}
                 %h5 Call to consult with a medical professional
           .col-sm-6.col-sm-push-12
             %script{:src => "http://maps.google.com/maps/api/js?key=AIzaSyANL_BvD-Bns2P5jL0Rf8ga_fM-0JpDngA&sensor=false", :type => "text/javascript"}
             .tlsmap
-              / DIV container for the map
               #gmap_canvas
-              / Display the Google Map
               %script{:src => "http://rlscdn.rioseo.com/js/markerclusterer.js", :type => "text/javascript"}
               :javascript
                 var currentInfoWindow = null;
                 var bounds = new google.maps.LatLngBounds();
-                var latlng = new google.maps.LatLng(41.026902, -96.4203815);
+                var latlng = new google.maps.LatLng(#{@locations.first.latitude}, #{@locations.first.longitude});
                 var options = {
-                  zoom: 6,
+                  zoom: 11,
                   center: latlng,
                   mapTypeId: google.maps.MapTypeId.ROADMAP,
                   disableDefaultUI: false,
@@ -89,92 +87,296 @@
                 
                   google.maps.event.addListener(map, 'click', function() { if (currentInfoWindow != null) { currentInfoWindow.close(); } });
                   var markers = [];
-                  
+
 
                   var image = {url: 'http://locations.healthtestingcenters.com/images/mapIconSm.gif',scaledSize: new google.maps.Size(35,35)};
-                  var markerLatLng = new google.maps.LatLng(40.8157560, -96.6577310);
+                  var latlng = new google.maps.LatLng(#{@locations.first.latitude}, #{@locations.first.longitude});
                   var marker0 = new google.maps.Marker({
-                   position: markerLatLng,
-                   title: '',
-                   icon: image,
-                   map: map
+                      position: latlng,
+                      title: "#{@locations.first.name}",
+                      icon: image,
+                      map: map
                   });
                   markers.push(marker0);
                   var infowindowM0 = new google.maps.InfoWindow({
-                   content: '                Health Testing Centers              <a href=\'http://ne.lincoln.healthtestingcenters.com\' alt=\'Laboratory Blood Tests Lincoln Health Testing Centers | Locations\' title=\'Laboratory Blood Tests Lincoln Health Testing Centers | Locations\' target=\'_parent\'>View all locations in Lincoln, NE     '
+                    content: "Health Testing Centers<br><a href=\'http://healthtestingcenters.com\' alt=\'Laboratory Blood Tests #{@locations.first.city.name} Health Testing Centers | Locations\' title=\'Laboratory Blood Tests #{@locations.first.city.name} Health Testing Centers | Locations\' target=\'_parent\'>View all locations in #{@locations.first.city.name}"
                   });
                   google.maps.event.addListener (marker0, 'click', function() {
-                   if (currentInfoWindow != null) { currentInfoWindow.close(); } 
-                   infowindowM0.open(map, marker0);
-                   currentInfoWindow = infowindowM0;
+                    if (currentInfoWindow != null) { currentInfoWindow.close(); } 
+                    infowindowM0.open(map, marker0);
+                    currentInfoWindow = infowindowM0;
                   });
-                  bounds.extend(markerLatLng);
-                
-                }
+                    bounds.extend(markerLatLng);
+                  }
+
                 
                 window.onload = showmap;
-            / = image_tag('mapplaceholder.png', :class => 'mapplaceholder')
+
+
+              %h3 Nearby locations
+              %ul
+                - for location in @locations.first.nearbys(100)
+                  %li
+                    = link_to location.name, location
+                    (#{location.distance.round(2)} miles)
+                  
           .col-sm-6.col-sm-pull-12.buttoninfo
-            .btn.btn-primary Order and Test Here
-            / .row
-            /   .col-md-6.col-sm-6.col-xs-6
-            /     %h3 Health Testing Centers
-            /     %p 
-            /       300 Fleet St 2nd Floor
-            /       %br
-            /       2nd Floor
-            /       %br
-            /       Pittsburgh, PA 15220
-            /   .col-md-6.col-sm-6.col-xs-6
-            /     %h3 Hours
-            /     %p 
-            /       8AM-3PM EST (M-F)
+            .btn.btn-primary= link_to 'Order and Test Here', 'http://www.healthtestingcenters.com/Complete-Test-List.aspx' 
             .row
               .col-md-12
                 %h4
-                  %a{:href => "tel:1-412-685-4722"} (412) 685-4722
+                  %a{:href => "tel:#{@city.phone}"} #{@city.phone}
                 %h5 Call to consult with a medical professional
-                - if @locations == nil
-                - else
-                  %ul
-                    - @locations.each do |location|
-                      %li= link_to location.name, location
           .col-xs-12.buttoninfophone
-          /   %h3 Health Testing Centers
-          /   %p 
-          /     300 Fleet St 2nd Floor
-          /     %br
-          /     2nd Floor
-          /     %br
-          /     Pittsburgh, PA 15220
-          / .col-xs-12.buttoninfophone
-          /   %h3 Hours
-          /   %p 8AM-3PM EST (M-F)
-      %h2 The Leader in #{@city.name} for Bloodtesting Since 1980
-      .well
-        %h6 Doctor’s Order Included
-        %p You do not need an order or a prescription from your doctor. All our tests
-        %h6 Save 70% or More
-        %p Most of our patients either don’t have health insurance or don’t want to
-        %h6 Order Any Lab Test (No Restrictions)
-        %p Often health insurance companies, or even your doctor, will limit the
-      %h1 Top Blood Test Categories in City
+      - if @city.btc_h1 == nil || ""
+        %h1 Blood Lab Testing Centers in #{@city.name}
+      - else 
+        %h1.toph1 #{@city.btc_h1}
+      - if @locations == nil || ""
+        %p #{@city.btc_h1section}
+      - else
+        %ul
+          - @locations.each do |location|
+            %li= link_to location.name, location
+      - if @city.btc_h2 == nil || ""
+        %h1 Top Blood Test Categories in #{@city.name}
+      - else
+        %h1 #{@city.btc_h2}
       .row
-        .col-md-6
-          %ul
-            %li= link_to 'STD Testing Basic Health Screening $59', 'http://www.healthtestingcenters.com/basic-blood-test.aspx', :class => "bulletlink"
-            %li= link_to 'Thyroid Testing', 'http://www.healthtestingcenters.com/thyroid-test.aspx', :class => "bulletlink"
-            %li= link_to 'Cholesterol and Heart Blood Testing', 'Cholesterol and Heart Blood Testing', :class => "bulletlink"
-            %li= link_to 'Cancer Testing', 'http://www.healthtestingcenters.com/cancer-blood-test.aspx', :class => "bulletlink"
-        .col-md-6
-          %ul
-            %li= link_to 'Prostate Testing', 'http://www.healthtestingcenters.com/psa.aspx', :class => "bulletlink"
-            %li= link_to 'Liver Testing', 'http://www.healthtestingcenters.com/liver-function-test.aspx', :class => "bulletlink"
-            %li= link_to 'Hormone Testing', 'http://www.healthtestingcenters.com/hormone-level-blood-tests.aspx', :class => "bulletlink"
-      %h1 Blood Testing Details for Patients in #{@city.name}
-      %p Health Testing Centers have convenient locations in Pittsburgh, PA. Simply purchase the test you want online or call our nurses to order by phone. After ordering, Health Testing Centers then emails you a requisition form to bring to one of the below LabCorp locations. After you you have the blood drawn at one of the LabCorp locations below we email the results within 24-48 hours.
-      %h1 Health Facts in #{@city.name}
-      %p Oriented in Pennsylvania, the metro area, #{@city.name} contains a total of 307,532 individuals. The state population of Pennsylvania has 12,709,154 people. Out of this number of people, a total of 2.4% of them live in Pittsburgh. In one year, there are 24 deaths in the city that are caused by liver disease. There are an additional 55 deaths from kidney disease in the city. Altogether, there are a total of 558 deaths from every kind of cancer. Stroke also caused 121 deaths in the city. In addition, 66 deaths are caused by just prostate cancer, which accounts for 11.7% of total cancer deaths. During the same time period, 357 die from coronary heart disease. There were also 62 resident deaths from diabetes. On average, 0.12% of residents were likely to die of coronary heart disease during the year and 0.18% chance of passing away from any form of cancer.
+        - if @city.btc_h2section == nil || ""
+          .col-md-6
+            %ul
+              %li= link_to 'STD Testing Basic Health Screening $59', 'http://www.healthtestingcenters.com/basic-blood-test.aspx', :class => "bulletlink"
+              %li= link_to 'Thyroid Testing', 'http://www.healthtestingcenters.com/thyroid-test.aspx', :class => "bulletlink"
+              %li= link_to 'Cholesterol and Heart Blood Testing', 'Cholesterol and Heart Blood Testing', :class => "bulletlink"
+              %li= link_to 'Cancer Testing', 'http://www.healthtestingcenters.com/cancer-blood-test.aspx', :class => "bulletlink"
+          .col-md-6
+            %ul
+              %li= link_to 'Prostate Testing', 'http://www.healthtestingcenters.com/psa.aspx', :class => "bulletlink"
+              %li= link_to 'Liver Testing', 'http://www.healthtestingcenters.com/liver-function-test.aspx', :class => "bulletlink"
+              %li= link_to 'Hormone Testing', 'http://www.healthtestingcenters.com/hormone-level-blood-tests.aspx', :class => "bulletlink"
+        - else
+          %p @city.btc_h2section
+      - if @city.btc_h3a == nil || ""
+        %h2 The Leader in #{@city.name} Blood Testing since 2012
+      - else
+        %h2 #{@city.btc_h3a}
+      - if @city.btc_h3asection == nil || ""
+        .row
+          .togler.col-md-4
+            .well.well-lg
+              %h6 Doctor’s Order Included
+              %p 
+                You do not need an order or a prescription from your doctor. All our tests... 
+                %span=link_to 'more', '#', :class => 'togmore'
+              %p.hidden
+                You do not need an order or a prescription from your doctor. All our tests include everything you need to have the test performed. After ordering, simply bring the requisition form to a LabCorp location close to you. Present that form and they will collect the proper specimen for your tests. There is no additional payment to LabCorp. We receive the results and send them directly to you (usually in 1-2 days).
+                %span=link_to 'less', '#', :class => 'togless'
+          .togler.col-md-4
+            .well.well-lg
+              %h6 Confidential Laboratory Blood Testing
+              %p 
+                At Health Testing Centers we make blood testing in #{@city.name} as... 
+                %span=link_to 'more', '#', :class => 'togmore'
+              %p.hidden
+                At Health Testing Centers we make blood testing in #{@city.name} as discreet and convenient as possible. All test results are confidential and are not part of your medical record unless you choose to share them with your doctor.
+                %span=link_to 'less', '#', :class => 'togless'
+          .togler.col-md-4
+            .well.well-lg
+              %h6 Fast Results
+              %p 
+                After having the sample taken at the lab, your easy to understand blood... 
+                %span=link_to 'more', '#', :class => 'togmore'
+              %p.hidden
+                After having the sample taken at the lab, your easy to understand blood test results will be delivered securely to you in one to two days (some test results may take slightly longer.)
+                %span=link_to 'less', '#', :class => 'togless'
+        .row
+          .togler.col-md-4
+            .well.well-lg
+              %h6 Save 70% or More
+              %p 
+                Most of our patients either don’t have health insurance or don’t want to... 
+                %span=link_to 'more', '#', :class => 'togmore'
+              %p.hidden
+                Most of our patients either donÍt have health insurance or donÍt want to use their health insurance to pay for testing. Our focus is out of pocket paying patients. Because weÍve been offering lab testing direct to patients since 1980 and at high volume, we have great prices from the lab. We pass that savings onto our patients. Typically, our prices will be 70% less than paying the lab directly.
+                %span=link_to 'less', '#', :class => 'togless'
+          .togler.col-md-4
+            .well.well-lg
+              %h6 Order Any Lab Test (No Restrictions)
+              %p 
+                Often health insurance companies, or even your doctor, will limit the... 
+                %span=link_to 'more', '#', :class => 'togmore'
+              %p.hidden
+                Often health insurance companies, or even your doctor, will limit the number of blood tests ordered to diagnose a particular symptom or ailment. At Health Testing Centers you are in control. Order any test you choose. 
+                %span=link_to 'less', '#', :class => 'togless'
+          .togler.col-md-4
+            .well.well-lg
+              %h6 Money Back Guarantee
+              %p 
+                Health Testing Centers have been providing laboratory blood testing in... 
+                %span=link_to 'more', '#', :class => 'togmore'
+              %p.hidden
+                Health Testing Centers have been providing laboratory blood testing in Bear for 30 years. To make the decision easy and stress free as possible we offer the assurance of a Money Back Guarantee on all Bear laboratory blood tests.
+                %span=link_to 'less', '#', :class => 'togless'
+      - else
+        %p #{@city.btc_h3asection}
+      - if @city.btc_h3b == nil || ""
+        %h1 Blood Work Available in #{@city.name}.
+      - else
+        %h1 #{@city.btc_h3b}
+      - if @city.btc_h3bsection == nil || ""
+        %p Health Testing Centers have thousands of convenient lab test locations. Simply purchase the blood lab test you want online or call our nurses to order by phone. After ordering, Health Testing Centers then emails you a requisition form to bring to one of the participating lac locations. After you you have the blood drawn at one  of the LabCorp locations below we email the results within 24-48 hours.
+        %h4 Lab Tests Available in Your Location:
+        %h2
+          %a{:href => "http://www.healthtestingcenters.com/basic-blood-test.aspx", :style => "font-weight:bold; font-size:105%;"} Basic Health Screening
+        %p 
+          The
+          %a{:href => "http://www.healthtestingcenters.com/cbc-blood-test.aspx"} Complete Blood Count
+          is one of the tests done during the
+          %a{:href => "http://www.healthtestingcenters.com/basic-blood-test.aspx"} Basic Health Screening 
+          This test checks the levels of all the different types of blood. The other test performed is the
+          %a{:href => "http://www.healthtestingcenters.com/metabolic-panel.aspx"} Comprehensive Metabolic Panel
+          which tests the levels of the patient's kidney, and liver levels. A Urinalysis test is also done during the
+          %a{:href => "http://www.healthtestingcenters.com/basic-blood-test.aspx"} Basic Health Screening.
+        %blockquote
+          %p{:style => "font-weight:bold; font-size:90%;"}
+            %a{:href => "http://www.healthtestingcenters.com/basichealthscreenpluscmpcbclipid.aspx"} The Essential Health Screen $89
+            \- CBC (w diff), CMP, Urinalysis and Lipid Profile (HDL, LDL + Triglycerides)
+            %br
+            %a{:href => "http://www.healthtestingcenters.com/basic-blood-test.aspx"} Basic Health Screen $59 
+            \- Includes a CBC (w diff), CMP, and a Urinalysis
+            %br
+            %a{:href => "http://www.healthtestingcenters.com/cholesterol-test.aspx"} Cholesterol Test (Lipid Profile) $39
+            \- HDL, LDL, Total Cholesterol + Triglycerides
+        %h2
+          %a{:href => "http://www.healthtestingcenters.com/heart-cholesterol-blood-test.aspx", :style => "font-weight:bold; font-size:105%;"} Cholesterol and Heart Blood Testing
+        %p Many different types of treatments can assist in getting the cholesterol levels down to a normal range. At Health  Testing Centers they will offer a patient multiple tests to choose from  when getting the heart checked. There are two different levels as well as single blood tests. These tests will help to give an individual the levels of the heart. Switching from a non-healthy lifestyle to a healthy one which includes diet and exercise will certainly help.
+        %h2
+          %a{:href => "http://www.healthtestingcenters.com/psa.aspx", :style => "font-weight:bold; font-size:105%;"} Prostate Testing
+        %p 63% of men have had prostate cancer by the time  they are 65 years old, according to the National Cancer Institute.  Getting a Prostate Specific Antigen blood test annually starting at the  age of 50 could reduce the risk of getting prostate cancer. This test  will screen for an engorged prostate or noncancerous cells.
+        %h2
+          %a{:href => "http://www.healthtestingcenters.com/thyroid-test.aspx", :style => "font-weight:bold; font-size:105%;"} Thyroid Testing
+        %p
+          TSH is a thyroid stimulating hormone. This hormone is regulated by the thyroid. The thyroid controls the human body's metabolism. TSH levels will help to determine why there might be  an issue is occurring in the thyroid. To test a person's thyroid is by  going to the Health Testing Center and get a
+          %a{:href => "http://www.healthtestingcenters.com/thyroid-health-screening.aspx"} Thyroid Function
+          Test. The
+          %a{:href => "http://www.healthtestingcenters.com/thyroid-health-screening.aspx"} Thyroid Function
+          test will assist in giving the patient a way to treat what is diagnosed.
+        %h2
+          %a{:href => "http://www.healthtestingcenters.com/liver-test.aspx", :style => "font-weight:bold; font-size:105%;"} Liver Testing
+        %p Early detection of any type of liver damage  will prevent serious damage. There are many different types of liver  blood tests that will help assess the damage that might have been caused. These tests range from the Liver Function Test to any Hepatitis test. Please note that fasting before the liver test will give the most  accurate results.
+        %h2
+          %a{:href => "http://www.healthtestingcenters.com/cancer-blood-test.aspx", :style => "font-weight:bold; font-size:105%;"} Cancer Testing
+        %p
+          There is a concern that might be able to be alleviated through
+          %a{:href => "http://www.healthtestingcenters.com/cancer-blood-test.aspx"} Cancer Testing
+          if there is a hereditary factor to the cancer. Many different types of
+          %a{:href => "http://www.healthtestingcenters.com/cancer-blood-test.aspx"} Cancer Screening
+          can be conducted on the samples of blood that is given. The different types of
+          %a{:href => "http://www.healthtestingcenters.com/cancer-blood-test.aspx"} Cancer Screening
+          are CEA, Cancer Antigen 19-9, Cancer Antigen 27.29, Cancer Antigen 125, and the Alpha Fetoprotein blood tests. These tests will help to determine if there are any markers for cancer throughout the patient's  blood. If cancer cells are detected then a person will be able to find  the right treatment to help cure or slow down the progression of the cancer.
+        %h2
+          %a{:href => "http://www.healthtestingcenters.com/hormone-level-blood-tests.aspx", :style => "font-weight:bold; font-size:105%;"} Hormone Testing
+        %p The aging process is now looked at as a disease and is treated with anti-aging medicine. Health Testing Centers offer lab tests for DHEA, Testosterone, Human Growth Hormone, and IGF-1. Hormone levels need to be established before an appropriate therapy can be applied. Many patients see a drastic decrease in the normal levels of hormones while other patients are within range.
+        <br><br>
+      - else
+        %p #{@city.btc_h3bsection}
+      - if @city.btc_h3c == nil || ""
+        %h1 Health Facts and Statistics in #{@city.name}, #{@state.name}
+      - else
+        %h1 #{@city.btc_h3c}
+      - if @city.btc_h3csection == nil || ""
+        %p Happened upon in #{@state.name}, the neighborhood, #{@city.name} contains a total of #{@city.population} individuals. Within the state of #{@state.name} contains a total of #{@state.population} people. Only #{@percent_state}% of the state's inhabitants live in the city of #{@city.name}. The area saw a total of #{@city.liver_num} deaths in one year from liver disease and #{@city.kidney_num} deaths caused by kidney disease. All forms of cancer accounted for #{@city.all_cancers_num} deaths. In addition, there were #{@city.stroke_num} deaths from stroke. Of the total deaths from cancer, #{@city.prostate_num} were caused by just prostate cancer. This means that #{@percent_prostate}% of cancer deaths were from just prostate cancer. During the same time period, there were #{@city.coronary_num} deaths from coronary heart disease and #{@city.coronary_num} deaths from diabetes. On average, #{@percent_coronary}% of the population were likely to die of coronary heart disease during the year and #{@percent_cancer}% possibility of dying from cancer within a given year.
+        %br
+        %table{:cellpadding => "0", :cellspacing => "0", :style => "font-size: 120%; margin-left: 100px"}
+          %col{:width => "0px"}
+            %tr
+              %td
+              %td{:width => "325"} Community Health Data:
+              %td{:width => "265", :style => "text-align:right;"} #{@city.name}, #{@state.abbr}
+              %td
+            %tr
+              %td
+              %td{:width => "165"} City
+              %td{:style => "text-align:right;"} #{@city.name}
+              %td{:width => "165"} 
+            %tr
+              %td
+              %td{:width => "165"} State
+              %td{:style => "text-align:right;"} #{@state.name}
+              %td{:width => "165"} 
+            %tr
+              %td
+              %td{:width => "165"} City Population
+              %td{:style => "text-align:right;"} #{@city.population}
+              %td{:width => "165"} 
+            %tr
+              %td
+              %td{:width => "165"} State Population
+              %td{:style => "text-align:right;"} #{@state.population}
+              %td{:width => "165"} 
+            %tr
+              %td
+              %td{:width => "165"} Percentage of State Population
+              %td{:align => "right", :style => "text-align:right;"} #{@percent_state}%
+              %td{:width => "165"} 
+            %tr
+              %td
+              %td{:width => "165"} Number of Deaths By Disease:
+              %td
+              %td{:width => "165"} 
+            %tr
+              %td
+              %td{:width => "165"} Liver Disease
+              %td{:align => "right"} #{@city.liver_num}
+              %td{:width => "165"} 
+            %tr
+              %td
+              %td{:width => "165"} Kidney Disease
+              %td{:align => "right"} #{@city.kidney_num}
+              %td{:width => "165"} 
+            %tr
+              %td 
+              %td{:width => "165"} Prostate Cancer
+              %td{:align => "right"} #{@city.prostate_num}
+              %td{:width => "165"} 
+            %tr
+              %td
+              %td{:width => "165"} Stroke
+              %td{:align => "right"} #{@city.stroke_num}
+              %td{:width => "165"} 
+            %tr
+              %td
+              %td{:width => "165"} All Cancers
+              %td{:align => "right"} #{@city.all_cancers_num}
+              %td{:width => "165"} 
+            %tr
+              %td
+              %td{:width => "165"} Coronary Heart Disease
+              %td{:align => "right"} #{@city.coronary_num}
+              %td{:width => "165"} 
+            %tr
+              %td
+              %td{:width => "165"} Diabetes
+              %td{:align => "right"} #{@city.diabetes_num}
+              %td{:width => "165"} 
+            %tr
+              %td
+              %td{:width => "165"} Total Deaths
+              %td{:align => "right"} #{@city.total_d_num}
+              %td{:width => "165"} 
+        %br
+        %br
+        %p
+          %strong Notes:
+          %br/
+          include the Centers for Disease Control and Prevention (CDC), National Center for Health Statistics, Division of Vital Statistics, National Vital Statistics Report Volume 61. Estimates are based on 2010 US Census data extrapolated to the population.
+          %br
+          %br
+      - else
+        %p #{@city.btc_h3csection}
+        %br
+        %br
     .col-md-2.rside
       = link_to(image_tag('http://htcgen.herokuapp.com/email.png'), "mailto:", :class => 'topsoc')
       = link_to(image_tag('http://htcgen.herokuapp.com/google-plus-new.png'), "https://plus.google.com/104085544192925470869/posts", :class => 'topsoc')
