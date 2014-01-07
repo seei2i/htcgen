@@ -33,10 +33,6 @@ class CitiesController < ApplicationController
     @locations = Location.where(city_id: @city.id)
     @state = State.find_by_id(@city.state_id)
     @locos = Location.near(@city.name, 50, :order => :distance)
-    @loco = []
-    @locations.first.nearbys(50).each do |loc|
-      @loco.push(loc)
-    end
     if @city.population || @state.population == nil
       @percent_state = "N/A"
     else

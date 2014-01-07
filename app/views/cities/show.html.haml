@@ -112,13 +112,14 @@
                 
                 window.onload = showmap;
 
-
-              %h3 Nearby locations
-              %ul
-                - for location in @locations.first.nearbys(100)
-                  %li
-                    = link_to location.name, location
-                    (#{location.distance.round(2)} miles)
+              - if @locations.first == nil
+              - else
+                %h3 Nearby locations
+                %ul
+                  - for location in @locations.first.nearbys(100)
+                    %li
+                      = link_to location.name, location
+                      (#{location.distance.round(2)} miles)
                   
           .col-sm-6.col-sm-pull-12.buttoninfo
             .btn.btn-primary= link_to 'Order and Test Here', 'http://www.healthtestingcenters.com/Complete-Test-List.aspx' 
