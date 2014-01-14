@@ -11,7 +11,7 @@
 #
 # It's strongly recommended to check this file into your version control system.
 
-ActiveRecord::Schema.define(:version => 20140107110412) do
+ActiveRecord::Schema.define(:version => 20140114172016) do
 
   create_table "cities", :force => true do |t|
     t.string   "name"
@@ -108,8 +108,8 @@ ActiveRecord::Schema.define(:version => 20140107110412) do
   create_table "states", :force => true do |t|
     t.string   "name"
     t.string   "abbr"
-    t.datetime "created_at", :null => false
-    t.datetime "updated_at", :null => false
+    t.datetime "created_at",    :null => false
+    t.datetime "updated_at",    :null => false
     t.string   "slug"
     t.string   "title"
     t.string   "meta"
@@ -118,6 +118,21 @@ ActiveRecord::Schema.define(:version => 20140107110412) do
     t.string   "h2"
     t.text     "h2section"
     t.string   "population"
+    t.string   "h1sub1"
+    t.string   "h1sub1section"
+    t.string   "h1sub2"
+    t.string   "h1sub2section"
+    t.string   "h1sub3"
+    t.string   "h1sub3section"
+    t.string   "h1sub4"
+    t.string   "h1sub4section"
+    t.string   "h1sub5"
+    t.string   "h1sub5section"
+    t.string   "h1sub6"
+    t.string   "h1sub6section"
+    t.string   "hlocations"
+    t.string   "h3"
+    t.string   "h3section"
   end
 
   add_index "states", ["slug"], :name => "index_states_on_slug"

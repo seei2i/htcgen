@@ -42,63 +42,63 @@
       %ol.breadcrumb
         %li= link_to 'Health Testing Centers', "http://locations.healthtestingcenters.com/"
         %li.active #{@state.name}
-      %h1.toph1 Laboratory Blood Tests #{@state.name}
-      %h2 Why Order Laboratory Blood Tests from Health Testing Centers?
+      %h1.toph1 #{@state.h1}
+      %h2 #{@state.h1section}
       .row
         .togler.col-md-4
           .well.well-lg
-            %h6 Doctor’s Order Included
-            %p 
-              You do not need an order or a prescription from your doctor. All our tests... 
+            %h6 #{@state.h1sub1}
+            %p
+              = truncate @state.h1sub1section, :length => 80
               %span=link_to 'more', '#', :class => 'togmore'
             %p.hidden
-              You do not need an order or a prescription from your doctor. All our tests include everything you need to have the test performed. After ordering, simply bring the requisition form to a LabCorp location close to you. Present that form and they will collect the proper specimen for your tests. There is no additional payment to LabCorp. We receive the results and send them directly to you (usually in 1-2 days).
+              #{@state.h1sub1section}
               %span=link_to 'less', '#', :class => 'togless'
         .togler.col-md-4
           .well.well-lg
-            %h6 Confidential Laboratory Blood Testing
+            %h6 #{@state.h1sub2}
             %p 
-              At Health Testing Centers we make blood testing in #{@state.name} as... 
+              = truncate @state.h1sub2section, :length => 80 
               %span=link_to 'more', '#', :class => 'togmore'
             %p.hidden
-              At Health Testing Centers we make blood testing in #{@state.name} as discreet and convenient as possible. All test results are confidential and are not part of your medical record unless you choose to share them with your doctor.
+              #{@state.h1sub2section}
               %span=link_to 'less', '#', :class => 'togless'
         .togler.col-md-4
           .well.well-lg
-            %h6 Fast Results
+            %h6 #{@state.h1sub3}
             %p 
-              After having the sample taken at the lab, your easy to understand blood... 
+              = truncate @state.h1sub3section, :length => 80 
               %span=link_to 'more', '#', :class => 'togmore'
             %p.hidden
-              After having the sample taken at the lab, your easy to understand blood test results will be delivered securely to you in one to two days (some test results may take slightly longer.)
+              #{@state.h1sub3section}
               %span=link_to 'less', '#', :class => 'togless'
       .row
         .togler.col-md-4
           .well.well-lg
-            %h6 Save 70% or More
-            %p 
-              Most of our patients either don’t have health insurance or don’t want to... 
+            %h6 #{@state.h1sub4}
+            %p
+              = truncate @state.h1sub4section, :length => 80
               %span=link_to 'more', '#', :class => 'togmore'
             %p.hidden
-              Most of our patients either donÍt have health insurance or donÍt want to use their health insurance to pay for testing. Our focus is out of pocket paying patients. Because weÍve been offering lab testing direct to patients since 1980 and at high volume, we have great prices from the lab. We pass that savings onto our patients. Typically, our prices will be 70% less than paying the lab directly.
+              #{@state.h1sub4section}
               %span=link_to 'less', '#', :class => 'togless'
         .togler.col-md-4
           .well.well-lg
-            %h6 Order Any Lab Test (No Restrictions)
+            %h6 #{@state.h1sub5}
             %p 
-              Often health insurance companies, or even your doctor, will limit the... 
+              = truncate @state.h1sub5section, :length => 80 
               %span=link_to 'more', '#', :class => 'togmore'
             %p.hidden
-              Often health insurance companies, or even your doctor, will limit the number of blood tests ordered to diagnose a particular symptom or ailment. At Health Testing Centers you are in control. Order any test you choose. 
+              #{@state.h1sub5section}
               %span=link_to 'less', '#', :class => 'togless'
         .togler.col-md-4
           .well.well-lg
-            %h6 Money Back Guarantee
+            %h6 #{@state.h1sub6}
             %p 
-              Health Testing Centers have been providing laboratory blood testing in... 
+              = truncate @state.h1sub6section, :length => 80 
               %span=link_to 'more', '#', :class => 'togmore'
             %p.hidden
-              Health Testing Centers have been providing laboratory blood testing in Bear for 30 years. To make the decision easy and stress free as possible we offer the assurance of a Money Back Guarantee on all Bear laboratory blood tests.
+              #{@state.h1sub6section}
               %span=link_to 'less', '#', :class => 'togless'
       .row
         .col-md-2.col-xs-0
@@ -163,16 +163,16 @@
               
               window.onload = showmap;
           / = image_tag('mapplaceholderlg.jpg', :class => 'mapplaceholderlg')
-      %h1 Here are the cities in #{@state.name} where we have lab locations:
+      %h1 #{@state.hlocations}
       .container.col-md-12
         - if @cities == nil
         - else
           - @cities.each do |city|
             .col-md-3= link_to city.name, state_city_path(city.state, city)
-      %h1 #{@state.h1}
-      %p #{@state.h1section}
       %h1 #{@state.h2}
       %p #{@state.h2section}
+      %h1 #{@state.h3}
+      %p #{@state.h3section}
     .col-md-2.rside
       = link_to(image_tag('http://htcgen.herokuapp.com/email.png'), "mailto:", :class => 'topsoc')
       = link_to(image_tag('http://htcgen.herokuapp.com/google-plus-new.png'), "https://plus.google.com/104085544192925470869/posts", :class => 'topsoc')
