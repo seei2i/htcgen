@@ -47,7 +47,7 @@
         %li
           %a{:href => city_path } #{@city.name}
         %li.active Laboratory Blood Tests
-      %h1.toph1 Laboratory Blood Testing in #{@city.name}
+      %h1.toph1 #{@city.btc_h1}
       .container
         .row
           .col-xs-12.buttoninfophone
@@ -129,253 +129,230 @@
                   %a{:href => "tel:#{@city.phone}"} #{@city.phone}
                 %h5 Call to consult with a medical professional
           .col-xs-12.buttoninfophone
-      - if @city.btc_h1 == nil || ""
-        %h1 Blood Lab Testing Centers in #{@city.name}
-      - else 
-        %h1.toph1 #{@city.btc_h1}
+      %h1 #{@city.btc_h2}
       - if @locations == nil || ""
-        %p #{@city.btc_h1section}
+        %p No Locations in #{@city.name}
       - else
         %ul
           - @locations.each do |location|
             %li= link_to location.name, location
-      - if @city.btc_h2 == nil || ""
-        %h1 Top Blood Test Categories in #{@city.name}
-      - else
-        %h1 #{@city.btc_h2}
+      %h1 #{@city.btc_h3}
       .row
-        - if @city.btc_h2section == nil || ""
-          .col-md-6
-            %ul
-              %li= link_to 'STD Testing Basic Health Screening $59', 'http://www.healthtestingcenters.com/basic-blood-test.aspx', :class => "bulletlink"
-              %li= link_to 'Thyroid Testing', 'http://www.healthtestingcenters.com/thyroid-test.aspx', :class => "bulletlink"
-              %li= link_to 'Cholesterol and Heart Blood Testing', 'Cholesterol and Heart Blood Testing', :class => "bulletlink"
-              %li= link_to 'Cancer Testing', 'http://www.healthtestingcenters.com/cancer-blood-test.aspx', :class => "bulletlink"
-          .col-md-6
-            %ul
-              %li= link_to 'Prostate Testing', 'http://www.healthtestingcenters.com/psa.aspx', :class => "bulletlink"
-              %li= link_to 'Liver Testing', 'http://www.healthtestingcenters.com/liver-function-test.aspx', :class => "bulletlink"
-              %li= link_to 'Hormone Testing', 'http://www.healthtestingcenters.com/hormone-level-blood-tests.aspx', :class => "bulletlink"
-        - else
-          %p @city.btc_h2section
-      - if @city.btc_h3a == nil || ""
-        %h2 The Leader in #{@city.name} Blood Testing since 2012
-      - else
-        %h2 #{@city.btc_h3a}
-      - if @city.btc_h3asection == nil || ""
-        .row
-          .togler.col-md-4
-            .well.well-lg
-              %h6 Doctor’s Order Included
-              %p 
-                You do not need an order or a prescription from your doctor. All our tests... 
-                %span=link_to 'more', '#', :class => 'togmore'
-              %p.hidden
-                You do not need an order or a prescription from your doctor. All our tests include everything you need to have the test performed. After ordering, simply bring the requisition form to a LabCorp location close to you. Present that form and they will collect the proper specimen for your tests. There is no additional payment to LabCorp. We receive the results and send them directly to you (usually in 1-2 days).
-                %span=link_to 'less', '#', :class => 'togless'
-          .togler.col-md-4
-            .well.well-lg
-              %h6 Confidential Laboratory Blood Testing
-              %p 
-                At Health Testing Centers we make blood testing in #{@city.name} as... 
-                %span=link_to 'more', '#', :class => 'togmore'
-              %p.hidden
-                At Health Testing Centers we make blood testing in #{@city.name} as discreet and convenient as possible. All test results are confidential and are not part of your medical record unless you choose to share them with your doctor.
-                %span=link_to 'less', '#', :class => 'togless'
-          .togler.col-md-4
-            .well.well-lg
-              %h6 Fast Results
-              %p 
-                After having the sample taken at the lab, your easy to understand blood... 
-                %span=link_to 'more', '#', :class => 'togmore'
-              %p.hidden
-                After having the sample taken at the lab, your easy to understand blood test results will be delivered securely to you in one to two days (some test results may take slightly longer.)
-                %span=link_to 'less', '#', :class => 'togless'
-        .row
-          .togler.col-md-4
-            .well.well-lg
-              %h6 Save 70% or More
-              %p 
-                Most of our patients either don’t have health insurance or don’t want to... 
-                %span=link_to 'more', '#', :class => 'togmore'
-              %p.hidden
-                Most of our patients either donÍt have health insurance or donÍt want to use their health insurance to pay for testing. Our focus is out of pocket paying patients. Because weÍve been offering lab testing direct to patients since 1980 and at high volume, we have great prices from the lab. We pass that savings onto our patients. Typically, our prices will be 70% less than paying the lab directly.
-                %span=link_to 'less', '#', :class => 'togless'
-          .togler.col-md-4
-            .well.well-lg
-              %h6 Order Any Lab Test (No Restrictions)
-              %p 
-                Often health insurance companies, or even your doctor, will limit the... 
-                %span=link_to 'more', '#', :class => 'togmore'
-              %p.hidden
-                Often health insurance companies, or even your doctor, will limit the number of blood tests ordered to diagnose a particular symptom or ailment. At Health Testing Centers you are in control. Order any test you choose. 
-                %span=link_to 'less', '#', :class => 'togless'
-          .togler.col-md-4
-            .well.well-lg
-              %h6 Money Back Guarantee
-              %p 
-                Health Testing Centers have been providing laboratory blood testing in... 
-                %span=link_to 'more', '#', :class => 'togmore'
-              %p.hidden
-                Health Testing Centers have been providing laboratory blood testing in Bear for 30 years. To make the decision easy and stress free as possible we offer the assurance of a Money Back Guarantee on all Bear laboratory blood tests.
-                %span=link_to 'less', '#', :class => 'togless'
-      - else
-        %p #{@city.btc_h3asection}
-      - if @city.btc_h3b == nil || ""
-        %h1 Blood Work Available in #{@city.name}.
-      - else
-        %h1 #{@city.btc_h3b}
-      - if @city.btc_h3bsection == nil || ""
-        %p Health Testing Centers have thousands of convenient lab test locations. Simply purchase the blood lab test you want online or call our nurses to order by phone. After ordering, Health Testing Centers then emails you a requisition form to bring to one of the participating lac locations. After you you have the blood drawn at one  of the LabCorp locations below we email the results within 24-48 hours.
-        %h4 Lab Tests Available in Your Location:
-        %h2
-          %a{:href => "http://www.healthtestingcenters.com/basic-blood-test.aspx", :style => "font-weight:bold; font-size:105%;"} Basic Health Screening
-        %p 
-          The
-          %a{:href => "http://www.healthtestingcenters.com/cbc-blood-test.aspx"} Complete Blood Count
-          is one of the tests done during the
-          %a{:href => "http://www.healthtestingcenters.com/basic-blood-test.aspx"} Basic Health Screening 
-          This test checks the levels of all the different types of blood. The other test performed is the
-          %a{:href => "http://www.healthtestingcenters.com/metabolic-panel.aspx"} Comprehensive Metabolic Panel
-          which tests the levels of the patient's kidney, and liver levels. A Urinalysis test is also done during the
-          %a{:href => "http://www.healthtestingcenters.com/basic-blood-test.aspx"} Basic Health Screening.
-        %blockquote
-          %p{:style => "font-weight:bold; font-size:90%;"}
-            %a{:href => "http://www.healthtestingcenters.com/basichealthscreenpluscmpcbclipid.aspx"} The Essential Health Screen $89
-            \- CBC (w diff), CMP, Urinalysis and Lipid Profile (HDL, LDL + Triglycerides)
-            %br
-            %a{:href => "http://www.healthtestingcenters.com/basic-blood-test.aspx"} Basic Health Screen $59 
-            \- Includes a CBC (w diff), CMP, and a Urinalysis
-            %br
-            %a{:href => "http://www.healthtestingcenters.com/cholesterol-test.aspx"} Cholesterol Test (Lipid Profile) $39
-            \- HDL, LDL, Total Cholesterol + Triglycerides
-        %h2
-          %a{:href => "http://www.healthtestingcenters.com/heart-cholesterol-blood-test.aspx", :style => "font-weight:bold; font-size:105%;"} Cholesterol and Heart Blood Testing
-        %p Many different types of treatments can assist in getting the cholesterol levels down to a normal range. At Health  Testing Centers they will offer a patient multiple tests to choose from  when getting the heart checked. There are two different levels as well as single blood tests. These tests will help to give an individual the levels of the heart. Switching from a non-healthy lifestyle to a healthy one which includes diet and exercise will certainly help.
-        %h2
-          %a{:href => "http://www.healthtestingcenters.com/psa.aspx", :style => "font-weight:bold; font-size:105%;"} Prostate Testing
-        %p 63% of men have had prostate cancer by the time  they are 65 years old, according to the National Cancer Institute.  Getting a Prostate Specific Antigen blood test annually starting at the  age of 50 could reduce the risk of getting prostate cancer. This test  will screen for an engorged prostate or noncancerous cells.
-        %h2
-          %a{:href => "http://www.healthtestingcenters.com/thyroid-test.aspx", :style => "font-weight:bold; font-size:105%;"} Thyroid Testing
-        %p
-          TSH is a thyroid stimulating hormone. This hormone is regulated by the thyroid. The thyroid controls the human body's metabolism. TSH levels will help to determine why there might be  an issue is occurring in the thyroid. To test a person's thyroid is by  going to the Health Testing Center and get a
-          %a{:href => "http://www.healthtestingcenters.com/thyroid-health-screening.aspx"} Thyroid Function
-          Test. The
-          %a{:href => "http://www.healthtestingcenters.com/thyroid-health-screening.aspx"} Thyroid Function
-          test will assist in giving the patient a way to treat what is diagnosed.
-        %h2
-          %a{:href => "http://www.healthtestingcenters.com/liver-test.aspx", :style => "font-weight:bold; font-size:105%;"} Liver Testing
-        %p Early detection of any type of liver damage  will prevent serious damage. There are many different types of liver  blood tests that will help assess the damage that might have been caused. These tests range from the Liver Function Test to any Hepatitis test. Please note that fasting before the liver test will give the most  accurate results.
-        %h2
-          %a{:href => "http://www.healthtestingcenters.com/cancer-blood-test.aspx", :style => "font-weight:bold; font-size:105%;"} Cancer Testing
-        %p
-          There is a concern that might be able to be alleviated through
-          %a{:href => "http://www.healthtestingcenters.com/cancer-blood-test.aspx"} Cancer Testing
-          if there is a hereditary factor to the cancer. Many different types of
-          %a{:href => "http://www.healthtestingcenters.com/cancer-blood-test.aspx"} Cancer Screening
-          can be conducted on the samples of blood that is given. The different types of
-          %a{:href => "http://www.healthtestingcenters.com/cancer-blood-test.aspx"} Cancer Screening
-          are CEA, Cancer Antigen 19-9, Cancer Antigen 27.29, Cancer Antigen 125, and the Alpha Fetoprotein blood tests. These tests will help to determine if there are any markers for cancer throughout the patient's  blood. If cancer cells are detected then a person will be able to find  the right treatment to help cure or slow down the progression of the cancer.
-        %h2
-          %a{:href => "http://www.healthtestingcenters.com/hormone-level-blood-tests.aspx", :style => "font-weight:bold; font-size:105%;"} Hormone Testing
-        %p The aging process is now looked at as a disease and is treated with anti-aging medicine. Health Testing Centers offer lab tests for DHEA, Testosterone, Human Growth Hormone, and IGF-1. Hormone levels need to be established before an appropriate therapy can be applied. Many patients see a drastic decrease in the normal levels of hormones while other patients are within range.
-        <br><br>
-      - else
-        %p #{@city.btc_h3bsection}
-      - if @city.btc_h3c == nil || ""
-        %h1 Health Facts and Statistics in #{@city.name}, #{@state.name}
-      - else
-        %h1 #{@city.btc_h3c}
-      - if @city.btc_h3csection == nil || ""
-        %p Happened upon in #{@state.name}, the neighborhood, #{@city.name} contains a total of #{@city.population} individuals. Within the state of #{@state.name} contains a total of #{@state.population} people. Only #{@percent_state}% of the state's inhabitants live in the city of #{@city.name}. The area saw a total of #{@city.liver_num} deaths in one year from liver disease and #{@city.kidney_num} deaths caused by kidney disease. All forms of cancer accounted for #{@city.all_cancers_num} deaths. In addition, there were #{@city.stroke_num} deaths from stroke. Of the total deaths from cancer, #{@city.prostate_num} were caused by just prostate cancer. This means that #{@percent_prostate}% of cancer deaths were from just prostate cancer. During the same time period, there were #{@city.coronary_num} deaths from coronary heart disease and #{@city.coronary_num} deaths from diabetes. On average, #{@percent_coronary}% of the population were likely to die of coronary heart disease during the year and #{@percent_cancer}% possibility of dying from cancer within a given year.
-        %br
-        %table{:cellpadding => "0", :cellspacing => "0", :style => "font-size: 120%; margin-left: 100px"}
-          %col{:width => "0px"}
-            %tr
-              %td
-              %td{:width => "325"} Community Health Data:
-              %td{:width => "265", :style => "text-align:right;"} #{@city.name}, #{@state.abbr}
-              %td
-            %tr
-              %td
-              %td{:width => "165"} City
-              %td{:style => "text-align:right;"} #{@city.name}
-              %td{:width => "165"} 
-            %tr
-              %td
-              %td{:width => "165"} State
-              %td{:style => "text-align:right;"} #{@state.name}
-              %td{:width => "165"} 
-            %tr
-              %td
-              %td{:width => "165"} City Population
-              %td{:style => "text-align:right;"} #{@city.population}
-              %td{:width => "165"} 
-            %tr
-              %td
-              %td{:width => "165"} State Population
-              %td{:style => "text-align:right;"} #{@state.population}
-              %td{:width => "165"} 
-            %tr
-              %td
-              %td{:width => "165"} Percentage of State Population
-              %td{:align => "right", :style => "text-align:right;"} #{@percent_state}%
-              %td{:width => "165"} 
-            %tr
-              %td
-              %td{:width => "165"} Number of Deaths By Disease:
-              %td
-              %td{:width => "165"} 
-            %tr
-              %td
-              %td{:width => "165"} Liver Disease
-              %td{:align => "right"} #{@city.liver_num}
-              %td{:width => "165"} 
-            %tr
-              %td
-              %td{:width => "165"} Kidney Disease
-              %td{:align => "right"} #{@city.kidney_num}
-              %td{:width => "165"} 
-            %tr
-              %td 
-              %td{:width => "165"} Prostate Cancer
-              %td{:align => "right"} #{@city.prostate_num}
-              %td{:width => "165"} 
-            %tr
-              %td
-              %td{:width => "165"} Stroke
-              %td{:align => "right"} #{@city.stroke_num}
-              %td{:width => "165"} 
-            %tr
-              %td
-              %td{:width => "165"} All Cancers
-              %td{:align => "right"} #{@city.all_cancers_num}
-              %td{:width => "165"} 
-            %tr
-              %td
-              %td{:width => "165"} Coronary Heart Disease
-              %td{:align => "right"} #{@city.coronary_num}
-              %td{:width => "165"} 
-            %tr
-              %td
-              %td{:width => "165"} Diabetes
-              %td{:align => "right"} #{@city.diabetes_num}
-              %td{:width => "165"} 
-            %tr
-              %td
-              %td{:width => "165"} Total Deaths
-              %td{:align => "right"} #{@city.total_d_num}
-              %td{:width => "165"} 
-        %br
-        %br
-        %p
-          %strong Notes:
-          %br/
-          include the Centers for Disease Control and Prevention (CDC), National Center for Health Statistics, Division of Vital Statistics, National Vital Statistics Report Volume 61. Estimates are based on 2010 US Census data extrapolated to the population.
-          %br
-          %br
-      - else
-        %p #{@city.btc_h3csection}
+        .col-md-6
+          %ul
+            %li= link_to @city.btc_h3sub1, @city.btc_h3sub1link, :class => "bulletlink"
+            %li= link_to @city.btc_h3sub2, @city.btc_h3sub2link, :class => "bulletlink"
+            %li= link_to @city.btc_h3sub3, @city.btc_h3sub3link, :class => "bulletlink"
+            %li= link_to @city.btc_h3sub4, @city.btc_h3sub4link, :class => "bulletlink"
+            %li= link_to @city.btc_h3sub5, @city.btc_h3sub5link, :class => "bulletlink"
+        .col-md-6
+          %ul
+            %li= link_to @city.btc_h3sub6, @city.btc_h3sub6link, :class => "bulletlink"
+            %li= link_to @city.btc_h3sub7, @city.btc_h3sub7link, :class => "bulletlink"
+            %li= link_to @city.btc_h3sub8, @city.btc_h3sub8link, :class => "bulletlink"
+            %li= link_to @city.btc_h3sub9, @city.btc_h3sub9link, :class => "bulletlink"
+            %li= link_to @city.btc_h3sub10, @city.btc_h3sub10link, :class => "bulletlink"
+      %h2 #{@city.btc_h4}
+      .row
+        .togler.col-md-4
+          .well.well-lg
+            %h6 #{@city.btc_h4sub1}
+            %p 
+              = truncate @city.btc_h4sub1section, :length => 75  
+              %span=link_to 'more', '#', :class => 'togmore'
+            %p.hidden
+              #{@city.btc_h4sub1section}
+              %span=link_to 'less', '#', :class => 'togless'
+        .togler.col-md-4
+          .well.well-lg
+            %h6 #{@city.btc_h4sub2}
+            %p 
+              = truncate @city.btc_h4sub2section, :length => 75  
+              %span=link_to 'more', '#', :class => 'togmore'
+            %p.hidden
+              #{@city.btc_h4sub2section}
+              %span=link_to 'less', '#', :class => 'togless'
+        .togler.col-md-4
+          .well.well-lg
+            %h6 #{@city.btc_h4sub3}
+            %p 
+              = truncate @city.btc_h4sub3section, :length => 75  
+              %span=link_to 'more', '#', :class => 'togmore'
+            %p.hidden
+              #{@city.btc_h4sub3section}
+              %span=link_to 'less', '#', :class => 'togless'
+      .row
+        .togler.col-md-4
+          .well.well-lg
+            %h6 #{@city.btc_h4sub4}
+            %p 
+              = truncate @city.btc_h4sub4section, :length => 75  
+              %span=link_to 'more', '#', :class => 'togmore'
+            %p.hidden
+              #{@city.btc_h4sub4section}
+              %span=link_to 'less', '#', :class => 'togless'
+        .togler.col-md-4
+          .well.well-lg
+            %h6 #{@city.btc_h4sub5}
+            %p 
+              = truncate @city.btc_h4sub5section, :length => 75  
+              %span=link_to 'more', '#', :class => 'togmore'
+            %p.hidden
+              #{@city.btc_h4sub5section}
+              %span=link_to 'less', '#', :class => 'togless'
+        .togler.col-md-4
+          .well.well-lg
+            %h6 #{@city.btc_h4sub6}
+            %p 
+              = truncate @city.btc_h4sub6section, :length => 75  
+              %span=link_to 'more', '#', :class => 'togmore'
+            %p.hidden
+              #{@city.btc_h4sub6section}
+              %span=link_to 'less', '#', :class => 'togless'
+      %h1 #{@city.btc_h5}
+      %p #{@city.btc_h5section}
+      %h4 #{@city.btc_h6}
+      %h2= link_to @city.btc_h6sub1, @city.btc_h6sub1link, :style => "font-weight:bold; font-size:105%;"
+      %p #{@city.btc_h6sub1section}
+      / %blockquote
+      /   %p{:style => "font-weight:bold; font-size:90%;"}
+      /     %a{:href => "http://www.healthtestingcenters.com/basichealthscreenpluscmpcbclipid.aspx"} The Essential Health Screen $89
+      /     \- CBC (w diff), CMP, Urinalysis and Lipid Profile (HDL, LDL + Triglycerides)
+      /     %br
+      /     %a{:href => "http://www.healthtestingcenters.com/basic-blood-test.aspx"} Basic Health Screen $59 
+      /     \- Includes a CBC (w diff), CMP, and a Urinalysis
+      /     %br
+      /     %a{:href => "http://www.healthtestingcenters.com/cholesterol-test.aspx"} Cholesterol Test (Lipid Profile) $39
+      /     \- HDL, LDL, Total Cholesterol + Triglycerides
+      %h2= link_to @city.btc_h6sub2, @city.btc_h6sub2link, :style => "font-weight:bold; font-size:105%;"
+      %p #{@city.btc_h6sub2section}
+      %h2= link_to @city.btc_h6sub3, @city.btc_h6sub3link, :style => "font-weight:bold; font-size:105%;"
+      %p #{@city.btc_h6sub3section}
+      %h2= link_to @city.btc_h6sub4, @city.btc_h6sub4link, :style => "font-weight:bold; font-size:105%;"
+      %p #{@city.btc_h6sub4section}
+      %h2= link_to @city.btc_h6sub5, @city.btc_h6sub5link, :style => "font-weight:bold; font-size:105%;"
+      %p #{@city.btc_h6sub5section}
+      %h2= link_to @city.btc_h6sub6, @city.btc_h6sub6link, :style => "font-weight:bold; font-size:105%;"
+      %p #{@city.btc_h6sub6section}
+      %h2= link_to @city.btc_h6sub7, @city.btc_h6sub7link, :style => "font-weight:bold; font-size:105%;"
+      %p #{@city.btc_h6sub7section}
+      %h2= link_to @city.btc_h6sub8, @city.btc_h6sub8link, :style => "font-weight:bold; font-size:105%;"
+      %p #{@city.btc_h6sub8section}
+      %h2= link_to @city.btc_h6sub9, @city.btc_h6sub9link, :style => "font-weight:bold; font-size:105%;"
+      %p #{@city.btc_h6sub9section}
+      %h2= link_to @city.btc_h6sub10, @city.btc_h6sub10link, :style => "font-weight:bold; font-size:105%;"
+      %p #{@city.btc_h6sub10section}
+      %h1 #{@city.btc_h7}
+      %p #{@city.btc_h7section}
+      %br
+      %table{:cellpadding => "0", :cellspacing => "0", :style => "font-size: 120%; margin-left: 100px"}
+        %col{:width => "0px"}
+          %tr
+            %td
+            %td{:width => "325"} #{@city.btc_h7tablel1}
+            %td{:width => "265", :style => "text-align:right;"} #{@city.btc_h7tabler1}
+            %td
+          %tr
+            %td
+            %td{:width => "325"} #{@city.btc_h7tablel2}
+            %td{:width => "265", :style => "text-align:right;"} #{@city.btc_h7tabler2}
+            %td{:width => "165"} 
+          %tr
+            %td
+            %td{:width => "325"} #{@city.btc_h7tablel3}
+            %td{:width => "265", :style => "text-align:right;"} #{@city.btc_h7tabler3}
+            %td{:width => "165"} 
+          %tr
+            %td
+            %td{:width => "325"} #{@city.btc_h7tablel4}
+            %td{:width => "265", :style => "text-align:right;"} #{@city.btc_h7tabler4}
+            %td{:width => "165"} 
+          %tr
+            %td
+            %td{:width => "325"} #{@city.btc_h7tablel5}
+            %td{:width => "265", :style => "text-align:right;"} #{@city.btc_h7tabler5}
+            %td{:width => "165"} 
+          %tr
+            %td
+            %td{:width => "325"} #{@city.btc_h7tablel6}
+            %td{:width => "265", :style => "text-align:right;"} #{@city.btc_h7tabler6}
+            %td{:width => "165"} 
+          %tr
+            %td
+            %td{:width => "325"} #{@city.btc_h7tablel7}
+            %td{:width => "265", :style => "text-align:right;"} #{@city.btc_h7tabler7}
+            %td{:width => "165"} 
+          %tr
+            %td
+            %td{:width => "325"} #{@city.btc_h7tablel8}
+            %td{:width => "265", :style => "text-align:right;"} #{@city.btc_h7tabler8}
+            %td{:width => "165"} 
+          %tr
+            %td
+            %td{:width => "325"} #{@city.btc_h7tablel9}
+            %td{:width => "265", :style => "text-align:right;"} #{@city.btc_h7tabler9}
+            %td{:width => "165"} 
+          %tr
+            %td 
+            %td{:width => "325"} #{@city.btc_h7tablel10}
+            %td{:width => "265", :style => "text-align:right;"} #{@city.btc_h7tabler10}
+            %td{:width => "165"} 
+          %tr
+            %td
+            %td{:width => "325"} #{@city.btc_h7tablel11}
+            %td{:width => "265", :style => "text-align:right;"} #{@city.btc_h7tabler11}
+            %td
+          %tr
+            %td
+            %td{:width => "325"} #{@city.btc_h7tablel12}
+            %td{:width => "265", :style => "text-align:right;"} #{@city.btc_h7tabler12}
+            %td{:width => "165"} 
+          %tr
+            %td
+            %td{:width => "325"} #{@city.btc_h7tablel13}
+            %td{:width => "265", :style => "text-align:right;"} #{@city.btc_h7tabler13}
+            %td{:width => "165"} 
+          %tr
+            %td
+            %td{:width => "325"} #{@city.btc_h7tablel14}
+            %td{:width => "265", :style => "text-align:right;"} #{@city.btc_h7tabler14}
+            %td{:width => "165"} 
+          %tr
+            %td
+            %td{:width => "325"} #{@city.btc_h7tablel15}
+            %td{:width => "265", :style => "text-align:right;"} #{@city.btc_h7tabler15}
+            %td{:width => "165"} 
+          %tr
+            %td
+            %td{:width => "325"} #{@city.btc_h7tablel16}
+            %td{:width => "265", :style => "text-align:right;"} #{@city.btc_h7tabler16}
+            %td{:width => "165"} 
+          %tr
+            %td
+            %td{:width => "325"} #{@city.btc_h7tablel17}
+            %td{:width => "265", :style => "text-align:right;"} #{@city.btc_h7tabler17}
+            %td{:width => "165"} 
+          %tr
+            %td
+            %td{:width => "325"} #{@city.btc_h7tablel18}
+            %td{:width => "265", :style => "text-align:right;"} #{@city.btc_h7tabler18}
+            %td{:width => "165"} 
+          %tr
+            %td
+            %td{:width => "325"} #{@city.btc_h7tablel19}
+            %td{:width => "265", :style => "text-align:right;"} #{@city.btc_h7tabler19}
+            %td{:width => "165"} 
+          %tr
+            %td 
+            %td{:width => "325"} #{@city.btc_h7tablel20}
+            %td{:width => "265", :style => "text-align:right;"} #{@city.btc_h7tabler20}
+            %td{:width => "165"} 
+      %br
+      %br
+      %p
+        %strong Notes:
+        %br/
+        #{@city.btc_h7footer}
         %br
         %br
     .col-md-2.rside

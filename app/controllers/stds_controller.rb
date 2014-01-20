@@ -32,14 +32,17 @@ class StdsController < ApplicationController
   def show
     @locations = Location.where(city_id: @city.id)
     @state = State.find_by_id(@city.state_id)
-    @percent_state = '%.2f' % (@city.population.to_f / @state.population.to_f)
-    @percent_prostate = '%.2f' % (@city.prostate_num.to_f / @city.all_cancers_num.to_f)
-    @percent_coronary = '%.2f' % (@city.coronary_num.to_f / @city.total_d_num.to_f)
-    @percent_cancer = '%.2f' % (@city.all_cancers_num.to_f / @city.total_d_num.to_f)
-   
-    @stdata = @city.std_stats.split(",")
-    @herpes = @stdata[15].to_f + @stdata[16].to_f
-    @aids = @stdata[17].to_f + @stdata[18].to_f
+
+    @locos = Location.near(@city.name, 50, :order => :distance)
+
+    @hash = Gmaps4rails.build_markers(@locos) do |location, marker|
+      marker.lat location.latitude
+      marker.lng location.longitude
+      marker.title location.name
+      marker.picture({:picture => "http://locations.healthtestingcenters.com/images/mapIconSm.gif",
+                      :width => 35,
+                      :height => 35})
+    end
 
   end
 

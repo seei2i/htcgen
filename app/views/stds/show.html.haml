@@ -46,12 +46,12 @@
           %a{:href => @city.state } #{@city.state.name}
         %li
           %a{:href => city_path } #{@city.name}
-        %li.active STD Testing
-      %h1.toph1 STD Testing in #{@city.name}
+        %li.active Laboratory Blood Tests
+      %h1.toph1 #{@city.std_h1}
       .container
         .row
           .col-xs-12.buttoninfophone
-            .btn.btn-primary= link_to 'http://www.healthtestingcenters.com/stdtesting.aspx', 'Order and Test Here'
+            .btn.btn-primary= link_to 'http://www.healthtestingcenters.com/Complete-Test-List.aspx', 'Order and Test Here'
             .row
               .col-md-12
                 %h4 
@@ -60,16 +60,14 @@
           .col-sm-6.col-sm-push-12
             %script{:src => "http://maps.google.com/maps/api/js?key=AIzaSyANL_BvD-Bns2P5jL0Rf8ga_fM-0JpDngA&sensor=false", :type => "text/javascript"}
             .tlsmap
-              / DIV container for the map
               #gmap_canvas
-              / Display the Google Map
               %script{:src => "http://rlscdn.rioseo.com/js/markerclusterer.js", :type => "text/javascript"}
               :javascript
                 var currentInfoWindow = null;
                 var bounds = new google.maps.LatLngBounds();
-                var latlng = new google.maps.LatLng(41.026902, -96.4203815);
+                var latlng = new google.maps.LatLng(#{@locations.first.latitude}, #{@locations.first.longitude});
                 var options = {
-                  zoom: 6,
+                  zoom: 11,
                   center: latlng,
                   mapTypeId: google.maps.MapTypeId.ROADMAP,
                   disableDefaultUI: false,
@@ -89,383 +87,272 @@
                 
                   google.maps.event.addListener(map, 'click', function() { if (currentInfoWindow != null) { currentInfoWindow.close(); } });
                   var markers = [];
-                  
+
 
                   var image = {url: 'http://locations.healthtestingcenters.com/images/mapIconSm.gif',scaledSize: new google.maps.Size(35,35)};
-                  var markerLatLng = new google.maps.LatLng(40.8157560, -96.6577310);
+                  var latlng = new google.maps.LatLng(#{@locations.first.latitude}, #{@locations.first.longitude});
                   var marker0 = new google.maps.Marker({
-                   position: markerLatLng,
-                   title: '',
-                   icon: image,
-                   map: map
+                      position: latlng,
+                      title: "#{@locations.first.name}",
+                      icon: image,
+                      map: map
                   });
                   markers.push(marker0);
                   var infowindowM0 = new google.maps.InfoWindow({
-                   content: '                Health Testing Centers              <a href=\'http://ne.lincoln.healthtestingcenters.com\' alt=\'Laboratory Blood Tests Lincoln Health Testing Centers | Locations\' title=\'Laboratory Blood Tests Lincoln Health Testing Centers | Locations\' target=\'_parent\'>View all locations in Lincoln, NE     '
+                    content: "Health Testing Centers<br><a href=\'http://healthtestingcenters.com\' alt=\'Laboratory Blood Tests #{@locations.first.city.name} Health Testing Centers | Locations\' title=\'Laboratory Blood Tests #{@locations.first.city.name} Health Testing Centers | Locations\' target=\'_parent\'>View all locations in #{@locations.first.city.name}"
                   });
                   google.maps.event.addListener (marker0, 'click', function() {
-                   if (currentInfoWindow != null) { currentInfoWindow.close(); } 
-                   infowindowM0.open(map, marker0);
-                   currentInfoWindow = infowindowM0;
+                    if (currentInfoWindow != null) { currentInfoWindow.close(); } 
+                    infowindowM0.open(map, marker0);
+                    currentInfoWindow = infowindowM0;
                   });
-                  bounds.extend(markerLatLng);
-                
-                }
+                    bounds.extend(markerLatLng);
+                  }
+
                 
                 window.onload = showmap;
-            / = image_tag('mapplaceholder.png', :class => 'mapplaceholder')
+
+              - if @locations.first == nil
+              - else
+                %h3 Nearby locations
+                %ul
+                  - for location in @locations.first.nearbys(100)
+                    %li
+                      = link_to location.name, location
+                      (#{location.distance.to_f.round(2)} miles)
+                  
           .col-sm-6.col-sm-pull-12.buttoninfo
-            .btn.btn-primary= link_to 'Order and Test Here', 'http://www.healthtestingcenters.com/stdtesting.aspx' 
-            / .row
-            /   .col-md-6.col-sm-6.col-xs-6
-            /     %h3 Health Testing Centers
-            /     %p 
-            /       300 Fleet St 2nd Floor
-            /       %br
-            /       2nd Floor
-            /       %br
-            /       Pittsburgh, PA 15220
-            /   .col-md-6.col-sm-6.col-xs-6
-            /     %h3 Hours
-            /     %p 
-            /       8AM-3PM EST (M-F)
+            .btn.btn-primary= link_to 'Order and Test Here', 'http://www.healthtestingcenters.com/Complete-Test-List.aspx' 
             .row
               .col-md-12
                 %h4
                   %a{:href => "tel:#{@city.phone}"} #{@city.phone}
                 %h5 Call to consult with a medical professional
           .col-xs-12.buttoninfophone
-          /   %h3 Health Testing Centers
-          /   %p 
-          /     300 Fleet St 2nd Floor
-          /     %br
-          /     2nd Floor
-          /     %br
-          /     Pittsburgh, PA 15220
-          / .col-xs-12.buttoninfophone
-          /   %h3 Hours
-          /   %p 8AM-3PM EST (M-F)
-      - if @city.std_h1 == nil || ""
-        %h1 STD Lab Testing Centers in #{@city.name}
-      - else 
-        %h1.toph1 #{@city.std_h1}
+      %h1 #{@city.std_h2}
       - if @locations == nil || ""
-        %p #{@city.std_h1section}
+        %p No Locations in #{@city.name}
       - else
         %ul
           - @locations.each do |location|
             %li= link_to location.name, location
-      - if @city.std_h2 == nil || ""
-        %h1 Top STD Tests Available in #{@city.name}
-      - else
-        %h1 #{@city.std_h2}
+      %h1 #{@city.std_h3}
       .row
-        - if @city.std_h2section == nil || ""
-          .col-md-6
-            %ul
-              %li
-                %a{:href => "http://www.healthtestingcenters.com/gonorrhoeae-test.aspx", :class => "bulletlink"} Chlamydia Test
-              %li
-                %a{:href => "http://www.healthtestingcenters.com/hiv.aspx", :class => "bulletlink"} HIV Blood Test
-              %li
-                %a{:href => "http://www.healthtestingcenters.com/gonorrhoeae-test.aspx", :class => "bulletlink"} Gonorrhea
-              %li
-                %a{:href => "http://www.healthtestingcenters.com/herpes.aspx", :class => "bulletlink"} Herpes Simplex
-          .col-md-6
-            %ul
-              %li
-                %a{:href => "http://www.healthtestingcenters.com/std-testing-recent-exposure.aspx", :class => "bulletlink"} Recent Exposure STD Testing
-              %li
-                %a{:href => "http://www.healthtestingcenters.com/hepatitis-b.aspx", :class => "bulletlink"} Hepatitis B Blood Test
-              %li
-                %a{:href => "http://www.healthtestingcenters.com/syphilis.aspx", :class => "bulletlink"} Syphilis
-              %li
-                %a{:href => "http://www.healthtestingcenters.com/hepatitis-c.aspx", :class => "bulletlink"} Hepatitis C Testing
-        - else
-          %p @city.std_h2section
-      - if @city.std_h3a == nil || ""
-        %h2 Why Patients in #{@city.name} Trust Us With Their STD Testing
-      - else
-        %h2 #{@city.std_h3a}
-      - if @city.std_h3asection == nil || ""
-        .row
-          .togler.col-md-4
-            .well.well-lg
-              %h6 Confidential & Private
-              %p 
-                Testing for STDs can be a scary and sensitive subject. At Health Testing Centers... 
-                %span=link_to 'more', '#', :class => 'togmore'
-              %p.hidden
-                Testing for STDs can be a scary and sensitive subject. At Health Testing Centers, we make STD Testing in #{@city.name} as discreet and convenient as possible. All test results are confidential and are not part of your medical record unless you choose to share them with your doctor.
-                %span=link_to 'less', '#', :class => 'togless'
-          .togler.col-md-4
-            .well.well-lg
-              %h6 Fast Results
-              %p 
-                After having the sample taken at the lab, your easy to understand STD test results... 
-                %span=link_to 'more', '#', :class => 'togmore'
-              %p.hidden
-                After having the sample taken at the lab, your easy to understand STD test results will be delivered securely to you in one to two days (some test results may take slightly longer.)
-                %span=link_to 'less', '#', :class => 'togless'
-          .togler.col-md-4
-            .well.well-lg
-              %h6 Money Back Guarantee
-              %p 
-                Health Testing Centers have been providing STD Testing in #{@city.name} for 30 years.... 
-                %span=link_to 'more', '#', :class => 'togmore'
-              %p.hidden
-                Health Testing Centers have been providing STD Testing in #{@city.name} for 30 years.To make the decision easy and stress free as possible we offer the assurance of a Money Back Guarantee on STD tests.
-                %span=link_to 'less', '#', :class => 'togless'
-        .row
-          .togler.col-md-4
-            .well.well-lg
-              %h6 Same Day Testing
-              %p 
-                After ordering an STD test, we generate a requisition form to use at the lab... 
-                %span=link_to 'more', '#', :class => 'togmore'
-              %p.hidden
-                After ordering an STD test, we generate a requisition form to use at the lab. Once your requisition form is entered (usually 15-20 minutes after ordering) you can go to the lab immediately. No appointment is required.
-                %span=link_to 'less', '#', :class => 'togless'
-          .togler.col-md-4
-            .well.well-lg
-              %h6 Discretion with No Embarrassment
-              %p 
-                No physical exams or swabs are used and there is no need to remove your clothing... 
-                %span=link_to 'more', '#', :class => 'togmore'
-              %p.hidden
-                No physical exams or swabs are used and there is no need to remove your clothing. All STD tests are convenient blood or urine tests. The lab that you visit has all types of patients and laboratory testing being performed. We perform all form of "health" testing. So our emails to you nor our credit card billing information never mention "STD" in them.
-                %span=link_to 'less', '#', :class => 'togless'
-          .togler.col-md-4
-            .well.well-lg
-              %h6 Doctor's Order Included
-              %p 
-                You do not need an order or a prescription from your doctor.... 
-                %span=link_to 'more', '#', :class => 'togmore'
-              %p.hidden
-                You do not need an order or a prescription from your doctor. All our orders include everything you need to have the test performed. After ordering, simply bring the requisition form to a LabCorp location close to you. Present that form and they will collect the proper specimen for your tests. There is no additional payment to LabCorp. We receive the results and send them directly to you.
-                %span=link_to 'less', '#', :class => 'togless'
-      - else
-        %p #{@city.std_h3asection}
-      - if @city.std_h3b == nil || ""
-        %h1 General STI Information
-      - else
-        %h1 #{@city.std_h3b}
-      - if @city.std_h3bsection == nil || ""
-        %p Health Testing Centers offers discreet, convenient, affordable STD testing in #{@city.name} that will allow you to confirm your diagnosis and seek treatment from the health care provider of your choice. You will not have to make an embarrassing disclosure to a physician, although you will need to contact your sexual partners to let them know they've been exposed and should get tested too.
-        %p Public health officials say that fifty percent of all sexually active individuals will have contracted at least one sexually transmitted disease (STD) by the time they are in their twenties. Though STDs are relatively easy to treat and, in most cases, curable, many people are often embarrassed to seek treatment. Left untreated, STDs can have serious health consequences that can jeopardize your wellbeing dramatically over the course of your lifetime.
-        %p "Sexually transmitted diseases" is an umbrella term for a group of infectious conditions that are spread through sexual contact. These infectious conditions include Herpes, Gonorrhea, Syphilis, Chlamydia, Hepatitis and HIV /Aids:
-        %p Our Peace of Mind Level II Panel includes the following tests:
-        %ul
-          %li Chlamydia
-          %li Gonorrhea
-          %li HIV
-          %li Hepatitis B
-          %li Hepatitis C
-          %li Herpes Simplex Virus (I/II, IgG)
-          %li Syphilis
-        %p Since our labs test for many medical and health concerns, there is no need to worry that anyone will know what you are being tested for. For your convenience, results are typically available within 24 hours. Abnormal results should be discussed with your healthcare provider in order for you to receive the care you need.
-        %p Whether you have symptoms of a sexually transmitted disease or are just concerned that you may have contracted an STD, you can consult with one of our trained and knowledgeable nurses to discuss your concerns. Health Testing Centers staff will listen to your concerns and any symptoms you might be experiencing to recommend the testing that is right for your needs.
-      - else
-        %p #{@city.std_h3bsection}
-      - if @city.std_h3c == nil || ""
-        %h1 STD Facts and Figures for #{@city.name}, #{@state.abbr}
-      - else
-        %h1 #{@city.std_h3c}
-      - if @city.std_h3csection == nil || ""
-        %p Sexually transmitted diseases (STD's) remain a critical problem both nationally and in #{@city.name}, #{@state.abbr}. Without proper treatment, they can lead to cardiac and neurological problems, organ damage, ectopic pregnancies, mental illness and even death. In addition, they have staggering economic costs that number in the billions of dollars.
-        %p The data show two other interesting trends in #{@city.name}, #{@state.abbr}. Consistent with the national average, women are significantly more likely to be diagnosed with herpes for reasons that still remain unclear to public health officials. Cases of HIV-AIDS in #{@city.name}, by contrast, show a markedly higher rate of this STD among men. This could be due, at least in part, to the fact that males tend to engage more frequently in high risk behaviors such as intravenous drug use.
-        %p Of particular concern to #{@state.name} health officials is the rapid increase in Chlamydia cases in #{@city.name}. Rates of infection are particularly high in young women between the ages of 15 and 19, and the consequences can be life-changing
-        %table{:cellpadding => "0", :cellspacing => "0", :style => "font-size: 120%; margin-left: 100px"}
-          %col{:width => "0px"}
-            %tr
-              %td
-              %td{:width => "275"} Community STD Statistics:
-              %td{:width => "225", :style => "text-align:right;"} #{@city.name}
-              %td
-            %tr
-              %td
-              %td{:width => "275"} State
-              %td{:width => "225", :style => "text-align:right;"} #{@state.name}
-              %td
-            %tr
-              %td
-              %td{:width => "275"} City Population
-              %td{:width => "225", :style => "text-align:right;"} #{@city.population}
-              %td
-            %tr
-              %td
-              %td{:width => "275"} State Population
-              %td{:width => "225", :style => "text-align:right;"}  #{@state.population}
-              %td
-            %tr
-              %td
-              %td{:width => "275"} Syphilis Cases
-              %td{:width => "225", :style => "text-align:right;"} 
-              %td
-            %tr
-              %td
-              %td{:width => "275"} 2007
-              %td{:width => "225", :style => "text-align:right;"} #{@stdata[0]}
-              %td
-            %tr
-              %td
-              %td{:width => "275"}  2008
-              %td{:width => "225", :style => "text-align:right;"} #{@stdata[1]}
-              %td
-            %tr
-              %td
-              %td{:width => "275"}  2009
-              %td{:width => "225", :style => "text-align:right;"} #{@stdata[2]}
-              %td
-            %tr
-              %td
-              %td{:width => "275"}  2010
-              %td{:width => "225", :style => "text-align:right;"} #{@stdata[3]}
-              %td
-            %tr
-              %td
-              %td{:width => "275"}  2011
-              %td{:width => "225", :style => "text-align:right;"} #{@stdata[4]}
-              %td
-            %tr
-              %td
-              %td{:width => "275"} Chlamydia Cases
-              %td{:width => "225", :style => "text-align:right;"}
-              %td
-            %tr
-              %td
-              %td{:width => "275"}  2007
-              %td{:width => "225", :style => "text-align:right;"} #{@stdata[5]}
-              %td
-            %tr
-              %td
-              %td{:width => "275"}  2008
-              %td{:width => "225", :style => "text-align:right;"} #{@stdata[6]}
-              %td
-            %tr
-              %td
-              %td{:width => "275"}  2009
-              %td{:width => "225", :style => "text-align:right;"} #{@stdata[7]}
-              %td
-            %tr
-              %td
-              %td{:width => "275"}  2010
-              %td{:width => "225", :style => "text-align:right;"} #{@stdata[8]}
-              %td
-            %tr
-              %td
-              %td{:width => "275"}  2011
-              %td{:width => "225", :style => "text-align:right;"} #{@stdata[9]}
-              %td
-            %tr
-              %td
-              %td{:width => "275"} Gonorrhea Cases
-              %td{:width => "225", :style => "text-align:right;"}
-              %td
-            %tr
-              %td
-              %td{:width => "275"}  2007
-              %td{:width => "225", :style => "text-align:right;"} #{@stdata[10]}
-              %td
-            %tr
-              %td
-              %td{:width => "275"}  2008
-              %td{:width => "225", :style => "text-align:right;"} #{@stdata[11]}
-              %td
-            %tr
-              %td
-              %td{:width => "275"}  2009
-              %td{:width => "225", :style => "text-align:right;"} #{@stdata[12]}
-              %td
-            %tr
-              %td
-              %td{:width => "275"}  2010
-              %td{:width => "225", :style => "text-align:right;"} #{@stdata[13]}
-              %td
-            %tr
-              %td
-              %td{:width => "275"}  2011
-              %td{:width => "225", :style => "text-align:right;"} #{@stdata[14]}
-              %td
-            %tr
-              %td
-              %td{:width => "275"} 2011 Herpes Cases
-              %td{:width => "225", :style => "text-align:right;"}
-              %td
-            %tr
-              %td
-              %td{:width => "275"}  Male
-              %td{:width => "225", :style => "text-align:right;"} #{@stdata[15]}
-              %td
-            %tr
-              %td
-              %td{:width => "275"}  Female
-              %td{:width => "225", :style => "text-align:right;"} #{@stdata[16]}
-              %td
-            %tr
-              %td
-              %td{:width => "275"}  Total
-              %td{:width => "225", :style => "text-align:right;"} #{@herpes}
-              %td
-            %tr
-              %td
-              %td{:width => "275"} 2011 AIDS Diagnoses
-              %td{:width => "225", :style => "text-align:right;"} 
-              %td
-            %tr
-              %td
-              %td{:width => "275"}  Male
-              %td{:width => "225", :style => "text-align:right;"} #{@stdata[17]}
-              %td
-            %tr
-              %td
-              %td{:width => "275"}  Female
-              %td{:width => "225", :style => "text-align:right;"} #{@stdata[18]}
-              %td
-            %tr
-              %td
-              %td{:width => "275"}  Total
-              %td{:width => "225", :style => "text-align:right;"} #{@aids}
-              %td
-            %tr
-              %td
-              %td{:width => "275"} Hepatitis A, B, &amp; C Acute Cases
-              %td{:width => "225", :style => "text-align:right;"}
-              %td
-            %tr
-              %td
-              %td{:width => "275"}  2006
-              %td{:width => "225", :style => "text-align:right;"} #{@stdata[19]}
-              %td
-            %tr
-              %td
-              %td{:width => "275"}  2007
-              %td{:width => "225", :style => "text-align:right;"} #{@stdata[20]}
-              %td
-            %tr
-              %td
-              %td{:width => "275"}  2008
-              %td{:width => "225", :style => "text-align:right;"} #{@stdata[21]}
-            %tr
-              %td
-              %td{:width => "275"}  2009
-              %td{:width => "225", :style => "text-align:right;"} #{@stdata[22]}
-              %td
-            %tr
-              %td
-              %td{:width => "275"} 2010
-              %td{:width => "225", :style => "text-align:right;"} #{@stdata[23]}
-              %td
-        %br
-        %br
-        %p
-          %strong Notes:
-          %br/
-          Sources including the Centers for Disease Control and Prevention (CDC), 1998 CDC Report &quot;HIV prevention through STD testing and treatment of other sexually transmitted diseases - MMWR 47(RR-12),&quot; National Center for Health Statistics, Division of Vital Statistics. Estimates are based on 2010 US Census data extrapolated to the population.
-        %br
-        %br
-      - else
-        %p #{@city.std_h3csection}
+        .col-md-6
+          %ul
+            %li= link_to @city.std_h3sub1, @city.std_h3sub1link, :class => "bulletlink"
+            %li= link_to @city.std_h3sub2, @city.std_h3sub2link, :class => "bulletlink"
+            %li= link_to @city.std_h3sub3, @city.std_h3sub3link, :class => "bulletlink"
+            %li= link_to @city.std_h3sub4, @city.std_h3sub4link, :class => "bulletlink"
+            %li= link_to @city.std_h3sub5, @city.std_h3sub5link, :class => "bulletlink"
+        .col-md-6
+          %ul
+            %li= link_to @city.std_h3sub6, @city.std_h3sub6link, :class => "bulletlink"
+            %li= link_to @city.std_h3sub7, @city.std_h3sub7link, :class => "bulletlink"
+            %li= link_to @city.std_h3sub8, @city.std_h3sub8link, :class => "bulletlink"
+            %li= link_to @city.std_h3sub9, @city.std_h3sub9link, :class => "bulletlink"
+            %li= link_to @city.std_h3sub10, @city.std_h3sub10link, :class => "bulletlink"
+      %h2 #{@city.std_h4}
+      .row
+        .togler.col-md-4
+          .well.well-lg
+            %h6 #{@city.std_h4sub1}
+            %p 
+              = truncate @city.std_h4sub1section, :length => 75  
+              %span=link_to 'more', '#', :class => 'togmore'
+            %p.hidden
+              #{@city.std_h4sub1section}
+              %span=link_to 'less', '#', :class => 'togless'
+        .togler.col-md-4
+          .well.well-lg
+            %h6 #{@city.std_h4sub2}
+            %p 
+              = truncate @city.std_h4sub2section, :length => 75  
+              %span=link_to 'more', '#', :class => 'togmore'
+            %p.hidden
+              #{@city.std_h4sub2section}
+              %span=link_to 'less', '#', :class => 'togless'
+        .togler.col-md-4
+          .well.well-lg
+            %h6 #{@city.std_h4sub3}
+            %p 
+              = truncate @city.std_h4sub3section, :length => 75  
+              %span=link_to 'more', '#', :class => 'togmore'
+            %p.hidden
+              #{@city.std_h4sub3section}
+              %span=link_to 'less', '#', :class => 'togless'
+      .row
+        .togler.col-md-4
+          .well.well-lg
+            %h6 #{@city.std_h4sub4}
+            %p 
+              = truncate @city.std_h4sub4section, :length => 75  
+              %span=link_to 'more', '#', :class => 'togmore'
+            %p.hidden
+              #{@city.std_h4sub4section}
+              %span=link_to 'less', '#', :class => 'togless'
+        .togler.col-md-4
+          .well.well-lg
+            %h6 #{@city.std_h4sub5}
+            %p 
+              = truncate @city.std_h4sub5section, :length => 75  
+              %span=link_to 'more', '#', :class => 'togmore'
+            %p.hidden
+              #{@city.std_h4sub5section}
+              %span=link_to 'less', '#', :class => 'togless'
+        .togler.col-md-4
+          .well.well-lg
+            %h6 #{@city.std_h4sub6}
+            %p 
+              = truncate @city.std_h4sub6section, :length => 75  
+              %span=link_to 'more', '#', :class => 'togmore'
+            %p.hidden
+              #{@city.std_h4sub6section}
+              %span=link_to 'less', '#', :class => 'togless'
+      %h1 #{@city.std_h5}
+      %p #{@city.std_h5section}
+      %h4 #{@city.std_h6}
+      %h2= link_to @city.std_h6sub1, @city.std_h6sub1link, :style => "font-weight:bold; font-size:105%;"
+      %p #{@city.std_h6sub1section}
+      / %blockquote
+      /   %p{:style => "font-weight:bold; font-size:90%;"}
+      /     %a{:href => "http://www.healthtestingcenters.com/basichealthscreenpluscmpcbclipid.aspx"} The Essential Health Screen $89
+      /     \- CBC (w diff), CMP, Urinalysis and Lipid Profile (HDL, LDL + Triglycerides)
+      /     %br
+      /     %a{:href => "http://www.healthtestingcenters.com/basic-blood-test.aspx"} Basic Health Screen $59 
+      /     \- Includes a CBC (w diff), CMP, and a Urinalysis
+      /     %br
+      /     %a{:href => "http://www.healthtestingcenters.com/cholesterol-test.aspx"} Cholesterol Test (Lipid Profile) $39
+      /     \- HDL, LDL, Total Cholesterol + Triglycerides
+      %h2= link_to @city.std_h6sub2, @city.std_h6sub2link, :style => "font-weight:bold; font-size:105%;"
+      %p #{@city.std_h6sub2section}
+      %h2= link_to @city.std_h6sub3, @city.std_h6sub3link, :style => "font-weight:bold; font-size:105%;"
+      %p #{@city.std_h6sub3section}
+      %h2= link_to @city.std_h6sub4, @city.std_h6sub4link, :style => "font-weight:bold; font-size:105%;"
+      %p #{@city.std_h6sub4section}
+      %h2= link_to @city.std_h6sub5, @city.std_h6sub5link, :style => "font-weight:bold; font-size:105%;"
+      %p #{@city.std_h6sub5section}
+      %h2= link_to @city.std_h6sub6, @city.std_h6sub6link, :style => "font-weight:bold; font-size:105%;"
+      %p #{@city.std_h6sub6section}
+      %h2= link_to @city.std_h6sub7, @city.std_h6sub7link, :style => "font-weight:bold; font-size:105%;"
+      %p #{@city.std_h6sub7section}
+      %h2= link_to @city.std_h6sub8, @city.std_h6sub8link, :style => "font-weight:bold; font-size:105%;"
+      %p #{@city.std_h6sub8section}
+      %h2= link_to @city.std_h6sub9, @city.std_h6sub9link, :style => "font-weight:bold; font-size:105%;"
+      %p #{@city.std_h6sub9section}
+      %h2= link_to @city.std_h6sub10, @city.std_h6sub10link, :style => "font-weight:bold; font-size:105%;"
+      %p #{@city.std_h6sub10section}
+      %h1 #{@city.std_h7}
+      %p #{@city.std_h7section}
+      %br
+      %table{:cellpadding => "0", :cellspacing => "0", :style => "font-size: 120%; margin-left: 100px"}
+        %col{:width => "0px"}
+          %tr
+            %td
+            %td{:width => "325"} #{@city.std_h7tablel1}
+            %td{:width => "265", :style => "text-align:right;"} #{@city.std_h7tabler1}
+            %td
+          %tr
+            %td
+            %td{:width => "325"} #{@city.std_h7tablel2}
+            %td{:width => "265", :style => "text-align:right;"} #{@city.std_h7tabler2}
+            %td{:width => "165"} 
+          %tr
+            %td
+            %td{:width => "325"} #{@city.std_h7tablel3}
+            %td{:width => "265", :style => "text-align:right;"} #{@city.std_h7tabler3}
+            %td{:width => "165"} 
+          %tr
+            %td
+            %td{:width => "325"} #{@city.std_h7tablel4}
+            %td{:width => "265", :style => "text-align:right;"} #{@city.std_h7tabler4}
+            %td{:width => "165"} 
+          %tr
+            %td
+            %td{:width => "325"} #{@city.std_h7tablel5}
+            %td{:width => "265", :style => "text-align:right;"} #{@city.std_h7tabler5}
+            %td{:width => "165"} 
+          %tr
+            %td
+            %td{:width => "325"} #{@city.std_h7tablel6}
+            %td{:width => "265", :style => "text-align:right;"} #{@city.std_h7tabler6}
+            %td{:width => "165"} 
+          %tr
+            %td
+            %td{:width => "325"} #{@city.std_h7tablel7}
+            %td{:width => "265", :style => "text-align:right;"} #{@city.std_h7tabler7}
+            %td{:width => "165"} 
+          %tr
+            %td
+            %td{:width => "325"} #{@city.std_h7tablel8}
+            %td{:width => "265", :style => "text-align:right;"} #{@city.std_h7tabler8}
+            %td{:width => "165"} 
+          %tr
+            %td
+            %td{:width => "325"} #{@city.std_h7tablel9}
+            %td{:width => "265", :style => "text-align:right;"} #{@city.std_h7tabler9}
+            %td{:width => "165"} 
+          %tr
+            %td 
+            %td{:width => "325"} #{@city.std_h7tablel10}
+            %td{:width => "265", :style => "text-align:right;"} #{@city.std_h7tabler10}
+            %td{:width => "165"} 
+          %tr
+            %td
+            %td{:width => "325"} #{@city.std_h7tablel11}
+            %td{:width => "265", :style => "text-align:right;"} #{@city.std_h7tabler11}
+            %td
+          %tr
+            %td
+            %td{:width => "325"} #{@city.std_h7tablel12}
+            %td{:width => "265", :style => "text-align:right;"} #{@city.std_h7tabler12}
+            %td{:width => "165"} 
+          %tr
+            %td
+            %td{:width => "325"} #{@city.std_h7tablel13}
+            %td{:width => "265", :style => "text-align:right;"} #{@city.std_h7tabler13}
+            %td{:width => "165"} 
+          %tr
+            %td
+            %td{:width => "325"} #{@city.std_h7tablel14}
+            %td{:width => "265", :style => "text-align:right;"} #{@city.std_h7tabler14}
+            %td{:width => "165"} 
+          %tr
+            %td
+            %td{:width => "325"} #{@city.std_h7tablel15}
+            %td{:width => "265", :style => "text-align:right;"} #{@city.std_h7tabler15}
+            %td{:width => "165"} 
+          %tr
+            %td
+            %td{:width => "325"} #{@city.std_h7tablel16}
+            %td{:width => "265", :style => "text-align:right;"} #{@city.std_h7tabler16}
+            %td{:width => "165"} 
+          %tr
+            %td
+            %td{:width => "325"} #{@city.std_h7tablel17}
+            %td{:width => "265", :style => "text-align:right;"} #{@city.std_h7tabler17}
+            %td{:width => "165"} 
+          %tr
+            %td
+            %td{:width => "325"} #{@city.std_h7tablel18}
+            %td{:width => "265", :style => "text-align:right;"} #{@city.std_h7tabler18}
+            %td{:width => "165"} 
+          %tr
+            %td
+            %td{:width => "325"} #{@city.std_h7tablel19}
+            %td{:width => "265", :style => "text-align:right;"} #{@city.std_h7tabler19}
+            %td{:width => "165"} 
+          %tr
+            %td 
+            %td{:width => "325"} #{@city.std_h7tablel20}
+            %td{:width => "265", :style => "text-align:right;"} #{@city.std_h7tabler20}
+            %td{:width => "165"} 
+      %br
+      %br
+      %p
+        %strong Notes:
+        %br/
+        #{@city.std_h7footer}
         %br
         %br
     .col-md-2.rside

@@ -8,69 +8,466 @@
       %br
       = f.input :phone, :label => 'City Phone', :placeholder => '123-123-1234'
       %br
-      %h4 Blood Testing Page
       = f.input :population, :label => 'City Population', :placeholder => 'City Population', :autofocus => true
-      = f.input :liver_num, :label => 'Liver', :placeholder => 'Liver', :autofocus => true
-      = f.input :kidney_num, :label => 'Kidney', :placeholder => 'Kidney', :autofocus => true
-      = f.input :prostate_num, :label => 'Prostate', :placeholder => 'Prostate', :autofocus => true
-      = f.input :stroke_num, :label => 'Stroke', :placeholder => 'Stroke', :autofocus => true
-      = f.input :all_cancers_num, :label => 'Cancer', :placeholder => 'Cancer', :autofocus => true
-      = f.input :coronary_num, :label => 'Coronary', :placeholder => 'Coronary', :autofocus => true
-      = f.input :diabetes_num, :label => 'Diabetes', :placeholder => 'Diabetes', :autofocus => true
-      = f.input :total_d_num, :label => 'Total City Deaths', :placeholder => 'Total City Deaths', :autofocus => true
       %br
-      = f.input :btc_title, :label => 'Page Title', :placeholder => 'Page Title', :input_html => { :class => "col-xs-12" }
+      %h4 Blood Testing Page
+      = f.input :btc_title,          :label => 'Title', :placeholder => 'Page Title'
       %br
-      = f.input :btc_meta, :label => 'Page Meta Description', :placeholder => 'Page Meta Description', :input_html => { :class => "col-xs-12" }
+      = f.input :btc_meta,           :label => 'Meta', :placeholder => 'Meta Description'
       %br
-      = f.input :btc_h1, :label => 'H1 Heading', :placeholder => 'H1 Heading', :input_html => { :class => "col-xs-12" }
+      = f.input :btc_h1,             :label => 'H1', :placeholder => 'H1'
       %br
-      = f.input :btc_h1section, :label => 'H1 Section', :placeholder => 'H1 Section', :as => :text, :input_html => { :rows => 20 , :class => "col-xs-12"}
+      = f.input :btc_h2,             :label => 'H2', :placeholder => 'H2'
       %br
-      = f.input :btc_h2, :label => 'H2 Heading', :placeholder => 'H2 Heading', :input_html => { :class => "col-xs-12" }
+      = f.input :btc_h3,             :label => 'H3', :placeholder => 'H3'
       %br
-      = f.input :btc_h2section, :label => 'H2 Section', :placeholder => 'H2 Section', :as => :text, :input_html => { :rows => 20 , :class => "col-xs-12"}
+      = f.input :btc_h3sub1,         :label => 'H3 Sub1', :placeholder => 'H3 Sub1'
       %br
-      = f.input :btc_h3a, :label => 'H3a Heading', :placeholder => 'H3a Heading', :input_html => { :class => "col-xs-12" }
+      = f.input :btc_h3sub1link,     :label => 'H3 Sub1 Link', :placeholder => 'http://sub1link.com/'
       %br
-      = f.input :btc_h3asection, :label => 'H3a Section', :placeholder => 'H3a Section', :as => :text, :input_html => { :rows => 20 , :class => "col-xs-12"}
+      = f.input :btc_h3sub2,         :label => 'H3 Sub2', :placeholder => 'H3 Sub2'
       %br
-      = f.input :btc_h3b, :label => 'H3b Heading', :placeholder => 'H3b Heading', :input_html => { :class => "col-xs-12" }
+      = f.input :btc_h3sub2link,     :label => 'H3 Sub2 Link', :placeholder => 'http://sub2link.com/'
       %br
-      = f.input :btc_h3bsection, :label => 'H3b Section', :placeholder => 'H3b Section', :as => :text, :input_html => { :rows => 20 , :class => "col-xs-12"}
+      = f.input :btc_h3sub3,         :label => 'H3 Sub3', :placeholder => 'H3 Sub3'
       %br
-      = f.input :btc_h3c, :label => 'H3c Heading', :placeholder => 'H3c Heading', :input_html => { :class => "col-xs-12" }
+      = f.input :btc_h3sub3link,     :label => 'H3 Sub3 Link', :placeholder => 'http://sub3link.com/'
       %br
-      = f.input :btc_h3csection, :label => 'H3c Section', :placeholder => 'H3c Section', :as => :text, :input_html => { :rows => 20 , :class => "col-xs-12"}
+      = f.input :btc_h3sub4,         :label => 'H3 Sub4', :placeholder => 'H3 Sub4'
+      %br
+      = f.input :btc_h3sub4link,     :label => 'H3 Sub4 Link', :placeholder => 'http://sub4link.com/'
+      %br
+      = f.input :btc_h3sub5,         :label => 'H3 Sub5', :placeholder => 'H3 Sub5'
+      %br
+      = f.input :btc_h3sub5link,     :label => 'H3 Sub5 Link', :placeholder => 'http://sub5link.com/'
+      %br
+      = f.input :btc_h3sub6,         :label => 'H3 Sub6', :placeholder => 'H3 Sub6'
+      %br
+      = f.input :btc_h3sub6link,     :label => 'H3 Sub6 Link', :placeholder => 'http://sub6link.com/'
+      %br
+      = f.input :btc_h3sub7,         :label => 'H3 Sub7', :placeholder => 'H3 Sub7'
+      %br
+      = f.input :btc_h3sub7link,     :label => 'H3 Sub7 Link', :placeholder => 'http://sub7link.com/'
+      %br
+      = f.input :btc_h3sub8,         :label => 'H3 Sub8', :placeholder => 'H3 Sub8'
+      %br
+      = f.input :btc_h3sub8link,     :label => 'H3 Sub8 Link', :placeholder => 'http://sub8link.com/'
+      %br
+      = f.input :btc_h3sub9,         :label => 'H3 Sub9', :placeholder => 'H3 Sub9'
+      %br
+      = f.input :btc_h3sub9link,     :label => 'H3 Sub9 Link', :placeholder => 'http://sub9link.com/'
+      %br
+      = f.input :btc_h3sub10,        :label => 'H3 Sub10', :placeholder => 'H3 Sub10'
+      %br
+      = f.input :btc_h3sub10link,    :label => 'H3 Sub10 Link', :placeholder => 'http://sub10link.com/'
+      %br
+      = f.input :btc_h4,             :label => 'H4', :placeholder => 'H4'
+      %br
+      = f.input :btc_h4sub1,         :label => 'H4 Sub1', :placeholder => 'H4 Sub1'
+      %br
+      = f.input :btc_h4sub1section,  :label => 'H4 Sub1 Section', :placeholder => 'H4 Sub1 Section', :as => :text, :input_html => { :rows => 20 , :class => "col-xs-12"}
+      %br
+      = f.input :btc_h4sub2,         :label => 'H4 Sub2', :placeholder => 'H4 Sub2'
+      %br
+      = f.input :btc_h4sub2section,  :label => 'H4 Sub2Section', :placeholder => 'H4 Sub2 Section', :as => :text, :input_html => { :rows => 20 , :class => "col-xs-12"}
+      %br
+      = f.input :btc_h4sub3,         :label => 'H4 Sub3', :placeholder => 'H4 Sub3'
+      %br
+      = f.input :btc_h4sub3section,  :label => 'H4 Sub3 Section', :placeholder => 'H4 Sub3 Section', :as => :text, :input_html => { :rows => 20 , :class => "col-xs-12"}
+      %br
+      = f.input :btc_h4sub4,         :label => 'H4 Sub4', :placeholder => 'H4 Sub4'
+      %br
+      = f.input :btc_h4sub4section,  :label => 'H4 Sub4 Section', :placeholder => 'H4 Sub4 Section', :as => :text, :input_html => { :rows => 20 , :class => "col-xs-12"}
+      %br
+      = f.input :btc_h4sub5,         :label => 'H4 Sub5', :placeholder => 'H4 Sub5'
+      %br
+      = f.input :btc_h4sub5section,  :label => 'H4 Sub5 Section', :placeholder => 'H4 Sub5 Section', :as => :text, :input_html => { :rows => 20 , :class => "col-xs-12"}
+      %br
+      = f.input :btc_h4sub6,         :label => 'H4 Sub6', :placeholder => 'H4 Sub6'
+      %br
+      = f.input :btc_h4sub6section,  :label => 'H4 Sub6 Section', :placeholder => 'H4 Sub6 Section', :as => :text, :input_html => { :rows => 20 , :class => "col-xs-12"}
+      %br
+      = f.input :btc_h5,             :label => 'H5', :placeholder => 'H5'
+      %br
+      = f.input :btc_h5section,      :label => 'H5 Section', :placeholder => 'H5 Section', :as => :text, :input_html => { :rows => 20 , :class => "col-xs-12"}
+      %br
+      = f.input :btc_h6,             :label => 'H6', :placeholder => 'H6'
+      %br
+      = f.input :btc_h6sub1,         :label => 'H6 Sub1', :placeholder => 'H6 Sub1'
+      %br
+      = f.input :btc_h6sub1link,     :label => 'H6 Sub1 Link', :placeholder => 'http://sub1link.com/'
+      %br
+      = f.input :btc_h6sub1section,  :label => 'H6 Sub1 Section', :placeholder => 'H6 Sub1 Section', :as => :text, :input_html => { :rows => 20 , :class => "col-xs-12"}
+      %br
+      = f.input :btc_h6sub2,         :label => 'H6 Sub2', :placeholder => 'H6 Sub2'
+      %br
+      = f.input :btc_h6sub2link,     :label => 'H6 Sub2 Link', :placeholder => 'http://sub2link.com/'
+      %br
+      = f.input :btc_h6sub2section,  :label => 'H6 Sub2 Section', :placeholder => 'H6 Sub2 Section', :as => :text, :input_html => { :rows => 20 , :class => "col-xs-12"}
+      %br
+      = f.input :btc_h6sub3,         :label => 'H6 Sub3', :placeholder => 'H6 Sub3'
+      %br
+      = f.input :btc_h6sub3link,     :label => 'H6 Sub3 Link', :placeholder => 'http://sub3link.com/'
+      %br
+      = f.input :btc_h6sub3section,  :label => 'H6 Sub3 Section', :placeholder => 'H6 Sub3 Section', :as => :text, :input_html => { :rows => 20 , :class => "col-xs-12"}
+      %br
+      = f.input :btc_h6sub4,         :label => 'H6 Sub4', :placeholder => 'H6 Sub4'
+      %br
+      = f.input :btc_h6sub4link,     :label => 'H6 Sub4 Link', :placeholder => 'http://sub4link.com/'
+      %br
+      = f.input :btc_h6sub4section,  :label => 'H6 Sub4 Section', :placeholder => 'H6 Sub4 Section', :as => :text, :input_html => { :rows => 20 , :class => "col-xs-12"}
+      %br
+      = f.input :btc_h6sub5,         :label => 'H6 Sub5', :placeholder => 'H6 Sub5'
+      %br
+      = f.input :btc_h6sub5link,     :label => 'H6 Sub5 Link', :placeholder => 'http://sub5link.com/'
+      %br
+      = f.input :btc_h6sub5section,  :label => 'H6 Sub5 Section', :placeholder => 'H6 Sub5 Section', :as => :text, :input_html => { :rows => 20 , :class => "col-xs-12"}
+      %br
+      = f.input :btc_h6sub6,         :label => 'H6 Sub6', :placeholder => 'H6 Sub6'
+      %br
+      = f.input :btc_h6sub6link,     :label => 'H6 Sub6 Link', :placeholder => 'http://sub6link.com/'
+      %br
+      = f.input :btc_h6sub6section,  :label => 'H6 Sub6 Section', :placeholder => 'H6 Sub6 Section', :as => :text, :input_html => { :rows => 20 , :class => "col-xs-12"}
+      %br
+      = f.input :btc_h6sub7,         :label => 'H6 Sub7', :placeholder => 'H6 Sub7'
+      %br
+      = f.input :btc_h6sub7link,     :label => 'H6 Sub7 Link', :placeholder => 'http://sub7link.com/'
+      %br
+      = f.input :btc_h6sub7section,  :label => 'H6 Sub7 Section', :placeholder => 'H6 Sub7 Section', :as => :text, :input_html => { :rows => 20 , :class => "col-xs-12"}
+      %br
+      = f.input :btc_h6sub8,         :label => 'H6 Sub8', :placeholder => 'H6 Sub8'
+      %br
+      = f.input :btc_h6sub8link,     :label => 'H6 Sub8 Link', :placeholder => 'http://sub8link.com/'
+      %br
+      = f.input :btc_h6sub8section,  :label => 'H6 Sub8 Section', :placeholder => 'H6 Sub8 Section', :as => :text, :input_html => { :rows => 20 , :class => "col-xs-12"}
+      %br
+      = f.input :btc_h6sub9,         :label => 'H6 Sub9', :placeholder => 'H6 Sub9'
+      %br
+      = f.input :btc_h6sub9link,     :label => 'H6 Sub9 Link', :placeholder => 'http://sub9link.com/'
+      %br
+      = f.input :btc_h6sub9section,  :label => 'H6 Sub9 Section', :placeholder => 'H6 Sub9 Section', :as => :text, :input_html => { :rows => 20 , :class => "col-xs-12"}
+      %br
+      = f.input :btc_h6sub10,        :label => 'H6 Sub10', :placeholder => 'H6 Sub10'
+      %br
+      = f.input :btc_h6sub10link,    :label => 'H6 Sub10 Link', :placeholder => 'http://sub10link.com/'
+      %br
+      = f.input :btc_h6sub10section, :label => 'H6 Sub10 Section', :placeholder => 'H6 Sub10 Section', :as => :text, :input_html => { :rows => 20 , :class => "col-xs-12"}
+      %br
+      = f.input :btc_h7,             :label => 'H7', :placeholder => 'H7'
+      %br
+      = f.input :btc_h7section,      :label => 'H7 Section', :placeholder => 'H7 Section', :as => :text, :input_html => { :rows => 20 , :class => "col-xs-12"}
+      %br
+      = f.input :btc_h7tablel1,      :label => 'H7 Table L1', :placeholder => 'H7 Table L1'
+      %br
+      = f.input :btc_h7tabler1,      :label => 'H7 Table R1', :placeholder => 'H7 Table R1'
+      %br
+      = f.input :btc_h7tablel2,      :label => 'H7 Table L2', :placeholder => 'H7 Table L2'
+      %br
+      = f.input :btc_h7tabler2,      :label => 'H7 Table R2', :placeholder => 'H7 Table R2'
+      %br
+      = f.input :btc_h7tablel3,      :label => 'H7 Table L3', :placeholder => 'H7 Table L3'
+      %br
+      = f.input :btc_h7tabler3,      :label => 'H7 Table R3', :placeholder => 'H7 Table R3'
+      %br
+      = f.input :btc_h7tablel4,      :label => 'H7 Table L4', :placeholder => 'H7 Table L4'
+      %br
+      = f.input :btc_h7tabler4,      :label => 'H7 Table R4', :placeholder => 'H7 Table R4'
+      %br
+      = f.input :btc_h7tablel5,      :label => 'H7 Table L5', :placeholder => 'H7 Table L5'
+      %br
+      = f.input :btc_h7tabler5,      :label => 'H7 Table R5', :placeholder => 'H7 Table R5'
+      %br
+      = f.input :btc_h7tablel6,      :label => 'H7 Table L6', :placeholder => 'H7 Table L6'
+      %br
+      = f.input :btc_h7tabler6,      :label => 'H7 Table R6', :placeholder => 'H7 Table R6'
+      %br
+      = f.input :btc_h7tablel7,      :label => 'H7 Table L7', :placeholder => 'H7 Table L7'
+      %br
+      = f.input :btc_h7tabler7,      :label => 'H7 Table R7', :placeholder => 'H7 Table R7'
+      %br
+      = f.input :btc_h7tablel8,      :label => 'H7 Table L8', :placeholder => 'H7 Table L8'
+      %br
+      = f.input :btc_h7tabler8,      :label => 'H7 Table R8', :placeholder => 'H7 Table R8'
+      %br
+      = f.input :btc_h7tablel9,      :label => 'H7 Table L9', :placeholder => 'H7 Table L9'
+      %br
+      = f.input :btc_h7tabler9,      :label => 'H7 Table R9', :placeholder => 'H7 Table R9'
+      %br
+      = f.input :btc_h7tablel10,     :label => 'H7 Table L10', :placeholder => 'H7 Table L10'
+      %br
+      = f.input :btc_h7tabler10,     :label => 'H7 Table R10', :placeholder => 'H7 Table R10'
+      %br
+      = f.input :btc_h7tablel11,     :label => 'H7 Table L11', :placeholder => 'H7 Table L11'
+      %br
+      = f.input :btc_h7tabler11,     :label => 'H7 Table R11', :placeholder => 'H7 Table R11'
+      %br
+      = f.input :btc_h7tablel12,     :label => 'H7 Table L12', :placeholder => 'H7 Table L12'
+      %br
+      = f.input :btc_h7tabler12,     :label => 'H7 Table R12', :placeholder => 'H7 Table R12'
+      %br
+      = f.input :btc_h7tablel13,     :label => 'H7 Table L13', :placeholder => 'H7 Table L13'
+      %br
+      = f.input :btc_h7tabler13,     :label => 'H7 Table R13', :placeholder => 'H7 Table R13'
+      %br
+      = f.input :btc_h7tablel14,     :label => 'H7 Table L14', :placeholder => 'H7 Table L14'
+      %br
+      = f.input :btc_h7tabler14,     :label => 'H7 Table R14', :placeholder => 'H7 Table R14'
+      %br
+      = f.input :btc_h7tablel15,     :label => 'H7 Table L15', :placeholder => 'H7 Table L15'
+      %br
+      = f.input :btc_h7tabler15,     :label => 'H7 Table R15', :placeholder => 'H7 Table R15'
+      %br
+      = f.input :btc_h7tablel16,     :label => 'H7 Table L16', :placeholder => 'H7 Table L16'
+      %br
+      = f.input :btc_h7tabler16,     :label => 'H7 Table R16', :placeholder => 'H7 Table R16'
+      %br
+      = f.input :btc_h7tablel17,     :label => 'H7 Table L17', :placeholder => 'H7 Table L17'
+      %br
+      = f.input :btc_h7tabler17,     :label => 'H7 Table R17', :placeholder => 'H7 Table R17'
+      %br
+      = f.input :btc_h7tablel18,     :label => 'H7 Table L18', :placeholder => 'H7 Table L18'
+      %br
+      = f.input :btc_h7tabler18,     :label => 'H7 Table R18', :placeholder => 'H7 Table R18'
+      %br
+      = f.input :btc_h7tablel19,     :label => 'H7 Table L19', :placeholder => 'H7 Table L19'
+      %br
+      = f.input :btc_h7tabler19,     :label => 'H7 Table R19', :placeholder => 'H7 Table R19'
+      %br
+      = f.input :btc_h7tablel20,     :label => 'H7 Table L20', :placeholder => 'H7 Table L20'
+      %br
+      = f.input :btc_h7tabler20,     :label => 'H7 Table R20', :placeholder => 'H7 Table R20'
+      %br
+      = f.input :btc_h7footer,       :label => 'H7 Footer', :placeholder => 'H7 Footer', :as => :text, :input_html => { :rows => 20 , :class => "col-xs-12"}
       %br
       %h4 STD Testing Page
+      = f.input :std_title,          :label => 'Title', :placeholder => 'Page Title'
       %br
-      = f.input :std_stats, :label => 'STD Stats', :placeholder => 'STD STATS', :as => :text, :input_html => { :rows => 20 , :class => "col-xs-12"}
+      = f.input :std_meta,           :label => 'Meta', :placeholder => 'Meta Description'
       %br
-      = f.input :std_title, :label => 'Page Title', :placeholder => 'Page Title', :input_html => { :class => "col-xs-12" }
+      = f.input :std_h1,             :label => 'H1', :placeholder => 'H1'
       %br
-      = f.input :std_meta, :label => 'Page Meta Description', :placeholder => 'Page Meta Description', :input_html => { :class => "col-xs-12" }
+      = f.input :std_h2,             :label => 'H2', :placeholder => 'H2'
       %br
-      = f.input :std_h1, :label => 'H1 Heading', :placeholder => 'H1 Heading', :input_html => { :class => "col-xs-12" }
+      = f.input :std_h3,             :label => 'H3', :placeholder => 'H3'
       %br
-      = f.input :std_h1section, :label => 'H1 Section', :placeholder => 'H1 Section', :as => :text, :input_html => { :rows => 20 , :class => "col-xs-12"}
+      = f.input :std_h3sub1,         :label => 'H3 Sub1', :placeholder => 'H3 Sub1'
       %br
-      = f.input :std_h2, :label => 'H2 Heading', :placeholder => 'H2 Heading', :input_html => { :class => "col-xs-12" }
+      = f.input :std_h3sub1link,     :label => 'H3 Sub1 Link', :placeholder => 'http://sub1link.com/'
       %br
-      = f.input :std_h2section, :label => 'H2 Section', :placeholder => 'H2 Section', :as => :text, :input_html => { :rows => 20 , :class => "col-xs-12"}
+      = f.input :std_h3sub2,         :label => 'H3 Sub2', :placeholder => 'H3 Sub2'
       %br
-      = f.input :std_h3a, :label => 'H3a Heading', :placeholder => 'H3a Heading', :input_html => { :class => "col-xs-12" }
+      = f.input :std_h3sub2link,     :label => 'H3 Sub2 Link', :placeholder => 'http://sub2link.com/'
       %br
-      = f.input :std_h3asection, :label => 'H3a Section', :placeholder => 'H3a Section', :as => :text, :input_html => { :rows => 20 , :class => "col-xs-12"}
+      = f.input :std_h3sub3,         :label => 'H3 Sub3', :placeholder => 'H3 Sub3'
       %br
-      = f.input :std_h3b, :label => 'H3b Heading', :placeholder => 'H3b Heading', :input_html => { :class => "col-xs-12" }
+      = f.input :std_h3sub3link,     :label => 'H3 Sub3 Link', :placeholder => 'http://sub3link.com/'
       %br
-      = f.input :std_h3bsection, :label => 'H3b Section', :placeholder => 'H3b Section', :as => :text, :input_html => { :rows => 20 , :class => "col-xs-12"}
+      = f.input :std_h3sub4,         :label => 'H3 Sub4', :placeholder => 'H3 Sub4'
       %br
-      = f.input :std_h3c, :label => 'H3c Heading', :placeholder => 'H3c Heading', :input_html => { :class => "col-xs-12" }
+      = f.input :std_h3sub4link,     :label => 'H3 Sub4 Link', :placeholder => 'http://sub4link.com/'
       %br
-      = f.input :std_h3csection, :label => 'H3c Section', :placeholder => 'H3c Section', :as => :text, :input_html => { :rows => 20 , :class => "col-xs-12"}
-      %br      
+      = f.input :std_h3sub5,         :label => 'H3 Sub5', :placeholder => 'H3 Sub5'
+      %br
+      = f.input :std_h3sub5link,     :label => 'H3 Sub5 Link', :placeholder => 'http://sub5link.com/'
+      %br
+      = f.input :std_h3sub6,         :label => 'H3 Sub6', :placeholder => 'H3 Sub6'
+      %br
+      = f.input :std_h3sub6link,     :label => 'H3 Sub6 Link', :placeholder => 'http://sub6link.com/'
+      %br
+      = f.input :std_h3sub7,         :label => 'H3 Sub7', :placeholder => 'H3 Sub7'
+      %br
+      = f.input :std_h3sub7link,     :label => 'H3 Sub7 Link', :placeholder => 'http://sub7link.com/'
+      %br
+      = f.input :std_h3sub8,         :label => 'H3 Sub8', :placeholder => 'H3 Sub8'
+      %br
+      = f.input :std_h3sub8link,     :label => 'H3 Sub8 Link', :placeholder => 'http://sub8link.com/'
+      %br
+      = f.input :std_h3sub9,         :label => 'H3 Sub9', :placeholder => 'H3 Sub9'
+      %br
+      = f.input :std_h3sub9link,     :label => 'H3 Sub9 Link', :placeholder => 'http://sub9link.com/'
+      %br
+      = f.input :std_h3sub10,        :label => 'H3 Sub10', :placeholder => 'H3 Sub10'
+      %br
+      = f.input :std_h3sub10link,    :label => 'H3 Sub10 Link', :placeholder => 'http://sub10link.com/'
+      %br
+      = f.input :std_h4,             :label => 'H4', :placeholder => 'H4'
+      %br
+      = f.input :std_h4sub1,         :label => 'H4 Sub1', :placeholder => 'H4 Sub1'
+      %br
+      = f.input :std_h4sub1section,  :label => 'H4 Sub1 Section', :placeholder => 'H4 Sub1 Section', :as => :text, :input_html => { :rows => 20 , :class => "col-xs-12"}
+      %br
+      = f.input :std_h4sub2,         :label => 'H4 Sub2', :placeholder => 'H4 Sub2'
+      %br
+      = f.input :std_h4sub2section,  :label => 'H4 Sub2Section', :placeholder => 'H4 Sub2 Section', :as => :text, :input_html => { :rows => 20 , :class => "col-xs-12"}
+      %br
+      = f.input :std_h4sub3,         :label => 'H4 Sub3', :placeholder => 'H4 Sub3'
+      %br
+      = f.input :std_h4sub3section,  :label => 'H4 Sub3 Section', :placeholder => 'H4 Sub3 Section', :as => :text, :input_html => { :rows => 20 , :class => "col-xs-12"}
+      %br
+      = f.input :std_h4sub4,         :label => 'H4 Sub4', :placeholder => 'H4 Sub4'
+      %br
+      = f.input :std_h4sub4section,  :label => 'H4 Sub4 Section', :placeholder => 'H4 Sub4 Section', :as => :text, :input_html => { :rows => 20 , :class => "col-xs-12"}
+      %br
+      = f.input :std_h4sub5,         :label => 'H4 Sub5', :placeholder => 'H4 Sub5'
+      %br
+      = f.input :std_h4sub5section,  :label => 'H4 Sub5 Section', :placeholder => 'H4 Sub5 Section', :as => :text, :input_html => { :rows => 20 , :class => "col-xs-12"}
+      %br
+      = f.input :std_h4sub6,         :label => 'H4 Sub6', :placeholder => 'H4 Sub6'
+      %br
+      = f.input :std_h4sub6section,  :label => 'H4 Sub6 Section', :placeholder => 'H4 Sub6 Section', :as => :text, :input_html => { :rows => 20 , :class => "col-xs-12"}
+      %br
+      = f.input :std_h5,             :label => 'H5', :placeholder => 'H5'
+      %br
+      = f.input :std_h5section,      :label => 'H5 Section', :placeholder => 'H5 Section', :as => :text, :input_html => { :rows => 20 , :class => "col-xs-12"}
+      %br
+      = f.input :std_h6,             :label => 'H6', :placeholder => 'H6'
+      %br
+      = f.input :std_h6sub1,         :label => 'H6 Sub1', :placeholder => 'H6 Sub1'
+      %br
+      = f.input :std_h6sub1link,     :label => 'H6 Sub1 Link', :placeholder => 'http://sub1link.com/'
+      %br
+      = f.input :std_h6sub1section,  :label => 'H6 Sub1 Section', :placeholder => 'H6 Sub1 Section', :as => :text, :input_html => { :rows => 20 , :class => "col-xs-12"}
+      %br
+      = f.input :std_h6sub2,         :label => 'H6 Sub2', :placeholder => 'H6 Sub2'
+      %br
+      = f.input :std_h6sub2link,     :label => 'H6 Sub2 Link', :placeholder => 'http://sub2link.com/'
+      %br
+      = f.input :std_h6sub2section,  :label => 'H6 Sub2 Section', :placeholder => 'H6 Sub2 Section', :as => :text, :input_html => { :rows => 20 , :class => "col-xs-12"}
+      %br
+      = f.input :std_h6sub3,         :label => 'H6 Sub3', :placeholder => 'H6 Sub3'
+      %br
+      = f.input :std_h6sub3link,     :label => 'H6 Sub3 Link', :placeholder => 'http://sub3link.com/'
+      %br
+      = f.input :std_h6sub3section,  :label => 'H6 Sub3 Section', :placeholder => 'H6 Sub3 Section', :as => :text, :input_html => { :rows => 20 , :class => "col-xs-12"}
+      %br
+      = f.input :std_h6sub4,         :label => 'H6 Sub4', :placeholder => 'H6 Sub4'
+      %br
+      = f.input :std_h6sub4link,     :label => 'H6 Sub4 Link', :placeholder => 'http://sub4link.com/'
+      %br
+      = f.input :std_h6sub4section,  :label => 'H6 Sub4 Section', :placeholder => 'H6 Sub4 Section', :as => :text, :input_html => { :rows => 20 , :class => "col-xs-12"}
+      %br
+      = f.input :std_h6sub5,         :label => 'H6 Sub5', :placeholder => 'H6 Sub5'
+      %br
+      = f.input :std_h6sub5link,     :label => 'H6 Sub5 Link', :placeholder => 'http://sub5link.com/'
+      %br
+      = f.input :std_h6sub5section,  :label => 'H6 Sub5 Section', :placeholder => 'H6 Sub5 Section', :as => :text, :input_html => { :rows => 20 , :class => "col-xs-12"}
+      %br
+      = f.input :std_h6sub6,         :label => 'H6 Sub6', :placeholder => 'H6 Sub6'
+      %br
+      = f.input :std_h6sub6link,     :label => 'H6 Sub6 Link', :placeholder => 'http://sub6link.com/'
+      %br
+      = f.input :std_h6sub6section,  :label => 'H6 Sub6 Section', :placeholder => 'H6 Sub6 Section', :as => :text, :input_html => { :rows => 20 , :class => "col-xs-12"}
+      %br
+      = f.input :std_h6sub7,         :label => 'H6 Sub7', :placeholder => 'H6 Sub7'
+      %br
+      = f.input :std_h6sub7link,     :label => 'H6 Sub7 Link', :placeholder => 'http://sub7link.com/'
+      %br
+      = f.input :std_h6sub7section,  :label => 'H6 Sub7 Section', :placeholder => 'H6 Sub7 Section', :as => :text, :input_html => { :rows => 20 , :class => "col-xs-12"}
+      %br
+      = f.input :std_h6sub8,         :label => 'H6 Sub8', :placeholder => 'H6 Sub8'
+      %br
+      = f.input :std_h6sub8link,     :label => 'H6 Sub8 Link', :placeholder => 'http://sub8link.com/'
+      %br
+      = f.input :std_h6sub8section,  :label => 'H6 Sub8 Section', :placeholder => 'H6 Sub8 Section', :as => :text, :input_html => { :rows => 20 , :class => "col-xs-12"}
+      %br
+      = f.input :std_h6sub9,         :label => 'H6 Sub9', :placeholder => 'H6 Sub9'
+      %br
+      = f.input :std_h6sub9link,     :label => 'H6 Sub9 Link', :placeholder => 'http://sub9link.com/'
+      %br
+      = f.input :std_h6sub9section,  :label => 'H6 Sub9 Section', :placeholder => 'H6 Sub9 Section', :as => :text, :input_html => { :rows => 20 , :class => "col-xs-12"}
+      %br
+      = f.input :std_h6sub10,        :label => 'H6 Sub10', :placeholder => 'H6 Sub10'
+      %br
+      = f.input :std_h6sub10link,    :label => 'H6 Sub10 Link', :placeholder => 'http://sub10link.com/'
+      %br
+      = f.input :std_h6sub10section, :label => 'H6 Sub10 Section', :placeholder => 'H6 Sub10 Section', :as => :text, :input_html => { :rows => 20 , :class => "col-xs-12"}
+      %br
+      = f.input :std_h7,             :label => 'H7', :placeholder => 'H7'
+      %br
+      = f.input :std_h7section,      :label => 'H7 Section', :placeholder => 'H7 Section', :as => :text, :input_html => { :rows => 20 , :class => "col-xs-12"}
+      %br
+      = f.input :std_h7tablel1,      :label => 'H7 Table L1', :placeholder => 'H7 Table L1'
+      %br
+      = f.input :std_h7tabler1,      :label => 'H7 Table R1', :placeholder => 'H7 Table R1'
+      %br
+      = f.input :std_h7tablel2,      :label => 'H7 Table L2', :placeholder => 'H7 Table L2'
+      %br
+      = f.input :std_h7tabler2,      :label => 'H7 Table R2', :placeholder => 'H7 Table R2'
+      %br
+      = f.input :std_h7tablel3,      :label => 'H7 Table L3', :placeholder => 'H7 Table L3'
+      %br
+      = f.input :std_h7tabler3,      :label => 'H7 Table R3', :placeholder => 'H7 Table R3'
+      %br
+      = f.input :std_h7tablel4,      :label => 'H7 Table L4', :placeholder => 'H7 Table L4'
+      %br
+      = f.input :std_h7tabler4,      :label => 'H7 Table R4', :placeholder => 'H7 Table R4'
+      %br
+      = f.input :std_h7tablel5,      :label => 'H7 Table L5', :placeholder => 'H7 Table L5'
+      %br
+      = f.input :std_h7tabler5,      :label => 'H7 Table R5', :placeholder => 'H7 Table R5'
+      %br
+      = f.input :std_h7tablel6,      :label => 'H7 Table L6', :placeholder => 'H7 Table L6'
+      %br
+      = f.input :std_h7tabler6,      :label => 'H7 Table R6', :placeholder => 'H7 Table R6'
+      %br
+      = f.input :std_h7tablel7,      :label => 'H7 Table L7', :placeholder => 'H7 Table L7'
+      %br
+      = f.input :std_h7tabler7,      :label => 'H7 Table R7', :placeholder => 'H7 Table R7'
+      %br
+      = f.input :std_h7tablel8,      :label => 'H7 Table L8', :placeholder => 'H7 Table L8'
+      %br
+      = f.input :std_h7tabler8,      :label => 'H7 Table R8', :placeholder => 'H7 Table R8'
+      %br
+      = f.input :std_h7tablel9,      :label => 'H7 Table L9', :placeholder => 'H7 Table L9'
+      %br
+      = f.input :std_h7tabler9,      :label => 'H7 Table R9', :placeholder => 'H7 Table R9'
+      %br
+      = f.input :std_h7tablel10,     :label => 'H7 Table L10', :placeholder => 'H7 Table L10'
+      %br
+      = f.input :std_h7tabler10,     :label => 'H7 Table R10', :placeholder => 'H7 Table R10'
+      %br
+      = f.input :std_h7tablel11,     :label => 'H7 Table L11', :placeholder => 'H7 Table L11'
+      %br
+      = f.input :std_h7tabler11,     :label => 'H7 Table R11', :placeholder => 'H7 Table R11'
+      %br
+      = f.input :std_h7tablel12,     :label => 'H7 Table L12', :placeholder => 'H7 Table L12'
+      %br
+      = f.input :std_h7tabler12,     :label => 'H7 Table R12', :placeholder => 'H7 Table R12'
+      %br
+      = f.input :std_h7tablel13,     :label => 'H7 Table L13', :placeholder => 'H7 Table L13'
+      %br
+      = f.input :std_h7tabler13,     :label => 'H7 Table R13', :placeholder => 'H7 Table R13'
+      %br
+      = f.input :std_h7tablel14,     :label => 'H7 Table L14', :placeholder => 'H7 Table L14'
+      %br
+      = f.input :std_h7tabler14,     :label => 'H7 Table R14', :placeholder => 'H7 Table R14'
+      %br
+      = f.input :std_h7tablel15,     :label => 'H7 Table L15', :placeholder => 'H7 Table L15'
+      %br
+      = f.input :std_h7tabler15,     :label => 'H7 Table R15', :placeholder => 'H7 Table R15'
+      %br
+      = f.input :std_h7tablel16,     :label => 'H7 Table L16', :placeholder => 'H7 Table L16'
+      %br
+      = f.input :std_h7tabler16,     :label => 'H7 Table R16', :placeholder => 'H7 Table R16'
+      %br
+      = f.input :std_h7tablel17,     :label => 'H7 Table L17', :placeholder => 'H7 Table L17'
+      %br
+      = f.input :std_h7tabler17,     :label => 'H7 Table R17', :placeholder => 'H7 Table R17'
+      %br
+      = f.input :std_h7tablel18,     :label => 'H7 Table L18', :placeholder => 'H7 Table L18'
+      %br
+      = f.input :std_h7tabler18,     :label => 'H7 Table R18', :placeholder => 'H7 Table R18'
+      %br
+      = f.input :std_h7tablel19,     :label => 'H7 Table L19', :placeholder => 'H7 Table L19'
+      %br
+      = f.input :std_h7tabler19,     :label => 'H7 Table R19', :placeholder => 'H7 Table R19'
+      %br
+      = f.input :std_h7tablel20,     :label => 'H7 Table L20', :placeholder => 'H7 Table L20'
+      %br
+      = f.input :std_h7tabler20,     :label => 'H7 Table R20', :placeholder => 'H7 Table R20'
+      %br
+      = f.input :std_h7footer,       :label => 'H7 Footer', :placeholder => 'H7 Footer', :as => :text, :input_html => { :rows => 20 , :class => "col-xs-12"}
+      %br
       = f.button :submit, 'Update City', :class => 'btn-sm btn-success'
     = link_to "Back", :back, :class => "pull-left"
     = link_to "Remove City", city_path(@city), :data => { :confirm => "Are you sure?" }, :method => :delete, :class => "pull-right"

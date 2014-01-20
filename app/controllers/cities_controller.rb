@@ -33,14 +33,6 @@ class CitiesController < ApplicationController
     @locations = Location.where(city_id: @city.id)
     @state = State.find_by_id(@city.state_id)
     @locos = Location.near(@city.name, 50, :order => :distance)
-    if @city.population || @state.population == nil
-      @percent_state = "N/A"
-    else
-      @percent_state = '%.2f' % (@city.population.to_f / @state.population.to_f)
-    end
-    @percent_prostate = '%.2f' % (@city.prostate_num.to_f / @city.all_cancers_num.to_f)
-    @percent_coronary = '%.2f' % (@city.coronary_num.to_f / @city.total_d_num.to_f)
-    @percent_cancer = '%.2f' % (@city.all_cancers_num.to_f / @city.total_d_num.to_f)
 
     @hash = Gmaps4rails.build_markers(@locos) do |location, marker|
       marker.lat location.latitude

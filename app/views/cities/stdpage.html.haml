@@ -1,14 +1,14 @@
 - content_for :title, @city.std_title
 - content_for :description, @city.std_meta
 .jumbotron
-  = link_to(image_tag('logo-hipaa.png'), root_path, :class => 'jumbolink')
-  = link_to(image_tag('seal.png'), root_path, :class => 'jumbolink')
-  = link_to(image_tag('logo-bbb.png'), root_path, :class => 'jumbolink')
+  = link_to(image_tag('http://htcgen.herokuapp.com/logo-hipaa.png'), root_path, :class => 'jumbolink')
+  = link_to(image_tag('http://htcgen.herokuapp.com/seal.png'), root_path, :class => 'jumbolink')
+  = link_to(image_tag('http://htcgen.herokuapp.com/logo-bbb.png'), root_path, :class => 'jumbolink')
 .container
   .row.mainer
     .col-md-2.lside
-      = link_to(image_tag('Checkup-Ad.png'), "http://www.healthtestingcenters.com/essential-health-screen.aspx", :class => 'checkup')
-      = image_tag('mod_head_category_lt.gif', :class => 'labtestcat')
+      = link_to(image_tag('http://htcgen.herokuapp.com/Checkup-Ad.png'), "http://www.healthtestingcenters.com/essential-health-screen.aspx", :class => 'checkup')
+      = image_tag('http://htcgen.herokuapp.com/mod_head_category_lt.gif', :class => 'labtestcat')
       .modulee
         %ul
           %li= link_to 'Allergy Testing', "http://www.healthtestingcenters.com/allergy-testing.aspx"
@@ -47,91 +47,331 @@
         %li
           %a{:href => city_path } #{@city.name}
         %li.active Laboratory Blood Tests
-      %h1.toph1 Laboratory Blood Testing in #{@city.name}
+      %h1.toph1 #{@city.std_h1}
       .container
         .row
           .col-xs-12.buttoninfophone
-            .btn.btn-primary Order and Test Here
+            .btn.btn-primary= link_to 'http://www.healthtestingcenters.com/Complete-Test-List.aspx', 'Order and Test Here'
             .row
               .col-md-12
                 %h4 
-                  %a{:href => "tel:1-412-685-4722"} (412) 685-4722
+                  %a{:href => "tel:#{@city.phone}"} #{@city.phone}
                 %h5 Call to consult with a medical professional
           .col-sm-6.col-sm-push-12
-            = image_tag('mapplaceholder.png', :class => 'mapplaceholder')
+            %script{:src => "http://maps.google.com/maps/api/js?key=AIzaSyANL_BvD-Bns2P5jL0Rf8ga_fM-0JpDngA&sensor=false", :type => "text/javascript"}
+            .tlsmap
+              #gmap_canvas
+              %script{:src => "http://rlscdn.rioseo.com/js/markerclusterer.js", :type => "text/javascript"}
+              :javascript
+                var currentInfoWindow = null;
+                var bounds = new google.maps.LatLngBounds();
+                var latlng = new google.maps.LatLng(#{@locations.first.latitude}, #{@locations.first.longitude});
+                var options = {
+                  zoom: 11,
+                  center: latlng,
+                  mapTypeId: google.maps.MapTypeId.ROADMAP,
+                  disableDefaultUI: false,
+                  mapTypeControl: true,
+                  mapTypeControlOptions: { style: google.maps.MapTypeControlStyle.DEFAULT },
+                  navigationControl: true,
+                  navigationControlOptions: { style: google.maps.NavigationControlStyle.DEFAULT },
+                  scaleControl: true,
+                  streetViewControl: true,
+                  draggable: true,
+                  scrollwheel: true,
+                  disableDoubleClickZoom: false
+                };
+                
+                function showmap() {
+                  var map = new google.maps.Map(document.getElementById('gmap_canvas'), options);
+                
+                  google.maps.event.addListener(map, 'click', function() { if (currentInfoWindow != null) { currentInfoWindow.close(); } });
+                  var markers = [];
+
+
+                  var image = {url: 'http://locations.healthtestingcenters.com/images/mapIconSm.gif',scaledSize: new google.maps.Size(35,35)};
+                  var latlng = new google.maps.LatLng(#{@locations.first.latitude}, #{@locations.first.longitude});
+                  var marker0 = new google.maps.Marker({
+                      position: latlng,
+                      title: "#{@locations.first.name}",
+                      icon: image,
+                      map: map
+                  });
+                  markers.push(marker0);
+                  var infowindowM0 = new google.maps.InfoWindow({
+                    content: "Health Testing Centers<br><a href=\'http://healthtestingcenters.com\' alt=\'Laboratory Blood Tests #{@locations.first.city.name} Health Testing Centers | Locations\' title=\'Laboratory Blood Tests #{@locations.first.city.name} Health Testing Centers | Locations\' target=\'_parent\'>View all locations in #{@locations.first.city.name}"
+                  });
+                  google.maps.event.addListener (marker0, 'click', function() {
+                    if (currentInfoWindow != null) { currentInfoWindow.close(); } 
+                    infowindowM0.open(map, marker0);
+                    currentInfoWindow = infowindowM0;
+                  });
+                    bounds.extend(markerLatLng);
+                  }
+
+                
+                window.onload = showmap;
+
+              - if @locations.first == nil
+              - else
+                %h3 Nearby locations
+                %ul
+                  - for location in @locations.first.nearbys(100)
+                    %li
+                      = link_to location.name, location
+                      (#{location.distance.to_f.round(2)} miles)
+                  
           .col-sm-6.col-sm-pull-12.buttoninfo
-            .btn.btn-primary Order and Test Here
-            .row
-              .col-md-6.col-sm-6.col-xs-6
-                %h3 Health Testing Centers
-                %p 
-                  300 Fleet St 2nd Floor
-                  %br
-                  2nd Floor
-                  %br
-                  Pittsburgh, PA 15220
-              .col-md-6.col-sm-6.col-xs-6
-                %h3 Hours
-                %p 
-                  8AM-3PM EST (M-F)
+            .btn.btn-primary= link_to 'Order and Test Here', 'http://www.healthtestingcenters.com/Complete-Test-List.aspx' 
             .row
               .col-md-12
                 %h4
-                  %a{:href => "tel:1-412-685-4722"} (412) 685-4722
+                  %a{:href => "tel:#{@city.phone}"} #{@city.phone}
                 %h5 Call to consult with a medical professional
           .col-xs-12.buttoninfophone
-            %h3 Health Testing Centers
-            %p 
-              300 Fleet St 2nd Floor
-              %br
-              2nd Floor
-              %br
-              Pittsburgh, PA 15220
-          .col-xs-12.buttoninfophone
-            %h3 Hours
-            %p 8AM-3PM EST (M-F)
-      %h2 The Leader in #{@city.name} for Bloodtesting Since 1980
-      .well
-        %h6 Doctor’s Order Included
-        %p You do not need an order or a prescription from your doctor. All our tests
-        %h6 Save 70% or More
-        %p Most of our patients either don’t have health insurance or don’t want to
-        %h6 Order Any Lab Test (No Restrictions)
-        %p Often health insurance companies, or even your doctor, will limit the
-      %h1 Top Blood Test Categories in City
+      %h1 #{@city.std_h2}
+      - if @locations == nil || ""
+        %p No Locations in #{@city.name}
+      - else
+        %ul
+          - @locations.each do |location|
+            %li= link_to location.name, location
+      %h1 #{@city.std_h3}
       .row
         .col-md-6
           %ul
-            %li= link_to 'STD Testing Basic Health Screening $59', 'http://www.healthtestingcenters.com/basic-blood-test.aspx', :class => "bulletlink"
-            %li= link_to 'Thyroid Testing', 'http://www.healthtestingcenters.com/thyroid-test.aspx', :class => "bulletlink"
-            %li= link_to 'Cholesterol and Heart Blood Testing', 'Cholesterol and Heart Blood Testing', :class => "bulletlink"
-            %li= link_to 'Cancer Testing', 'http://www.healthtestingcenters.com/cancer-blood-test.aspx', :class => "bulletlink"
+            %li= link_to @city.std_h3sub1, @city.std_h3sub1link, :class => "bulletlink"
+            %li= link_to @city.std_h3sub2, @city.std_h3sub2link, :class => "bulletlink"
+            %li= link_to @city.std_h3sub3, @city.std_h3sub3link, :class => "bulletlink"
+            %li= link_to @city.std_h3sub4, @city.std_h3sub4link, :class => "bulletlink"
+            %li= link_to @city.std_h3sub5, @city.std_h3sub5link, :class => "bulletlink"
         .col-md-6
           %ul
-            %li= link_to 'Prostate Testing', 'http://www.healthtestingcenters.com/psa.aspx', :class => "bulletlink"
-            %li= link_to 'Liver Testing', 'http://www.healthtestingcenters.com/liver-function-test.aspx', :class => "bulletlink"
-            %li= link_to 'Hormone Testing', 'http://www.healthtestingcenters.com/hormone-level-blood-tests.aspx', :class => "bulletlink"
-      %h1 Blood Testing Details for Patients in #{@city.name}
-      %p Health Testing Centers have convenient locations in Pittsburgh, PA. Simply purchase the test you want online or call our nurses to order by phone. After ordering, Health Testing Centers then emails you a requisition form to bring to one of the below LabCorp locations. After you you have the blood drawn at one of the LabCorp locations below we email the results within 24-48 hours.
-      %h1 Health Facts in #{@city.name}
-      %p Oriented in Pennsylvania, the metro area, #{@city.name} contains a total of 307,532 individuals. The state population of Pennsylvania has 12,709,154 people. Out of this number of people, a total of 2.4% of them live in Pittsburgh. In one year, there are 24 deaths in the city that are caused by liver disease. There are an additional 55 deaths from kidney disease in the city. Altogether, there are a total of 558 deaths from every kind of cancer. Stroke also caused 121 deaths in the city. In addition, 66 deaths are caused by just prostate cancer, which accounts for 11.7% of total cancer deaths. During the same time period, 357 die from coronary heart disease. There were also 62 resident deaths from diabetes. On average, 0.12% of residents were likely to die of coronary heart disease during the year and 0.18% chance of passing away from any form of cancer.
+            %li= link_to @city.std_h3sub6, @city.std_h3sub6link, :class => "bulletlink"
+            %li= link_to @city.std_h3sub7, @city.std_h3sub7link, :class => "bulletlink"
+            %li= link_to @city.std_h3sub8, @city.std_h3sub8link, :class => "bulletlink"
+            %li= link_to @city.std_h3sub9, @city.std_h3sub9link, :class => "bulletlink"
+            %li= link_to @city.std_h3sub10, @city.std_h3sub10link, :class => "bulletlink"
+      %h2 #{@city.std_h4}
+      .row
+        .togler.col-md-4
+          .well.well-lg
+            %h6 #{@city.std_h4sub1}
+            %p 
+              = truncate @city.std_h4sub1section, :length => 75  
+              %span=link_to 'more', '#', :class => 'togmore'
+            %p.hidden
+              #{@city.std_h4sub1section}
+              %span=link_to 'less', '#', :class => 'togless'
+        .togler.col-md-4
+          .well.well-lg
+            %h6 #{@city.std_h4sub2}
+            %p 
+              = truncate @city.std_h4sub2section, :length => 75  
+              %span=link_to 'more', '#', :class => 'togmore'
+            %p.hidden
+              #{@city.std_h4sub2section}
+              %span=link_to 'less', '#', :class => 'togless'
+        .togler.col-md-4
+          .well.well-lg
+            %h6 #{@city.std_h4sub3}
+            %p 
+              = truncate @city.std_h4sub3section, :length => 75  
+              %span=link_to 'more', '#', :class => 'togmore'
+            %p.hidden
+              #{@city.std_h4sub3section}
+              %span=link_to 'less', '#', :class => 'togless'
+      .row
+        .togler.col-md-4
+          .well.well-lg
+            %h6 #{@city.std_h4sub4}
+            %p 
+              = truncate @city.std_h4sub4section, :length => 75  
+              %span=link_to 'more', '#', :class => 'togmore'
+            %p.hidden
+              #{@city.std_h4sub4section}
+              %span=link_to 'less', '#', :class => 'togless'
+        .togler.col-md-4
+          .well.well-lg
+            %h6 #{@city.std_h4sub5}
+            %p 
+              = truncate @city.std_h4sub5section, :length => 75  
+              %span=link_to 'more', '#', :class => 'togmore'
+            %p.hidden
+              #{@city.std_h4sub5section}
+              %span=link_to 'less', '#', :class => 'togless'
+        .togler.col-md-4
+          .well.well-lg
+            %h6 #{@city.std_h4sub6}
+            %p 
+              = truncate @city.std_h4sub6section, :length => 75  
+              %span=link_to 'more', '#', :class => 'togmore'
+            %p.hidden
+              #{@city.std_h4sub6section}
+              %span=link_to 'less', '#', :class => 'togless'
+      %h1 #{@city.std_h5}
+      %p #{@city.std_h5section}
+      %h4 #{@city.std_h6}
+      %h2= link_to @city.std_h6sub1, @city.std_h6sub1link, :style => "font-weight:bold; font-size:105%;"
+      %p #{@city.std_h6sub1section}
+      / %blockquote
+      /   %p{:style => "font-weight:bold; font-size:90%;"}
+      /     %a{:href => "http://www.healthtestingcenters.com/basichealthscreenpluscmpcbclipid.aspx"} The Essential Health Screen $89
+      /     \- CBC (w diff), CMP, Urinalysis and Lipid Profile (HDL, LDL + Triglycerides)
+      /     %br
+      /     %a{:href => "http://www.healthtestingcenters.com/basic-blood-test.aspx"} Basic Health Screen $59 
+      /     \- Includes a CBC (w diff), CMP, and a Urinalysis
+      /     %br
+      /     %a{:href => "http://www.healthtestingcenters.com/cholesterol-test.aspx"} Cholesterol Test (Lipid Profile) $39
+      /     \- HDL, LDL, Total Cholesterol + Triglycerides
+      %h2= link_to @city.std_h6sub2, @city.std_h6sub2link, :style => "font-weight:bold; font-size:105%;"
+      %p #{@city.std_h6sub2section}
+      %h2= link_to @city.std_h6sub3, @city.std_h6sub3link, :style => "font-weight:bold; font-size:105%;"
+      %p #{@city.std_h6sub3section}
+      %h2= link_to @city.std_h6sub4, @city.std_h6sub4link, :style => "font-weight:bold; font-size:105%;"
+      %p #{@city.std_h6sub4section}
+      %h2= link_to @city.std_h6sub5, @city.std_h6sub5link, :style => "font-weight:bold; font-size:105%;"
+      %p #{@city.std_h6sub5section}
+      %h2= link_to @city.std_h6sub6, @city.std_h6sub6link, :style => "font-weight:bold; font-size:105%;"
+      %p #{@city.std_h6sub6section}
+      %h2= link_to @city.std_h6sub7, @city.std_h6sub7link, :style => "font-weight:bold; font-size:105%;"
+      %p #{@city.std_h6sub7section}
+      %h2= link_to @city.std_h6sub8, @city.std_h6sub8link, :style => "font-weight:bold; font-size:105%;"
+      %p #{@city.std_h6sub8section}
+      %h2= link_to @city.std_h6sub9, @city.std_h6sub9link, :style => "font-weight:bold; font-size:105%;"
+      %p #{@city.std_h6sub9section}
+      %h2= link_to @city.std_h6sub10, @city.std_h6sub10link, :style => "font-weight:bold; font-size:105%;"
+      %p #{@city.std_h6sub10section}
+      %h1 #{@city.std_h7}
+      %p #{@city.std_h7section}
+      %br
+      %table{:cellpadding => "0", :cellspacing => "0", :style => "font-size: 120%; margin-left: 100px"}
+        %col{:width => "0px"}
+          %tr
+            %td
+            %td{:width => "325"} #{@city.std_h7tablel1}
+            %td{:width => "265", :style => "text-align:right;"} #{@city.std_h7tabler1}
+            %td
+          %tr
+            %td
+            %td{:width => "325"} #{@city.std_h7tablel2}
+            %td{:width => "265", :style => "text-align:right;"} #{@city.std_h7tabler2}
+            %td{:width => "165"} 
+          %tr
+            %td
+            %td{:width => "325"} #{@city.std_h7tablel3}
+            %td{:width => "265", :style => "text-align:right;"} #{@city.std_h7tabler3}
+            %td{:width => "165"} 
+          %tr
+            %td
+            %td{:width => "325"} #{@city.std_h7tablel4}
+            %td{:width => "265", :style => "text-align:right;"} #{@city.std_h7tabler4}
+            %td{:width => "165"} 
+          %tr
+            %td
+            %td{:width => "325"} #{@city.std_h7tablel5}
+            %td{:width => "265", :style => "text-align:right;"} #{@city.std_h7tabler5}
+            %td{:width => "165"} 
+          %tr
+            %td
+            %td{:width => "325"} #{@city.std_h7tablel6}
+            %td{:width => "265", :style => "text-align:right;"} #{@city.std_h7tabler6}
+            %td{:width => "165"} 
+          %tr
+            %td
+            %td{:width => "325"} #{@city.std_h7tablel7}
+            %td{:width => "265", :style => "text-align:right;"} #{@city.std_h7tabler7}
+            %td{:width => "165"} 
+          %tr
+            %td
+            %td{:width => "325"} #{@city.std_h7tablel8}
+            %td{:width => "265", :style => "text-align:right;"} #{@city.std_h7tabler8}
+            %td{:width => "165"} 
+          %tr
+            %td
+            %td{:width => "325"} #{@city.std_h7tablel9}
+            %td{:width => "265", :style => "text-align:right;"} #{@city.std_h7tabler9}
+            %td{:width => "165"} 
+          %tr
+            %td 
+            %td{:width => "325"} #{@city.std_h7tablel10}
+            %td{:width => "265", :style => "text-align:right;"} #{@city.std_h7tabler10}
+            %td{:width => "165"} 
+          %tr
+            %td
+            %td{:width => "325"} #{@city.std_h7tablel11}
+            %td{:width => "265", :style => "text-align:right;"} #{@city.std_h7tabler11}
+            %td
+          %tr
+            %td
+            %td{:width => "325"} #{@city.std_h7tablel12}
+            %td{:width => "265", :style => "text-align:right;"} #{@city.std_h7tabler12}
+            %td{:width => "165"} 
+          %tr
+            %td
+            %td{:width => "325"} #{@city.std_h7tablel13}
+            %td{:width => "265", :style => "text-align:right;"} #{@city.std_h7tabler13}
+            %td{:width => "165"} 
+          %tr
+            %td
+            %td{:width => "325"} #{@city.std_h7tablel14}
+            %td{:width => "265", :style => "text-align:right;"} #{@city.std_h7tabler14}
+            %td{:width => "165"} 
+          %tr
+            %td
+            %td{:width => "325"} #{@city.std_h7tablel15}
+            %td{:width => "265", :style => "text-align:right;"} #{@city.std_h7tabler15}
+            %td{:width => "165"} 
+          %tr
+            %td
+            %td{:width => "325"} #{@city.std_h7tablel16}
+            %td{:width => "265", :style => "text-align:right;"} #{@city.std_h7tabler16}
+            %td{:width => "165"} 
+          %tr
+            %td
+            %td{:width => "325"} #{@city.std_h7tablel17}
+            %td{:width => "265", :style => "text-align:right;"} #{@city.std_h7tabler17}
+            %td{:width => "165"} 
+          %tr
+            %td
+            %td{:width => "325"} #{@city.std_h7tablel18}
+            %td{:width => "265", :style => "text-align:right;"} #{@city.std_h7tabler18}
+            %td{:width => "165"} 
+          %tr
+            %td
+            %td{:width => "325"} #{@city.std_h7tablel19}
+            %td{:width => "265", :style => "text-align:right;"} #{@city.std_h7tabler19}
+            %td{:width => "165"} 
+          %tr
+            %td 
+            %td{:width => "325"} #{@city.std_h7tablel20}
+            %td{:width => "265", :style => "text-align:right;"} #{@city.std_h7tabler20}
+            %td{:width => "165"} 
+      %br
+      %br
+      %p
+        %strong Notes:
+        %br/
+        #{@city.std_h7footer}
+        %br
+        %br
     .col-md-2.rside
-      = link_to(image_tag('email.png'), "mailto:", :class => 'topsoc')
-      = link_to(image_tag('google-plus-new.png'), "https://plus.google.com/104085544192925470869/posts", :class => 'topsoc')
-      = link_to(image_tag('facebook.png'), "http://www.facebook.com/HealthTestingCenters", :class => 'topsoc')
-      = link_to(image_tag('twitter.png'), "http://twitter.com/#!/bloodtesting", :class => 'topsoc')
-      = link_to(image_tag('Lab-Testing-123.png'), "http://www.healthtestingcenters.com/blood-testing-how-it-works.aspx", :class => 'easyas')
-      = link_to(image_tag('Newletter-Signup.png'), "http://visitor.r20.constantcontact.com/d.jsp?llr=b8ffsudab&p=oi&m=1103422986081", :class => 'newslet')
+      = link_to(image_tag('http://htcgen.herokuapp.com/email.png'), "mailto:", :class => 'topsoc')
+      = link_to(image_tag('http://htcgen.herokuapp.com/google-plus-new.png'), "https://plus.google.com/104085544192925470869/posts", :class => 'topsoc')
+      = link_to(image_tag('http://htcgen.herokuapp.com/facebook.png'), "http://www.facebook.com/HealthTestingCenters", :class => 'topsoc')
+      = link_to(image_tag('http://htcgen.herokuapp.com/twitter.png'), "http://twitter.com/#!/bloodtesting", :class => 'topsoc')
+      = link_to(image_tag('http://htcgen.herokuapp.com/Lab-Testing-123.png'), "http://www.healthtestingcenters.com/blood-testing-how-it-works.aspx", :class => 'easyas')
+      = link_to(image_tag('http://htcgen.herokuapp.com/Newletter-Signup.png'), "http://visitor.r20.constantcontact.com/d.jsp?llr=b8ffsudab&p=oi&m=1103422986081", :class => 'newslet')
 .container
   .row.footertopbar
     .col-md-3.col-sm-3.col-xs-3
-      = image_tag('guarantee.png', :class => 'labtestcat')
+      = image_tag('http://htcgen.herokuapp.com/guarantee.png', :class => 'labtestcat')
     .col-md-9.col-sm-9.col-xs-9
       %h1 OUR GAURANTEE
       %p We care about your health. If you're not completely satisfied, we will make it right or give your money back. 
   .row.footer
     .col-md-6
-      = image_tag('453_491_logo-htc.png', :class => 'labtestcat')
+      = image_tag('http://htcgen.herokuapp.com/453_491_logo-htc.png', :class => 'labtestcat')
     .col-md-6
       %h2 TO SPEAK WITH A MEDICAL PROFESSIONAL
       %h3 
@@ -155,13 +395,3 @@
       |
       %li
         %a{:href => 'http://www.healthtestingcenters.com/about-us.aspx'} About Us
-
-
-
-%h3 City Page
-%p
-  Name: #{@city.name}
-%p
-  Abbr: #{@city.phone}
-%p
-  Want to remove this City? #{link_to "Yes", city_path, :data => { :confirm => "Are you sure?" }, :method => :delete}.
