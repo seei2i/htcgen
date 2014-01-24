@@ -752,5 +752,43 @@ html, body, #map-canvas {
   padding: 0px
 }
 
+.nearbylocationator {
+  position: relative;
+  left: 370px;
+  top: -150px;
+  h5 {
+    font-size: 16px;
+    color: #169d18;
+    font-weight: bold;
+    font-style: italic;
+    background: #eeeeee;
+    padding: 10px 10px;
+    &:hover {
+      background: #e0e0e0;
+    }
+  }
+}
+@media (max-width: 1200px) {
+  .nearbylocationator {
+    position: relative;
+    left: 300px;
+    top: -150px;
+  }
+}
 
+@media (max-width: 991px) {
+  .nearbylocationator {
+    position: relative;
+    left: 350px;
+    top: -150px;
+  }
+}
+
+@media (max-width: 767px) {
+  .nearbylocationator {
+    position: relative;
+    left: 0px;
+    top: 0px;
+  }
+}
 

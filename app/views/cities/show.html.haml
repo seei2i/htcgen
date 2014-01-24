@@ -50,6 +50,13 @@
       %h1.toph1 #{@city.btc_h1}
       .container
         .row
+          .col-xs-12
+            - @locations.each do |location|
+              %p #{location.name}, #{location.latitude}, #{location.longitude}, #{location.address}
+            - @locations.first.nearbys(100).each do |location|
+              %p #{location.name}, #{location.latitude}, #{location.longitude}, #{location.address}
+          
+        .row
           .col-xs-12.buttoninfophone
             .btn.btn-primary= link_to 'http://www.healthtestingcenters.com/Complete-Test-List.aspx', 'Order and Test Here'
             .row
@@ -67,7 +74,7 @@
                 var bounds = new google.maps.LatLngBounds();
                 var latlng = new google.maps.LatLng(#{@locations.first.latitude}, #{@locations.first.longitude});
                 var options = {
-                  zoom: 11,
+                  zoom: 8,
                   center: latlng,
                   mapTypeId: google.maps.MapTypeId.ROADMAP,
                   disableDefaultUI: false,
@@ -86,40 +93,44 @@
                   var map = new google.maps.Map(document.getElementById('gmap_canvas'), options);
                 
                   google.maps.event.addListener(map, 'click', function() { if (currentInfoWindow != null) { currentInfoWindow.close(); } });
-                  var markers = [];
+                  var markers = [
+                      ["#{@locations.first.name}", #{@locations.first.latitude},#{@locations.first.longitude}]
+                  ];
 
-
-                  var image = {url: 'http://locations.healthtestingcenters.com/images/mapIconSm.gif',scaledSize: new google.maps.Size(35,35)};
-                  var latlng = new google.maps.LatLng(#{@locations.first.latitude}, #{@locations.first.longitude});
-                  var marker0 = new google.maps.Marker({
-                      position: latlng,
-                      title: "#{@locations.first.name}",
-                      icon: image,
-                      map: map
-                  });
-                  markers.push(marker0);
-                  var infowindowM0 = new google.maps.InfoWindow({
-                    content: "Health Testing Centers<br><a href=\'http://healthtestingcenters.com\' alt=\'Laboratory Blood Tests #{@locations.first.city.name} Health Testing Centers | Locations\' title=\'Laboratory Blood Tests #{@locations.first.city.name} Health Testing Centers | Locations\' target=\'_parent\'>View all locations in #{@locations.first.city.name}"
-                  });
-                  google.maps.event.addListener (marker0, 'click', function() {
-                    if (currentInfoWindow != null) { currentInfoWindow.close(); } 
-                    infowindowM0.open(map, marker0);
-                    currentInfoWindow = infowindowM0;
-                  });
-                    bounds.extend(markerLatLng);
+                  for( i = 0; i < markers.length; i++ ) {
+                    var image = {url: 'http://locations.healthtestingcenters.com/images/mapIconSm.gif',scaledSize: new google.maps.Size(35,35)};
+                    var latlng = new google.maps.LatLng(markers[i][1], markers[i][2]);
+                    var marker0 = new google.maps.Marker({
+                        position: latlng,
+                        title: markers[i][0],
+                        icon: image,
+                        map: map
+                    });
+                    markers.push(marker0);
+                    var infowindowM0 = new google.maps.InfoWindow({
+                      content: "Health Testing Centers<br><a href=\'http://healthtestingcenters.com\' alt=\'Laboratory Blood Tests #{@locations.first.city.name} Health Testing Centers | Locations\' title=\'Laboratory Blood Tests #{@locations.first.city.name} Health Testing Centers | Locations\' target=\'_parent\'>View all locations in #{@locations.first.city.name}"
+                    });
+                    google.maps.event.addListener (marker0, 'click', function() {
+                      if (currentInfoWindow != null) { currentInfoWindow.close(); } 
+                      infowindowM0.open(map, marker0);
+                      currentInfoWindow = infowindowM0;
+                    });
+                      bounds.extend(markerLatLng);
+                    }
                   }
 
                 
                 window.onload = showmap;
-
-              - if @locations.first == nil
-              - else
-                %h3 Nearby locations
-                %ul
+              .nearbylocationator
+                - if @locations.first == nil
+                - else
+                  %h3 Nearby Locations
                   - for location in @locations.first.nearbys(100)
-                    %li
+                    %h5
                       = link_to location.name, location
-                      (#{location.distance.to_f.round(2)} miles)
+                      %br
+                      = location.address
+                      / (#{location.distance.to_f.round(2)} miles)
                   
           .col-sm-6.col-sm-pull-12.buttoninfo
             .btn.btn-primary= link_to 'Order and Test Here', 'http://www.healthtestingcenters.com/Complete-Test-List.aspx' 
@@ -130,7 +141,7 @@
                 %h5 Call to consult with a medical professional
           .col-xs-12.buttoninfophone
       %h1 #{@city.btc_h2}
-      - if @locations == nil || ""
+      - if @locations == nil 
         %p No Locations in #{@city.name}
       - else
         %ul
