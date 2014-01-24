@@ -94,7 +94,7 @@
               
                 // Loop through our array of markers & place each one on the map  
                 for (i = 0; i < markers.length; i++) {
-                  var image = {url: 'http://localhost:3000/marker.png',scaledSize: new google.maps.Size(35,48)};
+                  var image = {url: 'http://htcgen.herokuapp.com/marker.png',scaledSize: new google.maps.Size(35,48)};
                   var position = new google.maps.LatLng(markers[i][1], markers[i][2]);
                   bounds.extend(position);
                   marker = new google.maps.Marker({
