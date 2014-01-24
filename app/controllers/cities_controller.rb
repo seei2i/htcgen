@@ -30,7 +30,20 @@ class CitiesController < ApplicationController
   end
 
   def show
+    @mappablelocations = "[" 
+    @mappableboxes = "["
+
     @locations = Location.where(city_id: @city.id)
+    @locations.each do |location|
+      @var = "['#{location.name}', #{location.latitude}, #{location.longitude}]"
+      @vars = @var.chomp('"').reverse.chomp('"').reverse
+      @mappablelocations = @mappablelocations + @vars + ","
+      @ver = "['#{location.name}']"
+      @vers = @ver.chomp('"').reverse.chomp('"').reverse
+      @mappableboxes = @mappableboxes + @vers + ","
+    end
+    @mappablelocations = @mappablelocations.chomp(',') + "]"
+    @mappableboxes = @mappableboxes.chomp(',') + "]"
     @state = State.find_by_id(@city.state_id)
     @locos = Location.near(@city.name, 50, :order => :distance)
 

@@ -51,87 +51,92 @@
       .container
         .row
           .col-xs-12
-            - @locations.each do |location|
-              %p #{location.name}, #{location.latitude}, #{location.longitude}, #{location.address}
-            - @locations.first.nearbys(100).each do |location|
-              %p #{location.name}, #{location.latitude}, #{location.longitude}, #{location.address}
-          
+            %p Health Testing Centers<br><a href=\'http://healthtestingcenters.com\' alt=\'Laboratory Blood Tests #{@locations.first.city.name} Health Testing Centers | Locations\' title=\'Laboratory Blood Tests #{@locations.first.city.name} Health Testing Centers | Locations\' target=\'_parent\'>View all locations in #{@locations.first.city.name}
         .row
           .col-xs-12.buttoninfophone
-            .btn.btn-primary= link_to 'http://www.healthtestingcenters.com/Complete-Test-List.aspx', 'Order and Test Here'
+            .btn.btn-primary= link_to 'Order and Test Here', 'http://www.healthtestingcenters.com/Complete-Test-List.aspx' 
             .row
               .col-md-12
                 %h4 
                   %a{:href => "tel:#{@city.phone}"} #{@city.phone}
                 %h5 Call to consult with a medical professional
-          .col-sm-6.col-sm-push-12
-            %script{:src => "http://maps.google.com/maps/api/js?key=AIzaSyANL_BvD-Bns2P5jL0Rf8ga_fM-0JpDngA&sensor=false", :type => "text/javascript"}
-            .tlsmap
-              #gmap_canvas
-              %script{:src => "http://rlscdn.rioseo.com/js/markerclusterer.js", :type => "text/javascript"}
-              :javascript
-                var currentInfoWindow = null;
+          .col-sm-6.col-sm-push-12.movere
+            #map_wrapper
+              #map_canvas.mapping
+            %script{:src => "https://ajax.googleapis.com/ajax/libs/jquery/1.7.2/jquery.min.js"}
+            :javascript
+              jQuery(function($) {
+                  var script = document.createElement('script');
+                  script.src = "http://maps.googleapis.com/maps/api/js?sensor=false&callback=initialize";
+                  document.body.appendChild(script);
+                });
+              
+              function initialize() {
+                var map;
                 var bounds = new google.maps.LatLngBounds();
-                var latlng = new google.maps.LatLng(#{@locations.first.latitude}, #{@locations.first.longitude});
-                var options = {
-                  zoom: 8,
-                  center: latlng,
-                  mapTypeId: google.maps.MapTypeId.ROADMAP,
-                  disableDefaultUI: false,
-                  mapTypeControl: true,
-                  mapTypeControlOptions: { style: google.maps.MapTypeControlStyle.DEFAULT },
-                  navigationControl: true,
-                  navigationControlOptions: { style: google.maps.NavigationControlStyle.DEFAULT },
-                  scaleControl: true,
-                  streetViewControl: true,
-                  draggable: true,
-                  scrollwheel: true,
-                  disableDoubleClickZoom: false
+                var mapOptions = {
+                  mapTypeId: 'roadmap'
                 };
-                
-                function showmap() {
-                  var map = new google.maps.Map(document.getElementById('gmap_canvas'), options);
-                
-                  google.maps.event.addListener(map, 'click', function() { if (currentInfoWindow != null) { currentInfoWindow.close(); } });
-                  var markers = [
-                      ["#{@locations.first.name}", #{@locations.first.latitude},#{@locations.first.longitude}]
-                  ];
-
-                  for( i = 0; i < markers.length; i++ ) {
-                    var image = {url: 'http://locations.healthtestingcenters.com/images/mapIconSm.gif',scaledSize: new google.maps.Size(35,35)};
-                    var latlng = new google.maps.LatLng(markers[i][1], markers[i][2]);
-                    var marker0 = new google.maps.Marker({
-                        position: latlng,
-                        title: markers[i][0],
-                        icon: image,
-                        map: map
-                    });
-                    markers.push(marker0);
-                    var infowindowM0 = new google.maps.InfoWindow({
-                      content: "Health Testing Centers<br><a href=\'http://healthtestingcenters.com\' alt=\'Laboratory Blood Tests #{@locations.first.city.name} Health Testing Centers | Locations\' title=\'Laboratory Blood Tests #{@locations.first.city.name} Health Testing Centers | Locations\' target=\'_parent\'>View all locations in #{@locations.first.city.name}"
-                    });
-                    google.maps.event.addListener (marker0, 'click', function() {
-                      if (currentInfoWindow != null) { currentInfoWindow.close(); } 
-                      infowindowM0.open(map, marker0);
-                      currentInfoWindow = infowindowM0;
-                    });
-                      bounds.extend(markerLatLng);
+              
+                // Display a map on the page
+                map = new google.maps.Map(document.getElementById("map_canvas"), mapOptions);
+                map.setTilt(45);
+              
+                // Multiple Markers
+                var markers = #{@mappablelocations};
+              
+                // Info Window Content
+                var infoWindowContent = #{@mappableboxes};
+              
+                // Display multiple markers on a map
+                var infoWindow = new google.maps.InfoWindow(),
+                  marker, i;
+              
+                // Loop through our array of markers & place each one on the map  
+                for (i = 0; i < markers.length; i++) {
+                  var image = {url: 'http://localhost:3000/marker.png',scaledSize: new google.maps.Size(35,48)};
+                  var position = new google.maps.LatLng(markers[i][1], markers[i][2]);
+                  bounds.extend(position);
+                  marker = new google.maps.Marker({
+                    position: position,
+                    map: map,
+                    title: markers[i][0],
+                    icon: image
+                  });
+              
+                  // Allow each marker to have an info window    
+                  google.maps.event.addListener(marker, 'click', (function (marker, i) {
+                    return function () {
+                      infoWindow.setContent(infoWindowContent[i][0]);
+                      infoWindow.open(map, marker);
                     }
-                  }
-
-                
-                window.onload = showmap;
-              .nearbylocationator
-                - if @locations.first == nil
-                - else
-                  %h3 Nearby Locations
-                  - for location in @locations.first.nearbys(100)
+                  })(marker, i));
+              
+                  // Automatically center the map fitting all markers on the screen
+                  map.fitBounds(bounds);
+                }
+              
+                // Override our map zoom level once our fitBounds function runs (Make sure it only runs once)
+                var boundsListener = google.maps.event.addListener((map), 'bounds_changed', function (event) {
+                  this.setZoom(8);
+                  google.maps.event.removeListener(boundsListener);
+                });
+              }
+            .nearbylocationator
+              - if @locations.first == nil
+              - else
+                %h3 Locations in #{@city.name}
+                .locationsholder
+                  - for location in @locations
                     %h5
                       = link_to location.name, location
                       %br
-                      = location.address
-                      / (#{location.distance.to_f.round(2)} miles)
-                  
+                      = location.address 
+                      %br
+                      = location.hours 
+                      %br  
+                      %span
+                        %a.direction-button{:target => "_blank", :alt => "Laboratory Blood Tests Doylestown Health Testing Centers| Directions", :href => "http://maps.google.com/maps?saddr=current+location&daddr=#{location.address} #{location.city.name}"} Directions
           .col-sm-6.col-sm-pull-12.buttoninfo
             .btn.btn-primary= link_to 'Order and Test Here', 'http://www.healthtestingcenters.com/Complete-Test-List.aspx' 
             .row
@@ -141,11 +146,11 @@
                 %h5 Call to consult with a medical professional
           .col-xs-12.buttoninfophone
       %h1 #{@city.btc_h2}
-      - if @locations == nil 
+      - if @locations.first.nearbys(100) == nil 
         %p No Locations in #{@city.name}
       - else
         %ul
-          - @locations.each do |location|
+          - @locations.first.nearbys(100).each do |location|
             %li= link_to location.name, location
       %h1 #{@city.btc_h3}
       .row
